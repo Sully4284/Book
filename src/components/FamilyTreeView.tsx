@@ -38,6 +38,8 @@ interface FamilyTreeViewProps {
   familyGroups: { id: string; name: string; members: string[] }[];
   onCharacterClick: (characterId: string) => void;
   currentChapter: number;
+  filterColor: string | null;
+  filterStatus: CharacterStatus | null;
 }
 
 // Color to accent mapping for tree nodes
@@ -89,13 +91,13 @@ function CharacterNodeComponent({ data }: { data: CharacterNodeData }) {
         className="!opacity-0 !w-1 !h-1"
       />
 
-      {/* Portrait with ornate frame styling */}
+      {/* Portrait with color-coded frame styling */}
       <div
         className="w-20 h-20 rounded-lg shadow-lg p-1"
         style={{
           background: isCarved
-            ? 'linear-gradient(135deg, #dc2626 0%, #dc2626 50%, #f59e0b 50%, #f59e0b 100%)'
-            : `linear-gradient(135deg, #D4A853 0%, #8B6914 50%, #C9A227 100%)`,
+            ? 'linear-gradient(to right, #dc2626 0%, #dc2626 50%, #f59e0b 50%, #f59e0b 100%)'
+            : `linear-gradient(135deg, ${accentColor} 0%, ${accentColor}99 50%, ${accentColor} 100%)`,
         }}
       >
         <div className="w-full h-full rounded overflow-hidden bg-amber-50">
@@ -121,27 +123,19 @@ function CharacterNodeComponent({ data }: { data: CharacterNodeData }) {
         </div>
       </div>
 
-      {/* Status indicator with glow effect */}
-      <div
-        className={`absolute top-0 left-0 w-4 h-4 rounded-full border-2 ${
-          isAlive ? 'bg-green-500 border-green-300' : 'bg-red-500 border-red-300'
-        }`}
-        style={{ boxShadow: `0 0 8px ${isAlive ? '#22c55e' : '#dc2626'}` }}
-      />
-
-      {/* RIP badge for dead characters */}
-      {!isAlive && (
+      {/* Status indicator - green dot if alive, red skull if dead */}
+      {isAlive ? (
         <div
-          className="absolute top-0 right-0 text-white text-xs px-2 py-0.5 rounded-full border"
-          style={{
-            background: 'linear-gradient(180deg, #dc2626 0%, #991b1b 100%)',
-            borderColor: '#fca5a5',
-            fontFamily: 'Playfair Display, serif',
-            fontWeight: 600,
-          }}
-        >
-          RIP
-        </div>
+          className="absolute top-0 left-0 w-4 h-4 rounded-full border-2 bg-green-500 border-green-300"
+          style={{ boxShadow: '0 0 8px #22c55e' }}
+        />
+      ) : (
+        <img
+          src="/images/Skull Icon.svg"
+          alt="Deceased"
+          className="absolute top-0 left-0 w-5 h-5"
+          style={{ filter: 'drop-shadow(0 0 4px #dc2626)' }}
+        />
       )}
 
       {/* Name card with parchment styling */}
@@ -149,7 +143,7 @@ function CharacterNodeComponent({ data }: { data: CharacterNodeData }) {
         className="mt-2 px-4 py-2 rounded-lg min-w-[100px] text-center shadow-lg"
         style={{
           background: 'linear-gradient(180deg, #FDF8EF 0%, #E8DCC4 100%)',
-          border: '2px solid #C9A227',
+          border: `2px solid ${accentColor}`,
         }}
       >
         <span
@@ -157,15 +151,6 @@ function CharacterNodeComponent({ data }: { data: CharacterNodeData }) {
           style={{ fontFamily: 'Playfair Display, serif' }}
         >
           {data.name}
-        </span>
-        <span
-          className="text-xs"
-          style={{
-            fontFamily: 'Cormorant Garamond, serif',
-            color: accentColor,
-          }}
-        >
-          {isCarved ? 'Red/Gold' : data.color}
         </span>
       </div>
     </div>
@@ -283,6 +268,8 @@ export function FamilyTreeView({
   familyGroups,
   onCharacterClick,
   currentChapter,
+  filterColor,
+  filterStatus,
 }: FamilyTreeViewProps) {
   const { nodes: initialNodes, edges: initialEdges } = useMemo(() => {
     const NODE_WIDTH = 140;
@@ -391,9 +378,16 @@ export function FamilyTreeView({
       });
     };
 
-    // Build character map from all visible characters
+    // Build character map from all visible characters, applying filters
     const allCharMap = new Map(
-      characters.filter((c) => c.isVisible).map((c) => [c.id, c])
+      characters
+        .filter((c) => {
+          if (!c.isVisible) return false;
+          if (filterColor && c.color !== filterColor) return false;
+          if (filterStatus && c.status !== filterStatus) return false;
+          return true;
+        })
+        .map((c) => [c.id, c])
     );
 
     if (!selectedFamilyGroup) {
@@ -466,7 +460,7 @@ export function FamilyTreeView({
     }
 
     return { nodes, edges };
-  }, [characters, selectedFamilyGroup, familyGroups, currentChapter]);
+  }, [characters, selectedFamilyGroup, familyGroups, currentChapter, filterColor, filterStatus]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);

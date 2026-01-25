@@ -41,31 +41,86 @@ function App() {
 
   return (
     <div className="min-h-screen">
-      {/* Wood panel header */}
-      <header className="wood-panel relative py-6 shadow-2xl">
-        <div className="relative z-10 max-w-7xl mx-auto px-4">
-          {/* Title section with slingblade */}
-          <div className="flex items-center justify-center gap-6 mb-6">
-            <img
-              src="/images/slingblade.jpg"
-              alt="Slingblade"
-              className="h-16 w-auto opacity-90 hidden sm:block"
-              style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))' }}
-            />
+      {/* Marble panel header */}
+      <header className="wood-panel relative py-4 shadow-2xl">
+        {/* Sling Blade - positioned in left white space */}
+        <div
+          className="absolute hidden md:block"
+          style={{
+            width: '140px',
+            height: '140px',
+            left: '40px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+          }}
+        >
+          <div
+            className="absolute"
+            style={{
+              width: '80px',
+              height: '80px',
+              backgroundColor: '#DC2626',
+              top: '30px',
+              left: '20px',
+              transform: 'rotate(-10deg)',
+            }}
+          />
+          <img
+            src="/images/Sling Blade.png"
+            alt="Slingblade"
+            className="absolute w-full h-full object-contain"
+            style={{
+              filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.4))',
+              zIndex: 1,
+              transform: 'rotate(-30deg)',
+            }}
+          />
+        </div>
+
+        {/* Pyramid - positioned in right white space */}
+        <div
+          className="absolute hidden md:block"
+          style={{
+            width: '140px',
+            height: '140px',
+            right: '40px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+          }}
+        >
+          <div
+            className="absolute"
+            style={{
+              width: '80px',
+              height: '80px',
+              backgroundColor: '#F59E0B',
+              top: '35px',
+              right: '25px',
+              transform: 'rotate(8deg)',
+            }}
+          />
+          <img
+            src="/images/Red Rising Pyramid.webp"
+            alt="Pyramid"
+            className="absolute w-full h-full object-contain"
+            style={{
+              filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.4))',
+              zIndex: 1,
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 w-full px-4 md:px-6 lg:px-8">
+          {/* Title section - centered */}
+          <div className="flex items-center justify-center mb-4">
             <div className="text-center">
-              <h1 className="font-display text-4xl md:text-5xl font-bold text-gold-gradient tracking-wide">
+              <h1 className="font-display text-4xl md:text-5xl font-bold tracking-wide" style={{ color: '#DC2626' }}>
                 Red Rising
               </h1>
-              <p className="font-display text-xl md:text-2xl italic text-amber-200/80 mt-1">
+              <p className="font-display text-xl md:text-2xl italic mt-1" style={{ color: '#DC2626' }}>
                 Family Trees
               </p>
             </div>
-            <img
-              src="/images/slingblade.jpg"
-              alt="Slingblade"
-              className="h-16 w-auto opacity-90 hidden sm:block"
-              style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))', transform: 'scaleX(-1)' }}
-            />
           </div>
 
           {/* Chapter selector */}
@@ -79,10 +134,10 @@ function App() {
       </header>
 
       {/* Main content */}
-      <main className="max-w-7xl mx-auto p-6">
+      <main className="w-full px-4 md:px-6 lg:px-8">
         {/* View controls with ornate styling */}
         <div className="parchment-card rounded-xl p-4 mb-6 shadow-lg border-2 border-amber-700/30">
-          <div className="flex flex-wrap gap-4 items-center">
+          <div className="flex flex-wrap gap-4 items-center justify-center">
             {/* View mode toggle */}
             <div className="flex rounded-lg overflow-hidden border-2 border-amber-700/50 shadow-md">
               <button
@@ -177,7 +232,7 @@ function App() {
             familyGroups={familyGroups}
           />
         ) : (
-          <div className="h-[600px] rounded-xl overflow-hidden shadow-xl border-4 border-amber-700/50"
+          <div className="h-[calc(100vh-280px)] min-h-[500px] rounded-xl overflow-hidden shadow-xl border-4 border-amber-700/50"
                style={{ background: 'linear-gradient(180deg, #2D2216 0%, #1a1510 100%)' }}>
             <FamilyTreeView
               characters={processedCharacters}
@@ -185,6 +240,8 @@ function App() {
               familyGroups={familyGroups}
               onCharacterClick={handleCharacterClick}
               currentChapter={currentChapter}
+              filterColor={filterColor}
+              filterStatus={filterStatus}
             />
           </div>
         )}

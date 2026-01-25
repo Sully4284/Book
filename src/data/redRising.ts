@@ -54,7 +54,7 @@ const characters: Character[] = [
   {
     id: 'darrow',
     name: 'Darrow',
-    aliases: ['Darrow of Lykos', 'Darrow au Andromedus', 'The Reaper'],
+    aliases: ['The Reaper', 'Darrow of Lykos', 'Darrow au Andromedus'],
     color: 'Red',
     house: 'Mars',
     firstAppearance: 1,

@@ -19,7 +19,8 @@ export function ChapterSelector({
     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
       <label
         htmlFor="chapter-select"
-        className="font-display text-lg text-amber-100/90 font-medium"
+        className="font-display text-lg font-medium"
+        style={{ color: '#DC2626' }}
       >
         Currently Reading:
       </label>
@@ -37,7 +38,7 @@ export function ChapterSelector({
           </option>
         ))}
       </select>
-      <span className="font-body text-sm text-amber-200/60 italic hidden md:inline">
+      <span className="font-body text-sm italic hidden md:inline" style={{ color: '#DC2626' }}>
         (Spoiler-free up to this point)
       </span>
     </div>

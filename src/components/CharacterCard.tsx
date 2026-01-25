@@ -47,104 +47,95 @@ export function CharacterCard({
     <div
       onClick={onClick}
       className={`
-        ornate-frame cursor-pointer transition-all duration-300
+        cursor-pointer transition-all duration-300 rounded p-2
         ${isSelected ? 'scale-105 shadow-2xl' : 'hover:scale-102 hover:shadow-xl'}
       `}
       style={{
-        boxShadow: isSelected ? `0 0 20px ${accentColor}40` : undefined,
+        background: isCarved
+          ? 'linear-gradient(to right, #dc2626 0%, #dc2626 50%, #f59e0b 50%, #f59e0b 100%)'
+          : `linear-gradient(135deg, ${accentColor} 0%, ${accentColor}99 50%, ${accentColor} 100%)`,
+        boxShadow: isSelected ? `0 0 20px ${accentColor}40` : '0 4px 6px rgba(0, 0, 0, 0.3)',
       }}
     >
-      <div className="ornate-frame-inner p-4 rounded">
-        {/* Status indicator with ornate styling */}
-        <div className="absolute top-4 right-4 flex items-center gap-1">
-          <div
-            className={`w-3 h-3 rounded-full ${statusColor} shadow-md`}
-            style={{ boxShadow: `0 0 6px ${status === 'alive' ? '#22c55e' : status === 'dead' ? '#dc2626' : '#6b7280'}` }}
-            title={status.charAt(0).toUpperCase() + status.slice(1)}
-          />
-          {status === 'dead' && (
-            <span className="text-xs font-display text-red-700 font-semibold">RIP</span>
+      <div className="relative bg-amber-50 p-3 rounded" style={{ boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.2)' }}>
+        {/* Status indicator - top right corner */}
+        <div className="absolute top-2 right-2">
+          {status === 'alive' ? (
+            <div
+              className="w-4 h-4 rounded-full bg-green-500 border-2 border-green-300"
+              style={{ boxShadow: '0 0 6px #22c55e' }}
+              title="Alive"
+            />
+          ) : status === 'dead' ? (
+            <img
+              src="/images/Skull Icon.svg"
+              alt="Deceased"
+              className="w-5 h-5"
+              style={{ filter: 'drop-shadow(0 0 4px #dc2626)' }}
+              title="Deceased"
+            />
+          ) : (
+            <div
+              className="w-4 h-4 rounded-full bg-gray-500 border-2 border-gray-300"
+              style={{ boxShadow: '0 0 6px #6b7280' }}
+              title="Unknown"
+            />
           )}
         </div>
 
-        {/* Character portrait with frame effect */}
-        <div className="relative mx-auto mb-4 w-20 h-20">
-          {/* Outer decorative ring */}
-          <div
-            className="absolute inset-0 rounded-full"
-            style={{
-              background: isCarved
-                ? 'linear-gradient(135deg, #dc2626 0%, #dc2626 50%, #f59e0b 50%, #f59e0b 100%)'
-                : `linear-gradient(135deg, ${accentColor} 0%, ${accentColor}99 50%, ${accentColor} 100%)`,
-              padding: '3px',
-            }}
-          >
-            <div className="w-full h-full rounded-full bg-amber-50 p-1">
-              {characterImage ? (
-                <img
-                  src={characterImage}
-                  alt={name}
-                  className="w-full h-full object-cover rounded-full"
-                />
-              ) : (
-                <div
-                  className="w-full h-full rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: `${accentColor}20` }}
-                >
-                  <span
-                    className="text-2xl font-display font-bold"
-                    style={{ color: accentColor }}
+        {/* Horizontal layout: portrait + text */}
+        <div className="flex items-center gap-3">
+          {/* Character portrait with frame effect */}
+          <div className="flex-shrink-0 w-16 h-16">
+            <div
+              className="w-full h-full rounded-full p-0.5"
+              style={{
+                background: isCarved
+                  ? 'linear-gradient(to right, #dc2626 0%, #dc2626 50%, #f59e0b 50%, #f59e0b 100%)'
+                  : `linear-gradient(135deg, ${accentColor} 0%, ${accentColor}99 50%, ${accentColor} 100%)`,
+              }}
+            >
+              <div className="w-full h-full rounded-full bg-amber-50 p-0.5 overflow-hidden">
+                {characterImage ? (
+                  <img
+                    src={characterImage}
+                    alt={name}
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                ) : (
+                  <div
+                    className="w-full h-full rounded-full flex items-center justify-center"
+                    style={{ backgroundColor: `${accentColor}20` }}
                   >
-                    {name.charAt(0)}
-                  </span>
-                </div>
-              )}
+                    <span
+                      className="text-xl font-display font-bold"
+                      style={{ color: accentColor }}
+                    >
+                      {name.charAt(0)}
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
+
+          {/* Name and alias */}
+          <div className="flex-1 min-w-0 pr-4">
+            <h3 className="font-display text-base font-bold text-amber-900 leading-tight">
+              {name}
+            </h3>
+            {aliases && aliases.length > 0 && (
+              <p className="font-display text-sm text-amber-700/70 italic truncate">
+                "{aliases[0]}"
+              </p>
+            )}
+            {house && (
+              <span className="inline-block mt-1 text-xs px-2 py-0.5 rounded-full font-display font-medium bg-amber-100 text-amber-800 border border-amber-300">
+                {house}
+              </span>
+            )}
+          </div>
         </div>
-
-        {/* Name with elegant typography */}
-        <h3 className="font-display text-lg font-bold text-amber-900 text-center mb-1">
-          {name}
-        </h3>
-
-        {/* Aliases in italic script style */}
-        {aliases && aliases.length > 0 && (
-          <p className="font-display text-sm text-amber-700/70 text-center mb-2 italic">
-            "{aliases[0]}"
-          </p>
-        )}
-
-        {/* Color and house badges */}
-        <div className="flex justify-center gap-2 mb-3">
-          <span
-            className="text-xs px-3 py-1 rounded-full font-display font-medium shadow-sm"
-            style={{
-              backgroundColor: `${accentColor}20`,
-              color: accentColor,
-              border: `1px solid ${accentColor}40`,
-            }}
-          >
-            {isCarved ? 'Red/Gold' : color}
-          </span>
-          {house && (
-            <span className="text-xs px-3 py-1 rounded-full font-display font-medium bg-amber-100 text-amber-800 border border-amber-300 shadow-sm">
-              {house}
-            </span>
-          )}
-        </div>
-
-        {/* Decorative divider */}
-        <div className="flex items-center gap-2 mb-2">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"></div>
-          <span className="text-amber-400 text-xs">✦</span>
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"></div>
-        </div>
-
-        {/* Click for more with elegant styling */}
-        <p className="font-body text-xs text-amber-700/60 text-center italic">
-          Click for details
-        </p>
       </div>
     </div>
   );
