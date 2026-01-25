@@ -1,4 +1,3 @@
-import { getStatusColor } from '../hooks/useCharacterData';
 import { getCharacterImage, isCharacterCarved } from '../utils/characterImages';
 import type { CharacterStatus, Relationship } from '../types';
 
@@ -38,7 +37,6 @@ export function CharacterCard({
   isSelected,
   currentChapter,
 }: CharacterCardProps) {
-  const statusColor = getStatusColor(status);
   const characterImage = getCharacterImage(id, currentChapter);
   const isCarved = isCharacterCarved(id, currentChapter);
   const accentColor = isCarved ? '#C9A227' : (colorAccents[color] || '#6B7280');
