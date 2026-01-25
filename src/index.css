@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+/* ===== OLD LIBRARY / BOOKSHELF THEME ===== */
+
+:root {
+  /* Primary colors */
+  --color-wood-dark: #2D2216;
+  --color-wood-medium: #4A3728;
+  --color-wood-light: #6B4C3A;
+  --color-parchment: #F5ECD7;
+  --color-parchment-dark: #E8DCC4;
+  --color-cream: #FDF8EF;
+
+  /* Accent colors */
+  --color-gold: #C9A227;
+  --color-gold-light: #D4B84A;
+  --color-gold-dark: #8B6914;
+  --color-rust: #A65D3F;
+  --color-burgundy: #722F37;
+
+  /* Society Colors (kept vibrant) */
+  --color-red: #DC2626;
+  --color-gold-society: #F59E0B;
+  --color-gray: #6B7280;
+  --color-pink: #EC4899;
+  --color-violet: #8B5CF6;
+  --color-copper: #EA580C;
+
+  /* Fonts */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+
+  font-family: var(--font-body);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-parchment);
+  background-image: url('/images/textures/parchment.jpeg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Custom scrollbar for library theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-wood-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+  border-radius: 5px;
+  border: 2px solid var(--color-wood-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-gold-light) 0%, var(--color-gold) 100%);
+}
+
+/* Typography utilities */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Ornate frame styling for character cards */
+.ornate-frame {
+  position: relative;
+  background: linear-gradient(135deg, #D4A853 0%, #8B6914 25%, #C9A227 50%, #8B6914 75%, #D4A853 100%);
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.ornate-frame-inner {
+  background: var(--color-parchment);
+  border-radius: 2px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Wood panel header */
+.wood-panel {
+  background-image: url('/images/textures/wood.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.wood-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+  pointer-events: none;
+}
+
+/* Gold text effect */
+.text-gold-gradient {
+  background: linear-gradient(180deg, #D4B84A 0%, #C9A227 50%, #8B6914 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Parchment card background */
+.parchment-card {
+  background-color: var(--color-parchment);
+  background-image: url('/images/textures/parchment.jpeg');
+  background-size: cover;
+  position: relative;
+}
+
+.parchment-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 236, 215, 0.85);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.parchment-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Decorative divider */
+.ornate-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ornate-divider::before,
+.ornate-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%);
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* React Flow custom styles - Library theme */
+.react-flow__node {
+  cursor: pointer;
+}
+
+.react-flow__controls {
+  background: var(--color-wood-dark) !important;
+  border: 2px solid var(--color-gold) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.react-flow__controls button {
+  background-color: var(--color-wood-medium) !important;
+  border-color: var(--color-gold-dark) !important;
+  color: var(--color-parchment) !important;
+}
+
+.react-flow__controls button:hover {
+  background-color: var(--color-wood-light) !important;
+}
+
+.react-flow__minimap {
+  background-color: var(--color-wood-dark) !important;
+  border: 2px solid var(--color-gold) !important;
+  border-radius: 8px !important;
+}
+
+/* Custom select styling */
+select.library-select {
+  background-color: var(--color-wood-dark);
+  border: 2px solid var(--color-gold);
+  color: var(--color-parchment);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+/* Button styling */
+.btn-library {
+  background: linear-gradient(180deg, var(--color-wood-light) 0%, var(--color-wood-dark) 100%);
+  border: 2px solid var(--color-gold);
+  color: var(--color-parchment);
+  font-family: var(--font-display);
+  transition: all 0.2s ease;
+}
+
+.btn-library:hover {
+  background: linear-gradient(180deg, var(--color-wood-medium) 0%, var(--color-wood-light) 100%);
+  box-shadow: 0 0 10px rgba(201, 162, 39, 0.4);
+}
+
+.btn-library.active {
+  background: linear-gradient(180deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+  color: var(--color-wood-dark);
+}
+
+/* Input styling */
+.input-library {
+  background-color: var(--color-cream);
+  border: 2px solid var(--color-wood-light);
+  color: var(--color-wood-dark);
+  font-family: var(--font-body);
+}
+
+.input-library:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.2);
+  outline: none;
+}
+
+.input-library::placeholder {
+  color: var(--color-wood-light);
+}
