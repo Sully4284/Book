@@ -19,8 +19,7 @@ export function ChapterSelector({
     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
       <label
         htmlFor="chapter-select"
-        className="font-display text-lg font-medium"
-        style={{ color: '#DC2626' }}
+        className="text-sm font-medium text-zinc-400"
       >
         Currently Reading:
       </label>
@@ -28,7 +27,7 @@ export function ChapterSelector({
         id="chapter-select"
         value={currentChapter}
         onChange={(e) => onChapterChange(Number(e.target.value))}
-        className="library-select px-6 py-2.5 rounded-lg cursor-pointer text-base min-w-[280px] font-body"
+        className="library-select px-4 py-2 rounded-lg cursor-pointer text-sm min-w-[280px]"
       >
         {chapters.map((chapter) => (
           <option key={chapter.number} value={chapter.number}>
@@ -38,7 +37,7 @@ export function ChapterSelector({
           </option>
         ))}
       </select>
-      <span className="font-body text-sm italic hidden md:inline" style={{ color: '#DC2626' }}>
+      <span className="text-xs text-zinc-500 italic hidden md:inline">
         (Spoiler-free up to this point)
       </span>
     </div>

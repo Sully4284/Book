@@ -91,16 +91,16 @@ function CharacterNodeComponent({ data }: { data: CharacterNodeData }) {
         className="!opacity-0 !w-1 !h-1"
       />
 
-      {/* Portrait with color-coded frame styling */}
+      {/* Portrait with color-coded frame - dark theme */}
       <div
-        className="w-20 h-20 rounded-lg shadow-lg p-1"
+        className="w-20 h-20 rounded-full p-1 shadow-lg"
         style={{
           background: isCarved
             ? 'linear-gradient(to right, #dc2626 0%, #dc2626 50%, #f59e0b 50%, #f59e0b 100%)'
-            : `linear-gradient(135deg, ${accentColor} 0%, ${accentColor}99 50%, ${accentColor} 100%)`,
+            : accentColor,
         }}
       >
-        <div className="w-full h-full rounded overflow-hidden bg-amber-50">
+        <div className="w-full h-full rounded-full overflow-hidden bg-zinc-800">
           {characterImage ? (
             <img
               src={characterImage}
@@ -114,7 +114,7 @@ function CharacterNodeComponent({ data }: { data: CharacterNodeData }) {
             >
               <span
                 className="text-2xl font-bold"
-                style={{ fontFamily: 'Playfair Display, serif', color: accentColor }}
+                style={{ color: accentColor }}
               >
                 {data.name.charAt(0)}
               </span>
@@ -126,30 +126,27 @@ function CharacterNodeComponent({ data }: { data: CharacterNodeData }) {
       {/* Status indicator - green dot if alive, red skull if dead */}
       {isAlive ? (
         <div
-          className="absolute top-0 left-0 w-4 h-4 rounded-full border-2 bg-green-500 border-green-300"
+          className="absolute top-0 left-0 w-3 h-3 rounded-full bg-green-500"
           style={{ boxShadow: '0 0 8px #22c55e' }}
         />
       ) : (
         <img
           src="/images/Skull Icon.svg"
           alt="Deceased"
-          className="absolute top-0 left-0 w-5 h-5"
+          className="absolute top-0 left-0 w-4 h-4"
           style={{ filter: 'drop-shadow(0 0 4px #dc2626)' }}
         />
       )}
 
-      {/* Name card with parchment styling */}
+      {/* Name card - dark theme */}
       <div
-        className="mt-2 px-4 py-2 rounded-lg min-w-[100px] text-center shadow-lg"
+        className="mt-2 px-3 py-1.5 rounded min-w-[90px] text-center"
         style={{
-          background: 'linear-gradient(180deg, #FDF8EF 0%, #E8DCC4 100%)',
+          backgroundColor: '#1a1a1a',
           border: `2px solid ${accentColor}`,
         }}
       >
-        <span
-          className="font-medium text-sm block text-amber-900"
-          style={{ fontFamily: 'Playfair Display, serif' }}
-        >
+        <span className="font-medium text-sm block text-white">
           {data.name}
         </span>
       </div>
@@ -295,7 +292,7 @@ export function FamilyTreeView({
 
       if (!layout || !group) return;
 
-      // Add group label node when showing all families
+      // Add group label node when showing all families - dark theme
       if (addGroupLabel) {
         nodes.push({
           id: `label-${groupId}`,
@@ -303,14 +300,13 @@ export function FamilyTreeView({
           position: { x: offsetX, y: offsetY - 60 },
           data: { label: group.name } as unknown as CharacterNodeData,
           style: {
-            background: 'linear-gradient(180deg, #C9A227 0%, #8B6914 100%)',
-            color: '#FDF8EF',
-            border: '2px solid #D4A853',
-            borderRadius: '8px',
+            background: '#1a1a1a',
+            color: '#ffffff',
+            border: '1px solid #333',
+            borderRadius: '4px',
             padding: '8px 16px',
-            fontFamily: 'Playfair Display, serif',
-            fontWeight: 'bold',
-            fontSize: '14px',
+            fontWeight: '600',
+            fontSize: '12px',
           },
           draggable: false,
           selectable: false,
@@ -351,16 +347,16 @@ export function FamilyTreeView({
             const edgeStyle = {
               'spouse': {
                 stroke: '#ec4899',
-                strokeWidth: 3,
+                strokeWidth: 2,
                 strokeDasharray: '8,4',
               },
               'parent-child': {
                 stroke: '#22c55e',
-                strokeWidth: 3,
+                strokeWidth: 2,
               },
               'sibling': {
                 stroke: '#6b7280',
-                strokeWidth: 2,
+                strokeWidth: 1,
                 strokeDasharray: '4,4',
               },
             }[conn.type];
@@ -446,10 +442,10 @@ export function FamilyTreeView({
                   label: rel.type,
                   style: {
                     stroke: isSpouse ? '#ec4899' : isFamily ? '#22c55e' : '#f59e0b',
-                    strokeWidth: isSpouse ? 3 : 2,
+                    strokeWidth: isSpouse ? 2 : 1,
                     strokeDasharray: isSpouse ? '8,4' : undefined,
                   },
-                  labelStyle: { fill: '#9ca3af', fontSize: 10 },
+                  labelStyle: { fill: '#666', fontSize: 10 },
                   animated: isSpouse,
                 });
               }
@@ -481,16 +477,16 @@ export function FamilyTreeView({
 
   if (nodes.length === 0) {
     return (
-      <div className="h-full flex items-center justify-center">
+      <div className="h-full flex items-center justify-center" style={{ backgroundColor: '#0a0a0a' }}>
         <div
           className="text-center p-8 rounded-lg max-w-md"
           style={{
-            background: 'linear-gradient(180deg, #FDF8EF 0%, #E8DCC4 100%)',
-            border: '3px solid #C9A227',
+            backgroundColor: '#1a1a1a',
+            border: '1px solid #333',
           }}
         >
-          <p className="font-display text-xl mb-3 text-amber-900">No Characters Revealed Yet</p>
-          <p className="font-body text-amber-700 italic">Progress further in the book to unveil characters in this family</p>
+          <p className="text-xl mb-3 text-white">No Characters Revealed Yet</p>
+          <p className="text-zinc-500 text-sm">Progress further in the book to unveil characters in this family</p>
         </div>
       </div>
     );
@@ -498,38 +494,35 @@ export function FamilyTreeView({
 
   return (
     <div className="h-full w-full relative">
-      {/* Legend with library styling */}
+      {/* Legend - dark theme */}
       <div
-        className="absolute top-4 left-4 z-10 p-4 rounded-lg shadow-xl"
+        className="absolute top-4 left-4 z-10 p-4 rounded-lg"
         style={{
-          background: 'linear-gradient(180deg, #FDF8EF 0%, #E8DCC4 100%)',
-          border: '3px solid #C9A227',
+          backgroundColor: '#1a1a1a',
+          border: '1px solid #333',
         }}
       >
-        <p
-          className="text-sm font-semibold mb-3 text-amber-900"
-          style={{ fontFamily: 'Playfair Display, serif' }}
-        >
-          Relationship Key
+        <p className="text-sm font-semibold mb-3 text-white">
+          Relationships
         </p>
         <div className="space-y-2">
           <div className="flex items-center gap-3">
-            <svg width="30" height="10">
-              <line x1="0" y1="5" x2="30" y2="5" stroke="#ec4899" strokeWidth="3" strokeDasharray="8,4" />
+            <svg width="24" height="8">
+              <line x1="0" y1="4" x2="24" y2="4" stroke="#ec4899" strokeWidth="2" strokeDasharray="6,3" />
             </svg>
-            <span className="text-xs text-amber-800" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Spouse</span>
+            <span className="text-xs text-zinc-400">Spouse</span>
           </div>
           <div className="flex items-center gap-3">
-            <svg width="30" height="10">
-              <line x1="0" y1="5" x2="30" y2="5" stroke="#22c55e" strokeWidth="3" />
+            <svg width="24" height="8">
+              <line x1="0" y1="4" x2="24" y2="4" stroke="#22c55e" strokeWidth="2" />
             </svg>
-            <span className="text-xs text-amber-800" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Parent → Child</span>
+            <span className="text-xs text-zinc-400">Parent → Child</span>
           </div>
           <div className="flex items-center gap-3">
-            <svg width="30" height="10">
-              <line x1="0" y1="5" x2="30" y2="5" stroke="#6b7280" strokeWidth="2" strokeDasharray="4,4" />
+            <svg width="24" height="8">
+              <line x1="0" y1="4" x2="24" y2="4" stroke="#6b7280" strokeWidth="1" strokeDasharray="4,4" />
             </svg>
-            <span className="text-xs text-amber-800" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Sibling</span>
+            <span className="text-xs text-zinc-400">Sibling</span>
           </div>
         </div>
       </div>
@@ -543,14 +536,14 @@ export function FamilyTreeView({
         nodeTypes={nodeTypes}
         fitView
         fitViewOptions={{ padding: 0.2 }}
-        style={{ background: 'linear-gradient(180deg, #2D2216 0%, #1a1510 100%)' }}
+        style={{ background: '#0a0a0a' }}
         minZoom={0.3}
         maxZoom={1.5}
         defaultEdgeOptions={{
           type: 'smoothstep',
         }}
       >
-        <Background color="#4A3728" gap={20} />
+        <Background color="#1f1f1f" gap={20} />
         <Controls />
         <MiniMap
           nodeColor={(node) => {

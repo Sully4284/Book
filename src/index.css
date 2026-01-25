@@ -1,25 +1,27 @@
 @import "tailwindcss";
 
-/* ===== OLD LIBRARY / BOOKSHELF THEME ===== */
+/* ===== BLOOD & GOLD - PREMIUM DARK THEME ===== */
 
 :root {
-  /* Primary colors */
-  --color-wood-dark: #2D2216;
-  --color-wood-medium: #4A3728;
-  --color-wood-light: #6B4C3A;
-  --color-parchment: #F5ECD7;
-  --color-parchment-dark: #E8DCC4;
-  --color-cream: #FDF8EF;
+  /* Core dark palette */
+  --color-bg-dark: #0a0a0a;
+  --color-bg-medium: #141414;
+  --color-bg-light: #1f1f1f;
+  --color-bg-card: #1a1a1a;
+
+  /* Text colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+  --color-text-muted: #666666;
 
   /* Accent colors */
-  --color-gold: #C9A227;
-  --color-gold-light: #D4B84A;
-  --color-gold-dark: #8B6914;
-  --color-rust: #A65D3F;
-  --color-burgundy: #722F37;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F4D03F;
+  --color-gold-dark: #B8860B;
 
-  /* Society Colors (kept vibrant) */
+  /* Society Colors */
   --color-red: #DC2626;
+  --color-red-light: #EF4444;
   --color-gold-society: #F59E0B;
   --color-gray: #6B7280;
   --color-pink: #EC4899;
@@ -28,7 +30,7 @@
 
   /* Fonts */
   --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   font-family: var(--font-body);
   line-height: 1.6;
@@ -43,11 +45,8 @@
 
 body {
   min-height: 100vh;
-  background-color: var(--color-parchment);
-  background-image: url('/images/textures/parchment.jpeg');
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-primary);
 }
 
 #root {
@@ -55,24 +54,23 @@ body {
   width: 100%;
 }
 
-/* Custom scrollbar for library theme */
+/* Custom scrollbar - dark theme */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-wood-dark);
+  background: var(--color-bg-dark);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
-  border-radius: 5px;
-  border: 2px solid var(--color-wood-dark);
+  background: var(--color-bg-light);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--color-gold-light) 0%, var(--color-gold) 100%);
+  background: var(--color-gold-dark);
 }
 
 /* Typography utilities */
@@ -84,68 +82,18 @@ body {
   font-family: var(--font-body);
 }
 
-/* Ornate frame styling for character cards */
-.ornate-frame {
-  position: relative;
-  background: linear-gradient(135deg, #D4A853 0%, #8B6914 25%, #C9A227 50%, #8B6914 75%, #D4A853 100%);
-  padding: 8px;
-  border-radius: 4px;
-  box-shadow:
-    0 4px 6px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-}
-
-.ornate-frame-inner {
-  background: var(--color-parchment);
-  border-radius: 2px;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Marble panel header */
+/* Header panel - dark with subtle texture */
 .wood-panel {
-  background-image: url('/images/textures/marble.jpg');
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.wood-panel::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  pointer-events: none;
+  background: linear-gradient(180deg, var(--color-bg-medium) 0%, var(--color-bg-dark) 100%);
+  border-bottom: 1px solid var(--color-bg-light);
 }
 
 /* Gold text effect */
 .text-gold-gradient {
-  background: linear-gradient(180deg, #D4B84A 0%, #C9A227 50%, #8B6914 100%);
+  background: linear-gradient(180deg, var(--color-gold-light) 0%, var(--color-gold) 50%, var(--color-gold-dark) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-/* Parchment card background */
-.parchment-card {
-  background-color: var(--color-parchment);
-  background-image: url('/images/textures/parchment.jpeg');
-  background-size: cover;
-  position: relative;
-}
-
-.parchment-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(245, 236, 215, 0.85);
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-.parchment-card > * {
-  position: relative;
-  z-index: 1;
 }
 
 /* Decorative divider */
@@ -159,8 +107,8 @@ body {
 .ornate-divider::after {
   content: '';
   flex: 1;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-bg-light) 50%, transparent 100%);
 }
 
 /* Line clamp utility */
@@ -171,76 +119,116 @@ body {
   overflow: hidden;
 }
 
-/* React Flow custom styles - Library theme */
+/* React Flow custom styles - Dark theme */
 .react-flow__node {
   cursor: pointer;
 }
 
+.react-flow__background {
+  background-color: var(--color-bg-dark) !important;
+}
+
 .react-flow__controls {
-  background: var(--color-wood-dark) !important;
-  border: 2px solid var(--color-gold) !important;
+  background: var(--color-bg-medium) !important;
+  border: 1px solid var(--color-bg-light) !important;
   border-radius: 8px !important;
   overflow: hidden;
 }
 
 .react-flow__controls button {
-  background-color: var(--color-wood-medium) !important;
-  border-color: var(--color-gold-dark) !important;
-  color: var(--color-parchment) !important;
+  background-color: var(--color-bg-medium) !important;
+  border-color: var(--color-bg-light) !important;
+  color: var(--color-text-primary) !important;
 }
 
 .react-flow__controls button:hover {
-  background-color: var(--color-wood-light) !important;
+  background-color: var(--color-bg-light) !important;
+}
+
+.react-flow__controls button svg {
+  fill: var(--color-text-primary) !important;
 }
 
 .react-flow__minimap {
-  background-color: var(--color-wood-dark) !important;
-  border: 2px solid var(--color-gold) !important;
+  background-color: var(--color-bg-medium) !important;
+  border: 1px solid var(--color-bg-light) !important;
   border-radius: 8px !important;
 }
 
-/* Custom select styling */
+/* Custom select styling - Dark theme */
 select.library-select {
-  background-color: var(--color-wood-dark);
-  border: 2px solid var(--color-gold);
-  color: var(--color-parchment);
+  background-color: var(--color-bg-medium);
+  border: 1px solid var(--color-bg-light);
+  color: var(--color-text-primary);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
 }
 
-/* Button styling */
+select.library-select:hover {
+  border-color: var(--color-gold-dark);
+}
+
+select.library-select:focus {
+  border-color: var(--color-gold);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+/* Button styling - Dark theme */
 .btn-library {
-  background: linear-gradient(180deg, var(--color-wood-light) 0%, var(--color-wood-dark) 100%);
-  border: 2px solid var(--color-gold);
-  color: var(--color-parchment);
-  font-family: var(--font-display);
+  background: var(--color-bg-medium);
+  border: 1px solid var(--color-bg-light);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .btn-library:hover {
-  background: linear-gradient(180deg, var(--color-wood-medium) 0%, var(--color-wood-light) 100%);
-  box-shadow: 0 0 10px rgba(201, 162, 39, 0.4);
+  background: var(--color-bg-light);
+  border-color: var(--color-gold-dark);
 }
 
 .btn-library.active {
-  background: linear-gradient(180deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
-  color: var(--color-wood-dark);
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-bg-dark);
 }
 
-/* Input styling */
+/* Input styling - Dark theme */
 .input-library {
-  background-color: var(--color-cream);
-  border: 2px solid var(--color-wood-light);
-  color: var(--color-wood-dark);
+  background-color: var(--color-bg-medium);
+  border: 1px solid var(--color-bg-light);
+  color: var(--color-text-primary);
   font-family: var(--font-body);
 }
 
 .input-library:focus {
   border-color: var(--color-gold);
-  box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.2);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
   outline: none;
 }
 
 .input-library::placeholder {
-  color: var(--color-wood-light);
+  color: var(--color-text-muted);
+}
+
+/* Character card hover glow effect */
+.card-glow {
+  transition: all 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Status indicators */
+.status-alive {
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+.status-dead {
+  filter: drop-shadow(0 0 4px #dc2626);
 }

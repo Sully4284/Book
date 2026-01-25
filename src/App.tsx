@@ -40,85 +40,19 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen">
-      {/* Marble panel header */}
-      <header className="wood-panel relative py-4 shadow-2xl">
-        {/* Sling Blade - positioned in left white space */}
-        <div
-          className="absolute hidden md:block"
-          style={{
-            width: '140px',
-            height: '140px',
-            left: '40px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-          }}
-        >
-          <div
-            className="absolute"
-            style={{
-              width: '80px',
-              height: '80px',
-              backgroundColor: '#DC2626',
-              top: '30px',
-              left: '20px',
-              transform: 'rotate(-10deg)',
-            }}
-          />
-          <img
-            src="/images/Sling Blade.png"
-            alt="Slingblade"
-            className="absolute w-full h-full object-contain"
-            style={{
-              filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.4))',
-              zIndex: 1,
-              transform: 'rotate(-30deg)',
-            }}
-          />
-        </div>
-
-        {/* Pyramid - positioned in right white space */}
-        <div
-          className="absolute hidden md:block"
-          style={{
-            width: '140px',
-            height: '140px',
-            right: '40px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-          }}
-        >
-          <div
-            className="absolute"
-            style={{
-              width: '80px',
-              height: '80px',
-              backgroundColor: '#F59E0B',
-              top: '35px',
-              right: '25px',
-              transform: 'rotate(8deg)',
-            }}
-          />
-          <img
-            src="/images/Red Rising Pyramid.webp"
-            alt="Pyramid"
-            className="absolute w-full h-full object-contain"
-            style={{
-              filter: 'drop-shadow(2px 4px 6px rgba(0,0,0,0.4))',
-              zIndex: 1,
-            }}
-          />
-        </div>
-
+    <div className="min-h-screen" style={{ backgroundColor: '#0a0a0a' }}>
+      {/* Dark header */}
+      <header className="wood-panel relative py-6">
         <div className="relative z-10 w-full px-4 md:px-6 lg:px-8">
-          {/* Title section - centered */}
-          <div className="flex items-center justify-center mb-4">
+          {/* Title section */}
+          <div className="flex items-center justify-center mb-6">
             <div className="text-center">
-              <h1 className="font-display text-4xl md:text-5xl font-bold tracking-wide" style={{ color: '#DC2626' }}>
-                Red Rising
+              <h1 className="font-display text-4xl md:text-5xl font-bold tracking-wide text-white">
+                <span style={{ color: '#DC2626' }}>Red</span>{' '}
+                <span style={{ color: '#D4AF37' }}>Rising</span>
               </h1>
-              <p className="font-display text-xl md:text-2xl italic mt-1" style={{ color: '#DC2626' }}>
-                Family Trees
+              <p className="text-zinc-400 text-sm mt-2 tracking-widest uppercase">
+                Character Guide
               </p>
             </div>
           </div>
@@ -134,24 +68,28 @@ function App() {
       </header>
 
       {/* Main content */}
-      <main className="w-full px-4 md:px-6 lg:px-8">
-        {/* View controls with ornate styling */}
-        <div className="parchment-card rounded-xl p-4 mb-6 shadow-lg border-2 border-amber-700/30">
-          <div className="flex flex-wrap gap-4 items-center justify-center">
+      <main className="w-full px-4 md:px-6 lg:px-8 py-6">
+        {/* Controls bar */}
+        <div className="rounded-lg p-4 mb-6" style={{ backgroundColor: '#141414' }}>
+          <div className="flex flex-wrap gap-3 items-center justify-center">
             {/* View mode toggle */}
-            <div className="flex rounded-lg overflow-hidden border-2 border-amber-700/50 shadow-md">
+            <div className="flex rounded-lg overflow-hidden" style={{ border: '1px solid #2a2a2a' }}>
               <button
                 onClick={() => setViewMode('grid')}
-                className={`btn-library px-5 py-2.5 font-medium ${
-                  viewMode === 'grid' ? 'active' : ''
+                className={`px-4 py-2 text-sm font-medium transition-all ${
+                  viewMode === 'grid'
+                    ? 'bg-white text-black'
+                    : 'bg-transparent text-zinc-400 hover:text-white'
                 }`}
               >
-                Grid View
+                Grid
               </button>
               <button
                 onClick={() => setViewMode('tree')}
-                className={`btn-library px-5 py-2.5 font-medium ${
-                  viewMode === 'tree' ? 'active' : ''
+                className={`px-4 py-2 text-sm font-medium transition-all ${
+                  viewMode === 'tree'
+                    ? 'bg-white text-black'
+                    : 'bg-transparent text-zinc-400 hover:text-white'
                 }`}
               >
                 Family Tree
@@ -161,17 +99,17 @@ function App() {
             {/* Search */}
             <input
               type="text"
-              placeholder="Search characters..."
+              placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="input-library px-4 py-2.5 rounded-lg min-w-[200px]"
+              className="input-library px-4 py-2 rounded-lg min-w-[160px] text-sm"
             />
 
             {/* Color filter */}
             <select
               value={filterColor || ''}
               onChange={(e) => setFilterColor(e.target.value || null)}
-              className="library-select px-4 py-2.5 rounded-lg cursor-pointer"
+              className="library-select px-3 py-2 rounded-lg cursor-pointer text-sm"
             >
               <option value="">All Colors</option>
               {uniqueColors.map((color) => (
@@ -187,7 +125,7 @@ function App() {
               onChange={(e) =>
                 setFilterStatus((e.target.value as CharacterStatus) || null)
               }
-              className="library-select px-4 py-2.5 rounded-lg cursor-pointer"
+              className="library-select px-3 py-2 rounded-lg cursor-pointer text-sm"
             >
               <option value="">All Statuses</option>
               <option value="alive">Alive</option>
@@ -199,7 +137,7 @@ function App() {
             <select
               value={selectedFamilyGroup || ''}
               onChange={(e) => setSelectedFamilyGroup(e.target.value || null)}
-              className="library-select px-4 py-2.5 rounded-lg cursor-pointer"
+              className="library-select px-3 py-2 rounded-lg cursor-pointer text-sm"
             >
               <option value="">All Characters</option>
               {familyGroups.map((group) => (
@@ -211,10 +149,12 @@ function App() {
           </div>
         </div>
 
-        {/* Character count with ornate styling */}
-        <div className="ornate-divider mb-6">
-          <span className="font-display text-lg text-amber-900 bg-amber-100/50 px-4 py-1 rounded-full border border-amber-700/30">
-            {processedCharacters.filter((c) => c.isVisible).length} Characters • Chapter {currentChapter}
+        {/* Character count */}
+        <div className="text-center mb-6">
+          <span className="text-zinc-500 text-sm">
+            {processedCharacters.filter((c) => c.isVisible).length} Characters
+            <span className="mx-2">•</span>
+            Chapter {currentChapter}
           </span>
         </div>
 
@@ -232,8 +172,10 @@ function App() {
             familyGroups={familyGroups}
           />
         ) : (
-          <div className="h-[calc(100vh-280px)] min-h-[500px] rounded-xl overflow-hidden shadow-xl border-4 border-amber-700/50"
-               style={{ background: 'linear-gradient(180deg, #2D2216 0%, #1a1510 100%)' }}>
+          <div
+            className="h-[calc(100vh-320px)] min-h-[500px] rounded-lg overflow-hidden"
+            style={{ backgroundColor: '#0f0f0f', border: '1px solid #1f1f1f' }}
+          >
             <FamilyTreeView
               characters={processedCharacters}
               selectedFamilyGroup={selectedFamilyGroup}
