@@ -67,20 +67,20 @@ export function CharacterModal({
   return (
     <div
       className="fixed inset-0 flex items-center justify-center z-50 p-4"
-      style={{ backgroundColor: 'rgba(0, 0, 0, 0.85)' }}
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.9)' }}
       onClick={onClose}
     >
       <div
-        className="relative max-w-2xl w-full max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl"
+        className="relative max-w-xl w-full max-h-[85vh] overflow-y-auto rounded-2xl"
         onClick={(e) => e.stopPropagation()}
         style={{
-          backgroundColor: '#141414',
-          border: '1px solid #2a2a2a',
+          backgroundColor: '#111111',
+          border: '1px solid #222222',
         }}
       >
         {/* Color accent bar */}
         <div
-          className="h-1 w-full"
+          className="h-1 w-full rounded-t-2xl"
           style={{
             background: isCarved
               ? 'linear-gradient(to right, #dc2626 0%, #dc2626 50%, #f59e0b 50%, #f59e0b 100%)'
@@ -91,24 +91,26 @@ export function CharacterModal({
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-700 transition-colors"
+          className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-zinc-500 hover:text-white hover:bg-zinc-800 transition-all"
         >
-          ✕
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
 
         <div className="p-6">
           {/* Header */}
-          <div className="flex items-start gap-6 mb-6">
+          <div className="flex items-start gap-5 mb-6">
             {/* Character portrait */}
             <div
-              className="w-24 h-24 rounded-full flex-shrink-0 p-1"
+              className="w-20 h-20 rounded-full flex-shrink-0 p-[2px]"
               style={{
                 background: isCarved
                   ? 'linear-gradient(to right, #dc2626 0%, #dc2626 50%, #f59e0b 50%, #f59e0b 100%)'
                   : accentColor,
               }}
             >
-              <div className="w-full h-full rounded-full overflow-hidden bg-zinc-800">
+              <div className="w-full h-full rounded-full overflow-hidden bg-zinc-900">
                 {characterImage ? (
                   <img
                     src={characterImage}
@@ -118,10 +120,10 @@ export function CharacterModal({
                 ) : (
                   <div
                     className="w-full h-full flex items-center justify-center"
-                    style={{ backgroundColor: `${accentColor}20` }}
+                    style={{ backgroundColor: `${accentColor}15` }}
                   >
                     <span
-                      className="text-3xl font-bold"
+                      className="text-2xl font-semibold"
                       style={{ color: accentColor }}
                     >
                       {name.charAt(0)}
@@ -131,48 +133,52 @@ export function CharacterModal({
               </div>
             </div>
 
-            <div className="flex-1 pt-2">
-              <div className="flex items-center gap-3 mb-2">
-                <h2 className="text-2xl font-bold text-white">{name}</h2>
-                <div className="flex items-center gap-2">
-                  {status === 'alive' ? (
-                    <div
-                      className="w-3 h-3 rounded-full bg-green-500"
-                      style={{ boxShadow: '0 0 8px #22c55e' }}
-                    />
-                  ) : status === 'dead' ? (
+            <div className="flex-1 min-w-0 pt-1">
+              <div className="flex items-center gap-2 mb-1">
+                <h2 className="text-xl font-semibold text-white truncate">{name}</h2>
+                {status === 'alive' ? (
+                  <div
+                    className="w-2.5 h-2.5 rounded-full bg-emerald-500 flex-shrink-0"
+                    style={{ boxShadow: '0 0 6px #10b981' }}
+                  />
+                ) : status === 'dead' ? (
+                  <div
+                    className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{
+                      backgroundColor: 'rgba(220, 38, 38, 0.2)',
+                      boxShadow: '0 0 8px rgba(220, 38, 38, 0.4)'
+                    }}
+                  >
                     <img
                       src="/images/Skull Icon.svg"
                       alt="Deceased"
-                      className="w-4 h-4"
-                      style={{ filter: 'drop-shadow(0 0 4px #dc2626)' }}
+                      className="w-3.5 h-3.5"
+                      style={{ filter: 'brightness(1.1)' }}
                     />
-                  ) : (
-                    <div className="w-3 h-3 rounded-full bg-gray-500" />
-                  )}
-                  <span className="text-sm text-zinc-500 capitalize">({status})</span>
-                </div>
+                  </div>
+                ) : (
+                  <div className="w-2.5 h-2.5 rounded-full bg-zinc-500 flex-shrink-0" />
+                )}
               </div>
 
               {aliases && aliases.length > 0 && (
-                <p className="text-zinc-400 text-sm italic mb-3">
-                  Also known as: {aliases.join(', ')}
+                <p className="text-zinc-500 text-sm italic mb-2 truncate">
+                  "{aliases[0]}"
                 </p>
               )}
 
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <span
-                  className="text-xs px-3 py-1 rounded-full font-medium"
+                  className="text-xs px-2.5 py-1 rounded-full font-medium"
                   style={{
-                    backgroundColor: `${accentColor}20`,
+                    backgroundColor: `${accentColor}15`,
                     color: accentColor,
-                    border: `1px solid ${accentColor}40`,
                   }}
                 >
-                  {isCarved ? 'Red/Gold' : color}
+                  {isCarved ? 'Red → Gold' : color}
                 </span>
                 {house && (
-                  <span className="text-xs px-3 py-1 rounded-full font-medium bg-zinc-700 text-zinc-300">
+                  <span className="text-xs px-2.5 py-1 rounded-full font-medium bg-zinc-800 text-zinc-400">
                     House {house}
                   </span>
                 )}
@@ -180,18 +186,15 @@ export function CharacterModal({
             </div>
           </div>
 
-          {/* Divider */}
-          <div className="h-px w-full bg-zinc-700 mb-6"></div>
-
           {/* Description */}
           <div className="mb-6">
-            <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-3">
+            <h3 className="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">
               About
             </h3>
-            <p className="text-zinc-300 leading-relaxed">{description}</p>
+            <p className="text-zinc-300 text-sm leading-relaxed">{description}</p>
             {additionalDetails && (
-              <div className="mt-4 pl-4 border-l-2 border-zinc-600">
-                <p className="text-sm text-zinc-500 italic">
+              <div className="mt-3 pl-3 border-l-2 border-zinc-800">
+                <p className="text-xs text-zinc-500 italic leading-relaxed">
                   {additionalDetails}
                 </p>
               </div>
@@ -201,7 +204,7 @@ export function CharacterModal({
           {/* Relationships */}
           {relationships.length > 0 && (
             <div>
-              <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider mb-4">
+              <h3 className="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-3">
                 Relationships
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -209,19 +212,14 @@ export function CharacterModal({
                   <button
                     key={index}
                     onClick={() => onCharacterClick(rel.targetId)}
-                    className="flex items-center gap-3 p-3 rounded-lg bg-zinc-800 hover:bg-zinc-700 transition-colors text-left"
+                    className="flex items-center gap-2 p-2.5 rounded-lg bg-zinc-900/50 hover:bg-zinc-800 transition-colors text-left group"
                   >
-                    <span className="text-xs px-2 py-1 rounded bg-zinc-700 text-zinc-400">
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-zinc-800 text-zinc-500 uppercase tracking-wide">
                       {getRelationshipLabel(rel.type)}
                     </span>
-                    <span className="font-medium text-white">
+                    <span className="text-sm font-medium text-zinc-300 group-hover:text-white transition-colors truncate">
                       {getCharacterName(rel.targetId)}
                     </span>
-                    {rel.description && (
-                      <span className="text-xs text-zinc-500 italic">
-                        ({rel.description})
-                      </span>
-                    )}
                   </button>
                 ))}
               </div>
