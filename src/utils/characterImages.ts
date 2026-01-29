@@ -101,7 +101,12 @@ const characterImages: Record<string, CharacterImageConfig> = {
   jackal: {
     default: '/images/characters/jackal.png',
   },
-  // titus and vixus - no images yet (billing limit reached)
+  titus: {
+    default: '/images/characters/titus.png',
+  },
+  vixus: {
+    default: '/images/characters/vixus.png',
+  },
 
   // Grays and Coppers
   'ugly-dan': {
