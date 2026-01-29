@@ -75,13 +75,21 @@ export function CharacterCard({
               title="Alive"
             />
           ) : status === 'dead' ? (
-            <img
-              src="/images/Skull Icon.svg"
-              alt="Deceased"
-              className="w-4 h-4"
-              style={{ filter: 'drop-shadow(0 0 4px #dc2626)' }}
-              title="Deceased"
-            />
+            <div
+              className="w-5 h-5 rounded-full flex items-center justify-center"
+              style={{
+                backgroundColor: 'rgba(220, 38, 38, 0.3)',
+                boxShadow: '0 0 8px #dc2626, 0 0 12px #dc2626'
+              }}
+            >
+              <img
+                src="/images/Skull Icon.svg"
+                alt="Deceased"
+                className="w-4 h-4"
+                style={{ filter: 'brightness(1.2)' }}
+                title="Deceased"
+              />
+            </div>
           ) : (
             <div
               className="w-3 h-3 rounded-full bg-gray-500"

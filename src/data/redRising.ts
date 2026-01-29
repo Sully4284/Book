@@ -698,6 +698,12 @@ const characters: Character[] = [
         description: 'A meek Gold who follows Roque everywhere. Part of Darrow\'s "Dregs" faction.',
         status: 'alive',
       },
+      {
+        chapter: 32,
+        description: 'Killed by Antonia and Vixus at the Institute as a ploy to lure Darrow out of hiding.',
+        status: 'dead',
+        additionalDetails: 'Darrow builds a cairn over her body.',
+      },
     ],
   },
   {
@@ -714,6 +720,12 @@ const characters: Character[] = [
         chapter: 29,
         description: 'A massive Gold from House Mars. Incredibly strong and loyal. Becomes one of Darrow\'s closest allies.',
         status: 'alive',
+      },
+      {
+        chapter: 41,
+        description: 'Killed by the Jackal while shielding Darrow with his own body during the confrontation at the Institute.',
+        status: 'dead',
+        additionalDetails: 'His sacrifice saves Darrow\'s life. Darrow and Virginia later name their son after him.',
       },
     ],
   },
