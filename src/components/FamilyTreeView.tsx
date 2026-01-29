@@ -223,8 +223,7 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   },
   'sons-of-ares': {
     generations: [
-      { members: ['dancer', 'harmony'] },
-      { members: ['narol', 'mickey', 'evey', 'matteo'] },
+      { members: ['dancer', 'harmony', 'mickey', 'evey', 'matteo'] },
     ],
     connections: [],
   },
@@ -250,13 +249,13 @@ const familyPriority = [
   'house-mars',
 ];
 
-// Positions for each family group when showing all
+// Positions for each family group when showing all - tighter layout
 const allFamiliesPositions: Record<string, { x: number; y: number }> = {
   'darrow-family': { x: 0, y: 0 },
-  'augustus-family': { x: 800, y: 0 },
-  'bellona-family': { x: 1400, y: 0 },
-  'sons-of-ares': { x: 0, y: 600 },
-  'house-mars': { x: 800, y: 600 },
+  'augustus-family': { x: 550, y: 0 },
+  'bellona-family': { x: 950, y: 0 },
+  'sons-of-ares': { x: 0, y: 500 },
+  'house-mars': { x: 550, y: 500 },
 };
 
 export function FamilyTreeView({

@@ -50,11 +50,18 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Top bar with title */}
           <div className="py-6 text-center">
-            <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-wide">
-              <span className="text-red-600">Red</span>{' '}
-              <span className="text-amber-500">Rising</span>
+            <h1
+              className="text-4xl sm:text-5xl font-bold tracking-wider uppercase"
+              style={{
+                fontFamily: "'Orbitron', 'Rajdhani', 'Audiowide', sans-serif",
+                color: '#DC2626',
+                textShadow: '0 0 10px rgba(220, 38, 38, 0.7), 0 0 20px rgba(220, 38, 38, 0.5), 0 0 30px rgba(220, 38, 38, 0.3), 0 0 40px rgba(220, 38, 38, 0.2)',
+                letterSpacing: '0.15em',
+              }}
+            >
+              Red Rising
             </h1>
-            <p className="text-zinc-500 text-xs mt-1 tracking-[0.2em] uppercase">
+            <p className="text-zinc-500 text-xs mt-2 tracking-[0.3em] uppercase">
               Character Guide
             </p>
           </div>
@@ -76,7 +83,7 @@ function App() {
         {/* Toolbar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
           {/* Left side - View toggle and character count */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 ml-2">
             {/* View mode toggle */}
             <div className="inline-flex rounded-lg bg-zinc-900 p-1">
               <button
@@ -107,31 +114,33 @@ function App() {
             </span>
           </div>
 
-          {/* Right side - Search and filter toggle */}
+          {/* Right side - Search (only in grid view) and filter toggle */}
           <div className="flex items-center gap-3 w-full sm:w-auto">
-            {/* Search */}
-            <div className="relative flex-1 sm:flex-initial">
-              <input
-                type="text"
-                placeholder="Search characters..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full sm:w-56 pl-10 pr-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600 focus:ring-1 focus:ring-zinc-600 transition-colors"
-              />
-              <svg
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            {/* Search - only show in grid view */}
+            {viewMode === 'grid' && (
+              <div className="relative flex-1 sm:flex-initial">
+                <input
+                  type="text"
+                  placeholder="Search characters..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full sm:w-56 pl-10 pr-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600 focus:ring-1 focus:ring-zinc-600 transition-colors"
                 />
-              </svg>
-            </div>
+                <svg
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+            )}
 
             {/* Filter toggle button */}
             <button
