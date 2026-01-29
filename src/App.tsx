@@ -43,13 +43,42 @@ function App() {
   const visibleCharacters = processedCharacters.filter((c) => c.isVisible);
   const hasActiveFilters = filterColor || filterStatus || searchQuery || selectedFamilyGroup;
 
+  // Generate random stars for the header background
+  const stars = Array.from({ length: 80 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    size: Math.random() * 2 + 0.5,
+    opacity: Math.random() * 0.7 + 0.3,
+    animationDelay: `${Math.random() * 3}s`,
+  }));
+
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
-      {/* Header */}
-      <header className="border-b border-zinc-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Header with stars */}
+      <header className="border-b border-zinc-800/50 relative overflow-hidden">
+        {/* Star field background */}
+        <div className="absolute inset-0 pointer-events-none">
+          {stars.map((star) => (
+            <div
+              key={star.id}
+              className="absolute rounded-full bg-white animate-pulse"
+              style={{
+                left: star.left,
+                top: star.top,
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                opacity: star.opacity,
+                animationDelay: star.animationDelay,
+                animationDuration: '3s',
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="max-w-[1800px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
           {/* Top bar with title */}
-          <div className="py-6 text-center">
+          <div className="py-8 text-center">
             <h1
               className="text-4xl sm:text-5xl font-bold tracking-wider uppercase"
               style={{
@@ -67,7 +96,7 @@ function App() {
           </div>
 
           {/* Chapter selector - prominent and centered */}
-          <div className="pb-6">
+          <div className="pb-8">
             <ChapterSelector
               chapters={redRisingBook.chapters}
               currentChapter={currentChapter}
@@ -78,12 +107,12 @@ function App() {
         </div>
       </header>
 
-      {/* Main content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      {/* Main content - full width */}
+      <main className="w-full px-6 sm:px-10 lg:px-16 py-8">
         {/* Toolbar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
           {/* Left side - View toggle and character count */}
-          <div className="flex items-center gap-4 ml-2">
+          <div className="flex items-center gap-6">
             {/* View mode toggle */}
             <div className="inline-flex rounded-lg bg-zinc-900 p-1">
               <button
@@ -249,7 +278,7 @@ function App() {
           </div>
         )}
 
-        {/* View content */}
+        {/* View content - full width */}
         {viewMode === 'grid' ? (
           <CharacterGrid
             characters={processedCharacters}
@@ -264,7 +293,7 @@ function App() {
           />
         ) : (
           <div
-            className="h-[calc(100vh-280px)] min-h-[500px] rounded-xl overflow-hidden border border-zinc-800"
+            className="h-[calc(100vh-320px)] min-h-[600px] rounded-xl overflow-hidden border border-zinc-800"
             style={{ backgroundColor: '#0c0c0c' }}
           >
             <FamilyTreeView

@@ -70,9 +70,9 @@ export function CharacterCard({
       />
 
       {/* Card content */}
-      <div className="p-5">
+      <div className="p-4 sm:p-5">
         {/* Status indicator - top right */}
-        <div className="absolute top-3 right-3">
+        <div className="absolute top-4 right-4">
           {status === 'alive' ? (
             <div
               className="w-2.5 h-2.5 rounded-full bg-emerald-500"

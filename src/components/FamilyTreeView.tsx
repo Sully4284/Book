@@ -3,7 +3,6 @@ import {
   ReactFlow,
   Background,
   Controls,
-  MiniMap,
   useNodesState,
   useEdgesState,
   Handle,
@@ -249,13 +248,13 @@ const familyPriority = [
   'house-mars',
 ];
 
-// Positions for each family group when showing all - tighter layout
+// Positions for each family group when showing all - compact centered layout
 const allFamiliesPositions: Record<string, { x: number; y: number }> = {
-  'darrow-family': { x: 0, y: 0 },
-  'augustus-family': { x: 550, y: 0 },
-  'bellona-family': { x: 950, y: 0 },
-  'sons-of-ares': { x: 0, y: 500 },
-  'house-mars': { x: 550, y: 500 },
+  'darrow-family': { x: 200, y: 0 },
+  'augustus-family': { x: 700, y: 0 },
+  'bellona-family': { x: 1050, y: 0 },
+  'sons-of-ares': { x: 200, y: 550 },
+  'house-mars': { x: 700, y: 550 },
 };
 
 export function FamilyTreeView({
@@ -534,30 +533,16 @@ export function FamilyTreeView({
         onNodeClick={onNodeClick}
         nodeTypes={nodeTypes}
         fitView
-        fitViewOptions={{ padding: 0.2 }}
+        fitViewOptions={{ padding: 0.15, minZoom: 0.5, maxZoom: 1.2 }}
         style={{ background: '#0a0a0a' }}
-        minZoom={0.3}
+        minZoom={0.4}
         maxZoom={1.5}
         defaultEdgeOptions={{
           type: 'smoothstep',
         }}
       >
         <Background color="#1f1f1f" gap={20} />
-        <Controls />
-        <MiniMap
-          nodeColor={(node) => {
-            const data = node.data as CharacterNodeData;
-            const colorMap: Record<string, string> = {
-              Red: '#dc2626',
-              Gold: '#f59e0b',
-              Gray: '#6b7280',
-              Pink: '#ec4899',
-              Violet: '#8b5cf6',
-              Copper: '#ea580c',
-            };
-            return colorMap[data.color] || '#6b7280';
-          }}
-        />
+        <Controls className="!left-4 !bottom-4" />
       </ReactFlow>
     </div>
   );
