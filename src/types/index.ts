@@ -26,14 +26,22 @@ export interface CharacterInfo {
 
 export interface Relationship {
   targetId: string;
-  type: 'spouse' | 'parent' | 'child' | 'sibling' | 'ally' | 'enemy' | 'mentor' | 'friend';
+  type: 'spouse' | 'parent' | 'child' | 'sibling' | 'ally' | 'enemy' | 'mentor' | 'friend' | 'grandparent' | 'rival' | 'lover';
   revealedAtChapter: number;
   description?: string;
+}
+
+// Progressive name reveal - for hiding surnames until plot reveals them
+export interface ProgressiveName {
+  chapter: number;
+  name: string;
 }
 
 export interface Character {
   id: string;
   name: string;
+  // Progressive name reveals - if present, name changes based on chapter
+  progressiveNames?: ProgressiveName[];
   aliases?: string[];
   color: Color;
   house?: string;

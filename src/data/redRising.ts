@@ -485,6 +485,11 @@ const characters: Character[] = [
   {
     id: 'fitchner',
     name: 'Fitchner au Barca',
+    // Progressive name reveal - surname hidden until chapter 44
+    progressiveNames: [
+      { chapter: 17, name: 'Fitchner' },
+      { chapter: 44, name: 'Fitchner au Barca' },
+    ],
     aliases: ['Proctor Mars'],
     color: 'Gold',
     house: 'Mars',
@@ -574,6 +579,11 @@ const characters: Character[] = [
   {
     id: 'sevro',
     name: 'Sevro au Barca',
+    // Progressive name reveal - surname hidden until chapter 44 when parentage is revealed
+    progressiveNames: [
+      { chapter: 17, name: 'Sevro' },
+      { chapter: 44, name: 'Sevro au Barca' },
+    ],
     aliases: ['Goblin'],
     color: 'Gold',
     house: 'Mars',
@@ -874,6 +884,7 @@ const characters: Character[] = [
 
 // Family groupings for the tree view
 export const familyGroups: FamilyGroup[] = [
+// Also exported as redRisingFamilyGroups from index.ts
   {
     id: 'darrow-family',
     name: 'Darrow\'s Family',

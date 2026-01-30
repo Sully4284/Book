@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
-import { redRisingBook, familyGroups } from './data/redRising';
+import { allBooks, getFamilyGroupsForBook } from './data';
 import { useCharacterData } from './hooks/useCharacterData';
+import { BookSelector } from './components/BookSelector';
 import { ChapterSelector } from './components/ChapterSelector';
 import { CharacterGrid } from './components/CharacterGrid';
 import { CharacterModal } from './components/CharacterModal';
@@ -10,6 +11,7 @@ import type { CharacterStatus } from './types';
 type ViewMode = 'grid' | 'tree';
 
 function App() {
+  const [selectedBookId, setSelectedBookId] = useState('red-rising');
   const [currentChapter, setCurrentChapter] = useState(1);
   const [selectedCharacterId, setSelectedCharacterId] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>('tree');
@@ -19,8 +21,23 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
 
+  // Get the currently selected book
+  const selectedBook = allBooks.find((b) => b.id === selectedBookId) || allBooks[0];
+  const familyGroups = getFamilyGroupsForBook(selectedBookId);
+
+  // Handle book change - reset chapter to 0 (Prologue) and clear filters
+  const handleBookChange = useCallback((bookId: string) => {
+    setSelectedBookId(bookId);
+    setCurrentChapter(0);
+    setSelectedCharacterId(null);
+    setSelectedFamilyGroup(null);
+    setFilterColor(null);
+    setFilterStatus(null);
+    setSearchQuery('');
+  }, []);
+
   const processedCharacters = useCharacterData(
-    redRisingBook.characters,
+    selectedBook.characters,
     currentChapter
   );
 
@@ -53,6 +70,12 @@ function App() {
     animationDelay: `${Math.random() * 3}s`,
   }));
 
+  // Dynamic title color based on selected book
+  const titleColor = selectedBookId === 'golden-son' ? '#EAB308' : '#DC2626';
+  const titleGlow = selectedBookId === 'golden-son'
+    ? '0 0 10px rgba(234, 179, 8, 0.7), 0 0 20px rgba(234, 179, 8, 0.5), 0 0 30px rgba(234, 179, 8, 0.3), 0 0 40px rgba(234, 179, 8, 0.2)'
+    : '0 0 10px rgba(220, 38, 38, 0.7), 0 0 20px rgba(220, 38, 38, 0.5), 0 0 30px rgba(220, 38, 38, 0.3), 0 0 40px rgba(220, 38, 38, 0.2)';
+
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
       {/* Header with stars */}
@@ -80,28 +103,36 @@ function App() {
           {/* Top bar with title */}
           <div className="py-8 text-center">
             <h1
-              className="text-4xl sm:text-5xl font-bold tracking-wider uppercase"
+              className="text-4xl sm:text-5xl font-bold tracking-wider uppercase transition-all duration-500"
               style={{
                 fontFamily: "'Orbitron', 'Rajdhani', 'Audiowide', sans-serif",
-                color: '#DC2626',
-                textShadow: '0 0 10px rgba(220, 38, 38, 0.7), 0 0 20px rgba(220, 38, 38, 0.5), 0 0 30px rgba(220, 38, 38, 0.3), 0 0 40px rgba(220, 38, 38, 0.2)',
+                color: titleColor,
+                textShadow: titleGlow,
                 letterSpacing: '0.15em',
               }}
             >
-              Red Rising
+              {selectedBook.title}
             </h1>
             <p className="text-zinc-500 text-xs mt-2 tracking-[0.3em] uppercase">
               Character Guide
             </p>
           </div>
 
-          {/* Chapter selector - prominent and centered */}
-          <div className="pb-8">
+          {/* Book and Chapter selectors */}
+          <div className="pb-8 flex flex-col items-center gap-6">
+            {/* Book selector */}
+            <BookSelector
+              books={allBooks}
+              selectedBookId={selectedBookId}
+              onBookChange={handleBookChange}
+            />
+
+            {/* Chapter selector */}
             <ChapterSelector
-              chapters={redRisingBook.chapters}
+              chapters={selectedBook.chapters}
               currentChapter={currentChapter}
               onChapterChange={setCurrentChapter}
-              bookTitle={redRisingBook.title}
+              bookTitle={selectedBook.title}
             />
           </div>
         </div>

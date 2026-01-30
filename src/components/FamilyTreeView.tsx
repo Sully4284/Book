@@ -166,10 +166,13 @@ interface FamilyTreeLayout {
     from: string;
     to: string;
     type: 'spouse' | 'parent-child' | 'sibling';
+    // Optional chapter requirement - connection only shows after this chapter
+    revealedAtChapter?: number;
   }[];
 }
 
 const familyLayouts: Record<string, FamilyTreeLayout> = {
+  // ========== RED RISING LAYOUTS ==========
   'darrow-family': {
     generations: [
       { members: ['father-darrow', 'mother-darrow'] },
@@ -198,9 +201,11 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
       { members: ['mustang', 'jackal'] },
     ],
     connections: [
-      { from: 'nero-augustus', to: 'mustang', type: 'parent-child' },
-      { from: 'nero-augustus', to: 'jackal', type: 'parent-child' },
-      { from: 'mustang', to: 'jackal', type: 'sibling' },
+      // Mustang's true identity as Virginia au Augustus revealed in chapter 41
+      { from: 'nero-augustus', to: 'mustang', type: 'parent-child', revealedAtChapter: 41 },
+      { from: 'nero-augustus', to: 'jackal', type: 'parent-child', revealedAtChapter: 41 },
+      // Mustang and Jackal are twins - revealed in chapter 41
+      { from: 'mustang', to: 'jackal', type: 'sibling', revealedAtChapter: 41 },
     ],
   },
   'bellona-family': {
@@ -224,13 +229,90 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
       { members: ['quinn', 'lea', 'pax', 'titus', 'antonia', 'vixus'] },
     ],
     connections: [
-      { from: 'fitchner', to: 'sevro', type: 'parent-child' },
+      // Fitchner-Sevro relationship only revealed in chapter 44
+      { from: 'fitchner', to: 'sevro', type: 'parent-child', revealedAtChapter: 44 },
     ],
+  },
+
+  // ========== GOLDEN SON LAYOUTS ==========
+  'house-augustus': {
+    generations: [
+      { members: ['nero-augustus'] },
+      { members: ['mustang', 'jackal', 'leto'] },
+      { members: ['darrow', 'pliny'] },
+    ],
+    connections: [
+      { from: 'nero-augustus', to: 'mustang', type: 'parent-child' },
+      { from: 'nero-augustus', to: 'jackal', type: 'parent-child' },
+      { from: 'mustang', to: 'jackal', type: 'sibling' },
+    ],
+  },
+  'house-bellona': {
+    generations: [
+      { members: ['tiberius-bellona', 'julia-bellona'] },
+      { members: ['cassius', 'karnus'] },
+    ],
+    connections: [
+      { from: 'tiberius-bellona', to: 'julia-bellona', type: 'spouse' },
+      { from: 'tiberius-bellona', to: 'cassius', type: 'parent-child' },
+      { from: 'tiberius-bellona', to: 'karnus', type: 'parent-child' },
+      { from: 'cassius', to: 'karnus', type: 'sibling' },
+    ],
+  },
+  'sovereign-court': {
+    generations: [
+      { members: ['octavia'] },
+      { members: ['lysander', 'aja', 'moira'] },
+    ],
+    connections: [
+      { from: 'octavia', to: 'lysander', type: 'parent-child' },
+      { from: 'aja', to: 'moira', type: 'sibling' },
+    ],
+  },
+  'house-telemanus': {
+    generations: [
+      { members: ['kavax'] },
+      { members: ['daxo'] },
+    ],
+    connections: [
+      { from: 'kavax', to: 'daxo', type: 'parent-child' },
+    ],
+  },
+  'house-julii': {
+    generations: [
+      { members: ['agrippina'] },
+      { members: ['victra', 'antonia'] },
+    ],
+    connections: [
+      { from: 'agrippina', to: 'victra', type: 'parent-child' },
+      { from: 'agrippina', to: 'antonia', type: 'parent-child' },
+      { from: 'victra', to: 'antonia', type: 'sibling' },
+    ],
+  },
+  'house-arcos': {
+    generations: [
+      { members: ['lorn'] },
+    ],
+    connections: [],
+  },
+  'howlers': {
+    generations: [
+      { members: ['sevro', 'tactus', 'roque', 'quinn'] },
+    ],
+    connections: [
+      { from: 'roque', to: 'quinn', type: 'spouse' },
+    ],
+  },
+  'darrow-household': {
+    generations: [
+      { members: ['theodora'] },
+    ],
+    connections: [],
   },
 };
 
-// Priority order for family groups
-const familyPriority = [
+// Priority order for family groups - Red Rising
+const redRisingFamilyPriority = [
   'darrow-family',
   'eos-family',
   'augustus-family',
@@ -239,14 +321,37 @@ const familyPriority = [
   'house-mars',
 ];
 
+// Priority order for family groups - Golden Son
+const goldenSonFamilyPriority = [
+  'house-augustus',
+  'house-bellona',
+  'sovereign-court',
+  'house-telemanus',
+  'house-julii',
+  'house-arcos',
+  'sons-of-ares',
+  'howlers',
+  'darrow-household',
+];
+
 // Positions - spread out with large gaps to prevent overlap
 const allFamiliesPositions: Record<string, { x: number; y: number }> = {
+  // Red Rising positions
   'darrow-family': { x: 0, y: 0 },
   'eos-family': { x: 0, y: 550 },
   'augustus-family': { x: 900, y: 0 },
   'bellona-family': { x: 1400, y: 0 },
   'sons-of-ares': { x: 900, y: 550 },
   'house-mars': { x: 0, y: 850 },
+  // Golden Son positions
+  'house-augustus': { x: 0, y: 0 },
+  'house-bellona': { x: 700, y: 0 },
+  'sovereign-court': { x: 1300, y: 0 },
+  'house-telemanus': { x: 0, y: 500 },
+  'house-julii': { x: 500, y: 500 },
+  'house-arcos': { x: 1000, y: 500 },
+  'howlers': { x: 0, y: 850 },
+  'darrow-household': { x: 600, y: 850 },
 };
 
 export function FamilyTreeView({
@@ -328,9 +433,12 @@ export function FamilyTreeView({
         });
       });
 
-      // Add connections from the layout (only if both characters are placed)
+      // Add connections from the layout (only if both characters are placed AND chapter requirements met)
       layout.connections.forEach((conn) => {
-        if (placedCharacters.has(conn.from) && placedCharacters.has(conn.to)) {
+        // Check if this connection should be revealed based on chapter
+        const isConnectionRevealed = !conn.revealedAtChapter || conn.revealedAtChapter <= currentChapter;
+
+        if (placedCharacters.has(conn.from) && placedCharacters.has(conn.to) && isConnectionRevealed) {
           const edgeId = `${groupId}-${conn.type}-${conn.from}-${conn.to}`;
           // Check if edge already exists
           if (!edges.find((e) => e.id === edgeId)) {
@@ -378,6 +486,10 @@ export function FamilyTreeView({
 
     if (!selectedFamilyGroup) {
       // Show ALL family groups positioned in different areas
+      // Determine which book we're in based on family group IDs
+      const isGoldenSon = familyGroups.some(g => g.id === 'house-augustus' || g.id === 'sovereign-court');
+      const familyPriority = isGoldenSon ? goldenSonFamilyPriority : redRisingFamilyPriority;
+
       // Process in priority order so characters appear in their "home" family first
       familyPriority.forEach((groupId) => {
         const pos = allFamiliesPositions[groupId] || { x: 0, y: 0 };

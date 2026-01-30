@@ -32,9 +32,22 @@ export function useCharacterData(
           (rel) => rel.revealedAtChapter <= currentChapter
         );
 
+        // Get the appropriate name based on progressive reveals
+        let displayName = char.name;
+        if (char.progressiveNames && char.progressiveNames.length > 0) {
+          // Find the most recent name reveal for the current chapter
+          const relevantNameInfo = char.progressiveNames
+            .filter((pn) => pn.chapter <= currentChapter)
+            .sort((a, b) => b.chapter - a.chapter)[0];
+
+          if (relevantNameInfo) {
+            displayName = relevantNameInfo.name;
+          }
+        }
+
         return {
           id: char.id,
-          name: char.name,
+          name: displayName,
           aliases: char.aliases,
           color: char.color,
           house: char.house,

@@ -56,6 +56,9 @@ export function CharacterModal({
       enemy: 'Enemy',
       mentor: 'Mentor',
       friend: 'Friend',
+      grandparent: 'Grandparent',
+      rival: 'Rival',
+      lover: 'Lover',
     };
     return labels[type];
   };
