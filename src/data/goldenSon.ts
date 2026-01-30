@@ -856,6 +856,7 @@ const characters: Character[] = [
     relationships: [
       { targetId: 'darrow', type: 'mentor', revealedAtChapter: 11 },
       { targetId: 'fitchner', type: 'ally', revealedAtChapter: 47 },
+      { targetId: 'harmony', type: 'ally', revealedAtChapter: 11 },
     ],
     progressiveInfo: [
       {
@@ -863,6 +864,116 @@ const characters: Character[] = [
         description: 'Darrow finally reconnects with Dancer after years of silence. The Sons of Ares have been watching and waiting.',
         status: 'alive',
         additionalDetails: 'Lieutenant to Ares (Fitchner). The true identity of Ares has been kept from most Sons.',
+      },
+    ],
+  },
+
+  // ========== REFERENCED CHARACTERS FROM RED RISING ==========
+  // These characters are referenced/remembered but may not actively appear
+
+  {
+    id: 'eo',
+    name: 'Eo',
+    aliases: ['Persephone'],
+    color: 'Red',
+    firstAppearance: 0,
+    relationships: [
+      { targetId: 'darrow', type: 'spouse', revealedAtChapter: 0 },
+    ],
+    progressiveInfo: [
+      {
+        chapter: 0,
+        description: 'Darrow\'s late wife. Executed two years ago for singing the forbidden song. Her memory drives everything Darrow does.',
+        status: 'dead',
+        additionalDetails: 'Her dream of a free Mars continues through Darrow. "Live for more."',
+      },
+      {
+        chapter: 49,
+        description: 'As Darrow faces enslavement, Eo\'s memory sustains him. Her sacrifice was not in vain.',
+        status: 'dead',
+      },
+    ],
+  },
+  {
+    id: 'mickey',
+    name: 'Mickey',
+    aliases: ['Mickey the Carver'],
+    color: 'Violet',
+    firstAppearance: 11,
+    relationships: [
+      { targetId: 'darrow', type: 'ally', revealedAtChapter: 11 },
+      { targetId: 'dancer', type: 'ally', revealedAtChapter: 11 },
+    ],
+    progressiveInfo: [
+      {
+        chapter: 11,
+        description: 'The Violet Carver who transformed Darrow from Red to Gold. Still working with the Sons of Ares.',
+        status: 'alive',
+        additionalDetails: 'His masterpiece - Darrow - continues to shake the foundations of the Society.',
+      },
+    ],
+  },
+  {
+    id: 'harmony',
+    name: 'Harmony',
+    color: 'Red',
+    firstAppearance: 11,
+    relationships: [
+      { targetId: 'dancer', type: 'ally', revealedAtChapter: 11 },
+      { targetId: 'darrow', type: 'ally', revealedAtChapter: 11 },
+    ],
+    progressiveInfo: [
+      {
+        chapter: 11,
+        description: 'Fierce Sons of Ares operative with half her face scarred. Still filled with rage against the Golds.',
+        status: 'alive',
+        additionalDetails: 'Works alongside Dancer in the resistance.',
+      },
+    ],
+  },
+  {
+    id: 'pax',
+    name: 'Pax au Telemanus',
+    color: 'Gold',
+    house: 'Telemanus',
+    firstAppearance: 0,
+    relationships: [
+      { targetId: 'darrow', type: 'friend', revealedAtChapter: 0 },
+      { targetId: 'kavax', type: 'parent', revealedAtChapter: 25 },
+      { targetId: 'daxo', type: 'sibling', revealedAtChapter: 25 },
+    ],
+    progressiveInfo: [
+      {
+        chapter: 0,
+        description: 'The giant Gold who died protecting Darrow at the Institute. His sacrifice is never forgotten.',
+        status: 'dead',
+        additionalDetails: 'Killed by the Jackal. Darrow carries his memory as a reminder of true friendship.',
+      },
+      {
+        chapter: 25,
+        description: 'Revealed to be the son of Kavax and brother of Daxo. House Telemanus mourns him still.',
+        status: 'dead',
+      },
+    ],
+  },
+  {
+    id: 'julian',
+    name: 'Julian au Bellona',
+    color: 'Gold',
+    house: 'Bellona',
+    firstAppearance: 0,
+    relationships: [
+      { targetId: 'cassius', type: 'sibling', revealedAtChapter: 0 },
+      { targetId: 'karnus', type: 'sibling', revealedAtChapter: 0 },
+      { targetId: 'tiberius-bellona', type: 'parent', revealedAtChapter: 0 },
+      { targetId: 'julia-bellona', type: 'parent', revealedAtChapter: 0 },
+    ],
+    progressiveInfo: [
+      {
+        chapter: 0,
+        description: 'Cassius\'s twin brother, killed by Darrow in the Passage. His death is the source of the blood feud between Darrow and House Bellona.',
+        status: 'dead',
+        additionalDetails: 'Julia Bellona demands Darrow\'s heart every night at the family table in Julian\'s memory.',
       },
     ],
   },
@@ -878,7 +989,7 @@ export const goldenSonFamilyGroups: FamilyGroup[] = [
   {
     id: 'house-bellona',
     name: 'House Bellona',
-    members: ['cassius', 'karnus', 'tiberius-bellona', 'julia-bellona'],
+    members: ['cassius', 'karnus', 'tiberius-bellona', 'julia-bellona', 'julian'],
   },
   {
     id: 'sovereign-court',
@@ -888,7 +999,7 @@ export const goldenSonFamilyGroups: FamilyGroup[] = [
   {
     id: 'house-telemanus',
     name: 'House Telemanus',
-    members: ['kavax', 'daxo'],
+    members: ['kavax', 'daxo', 'pax'],
   },
   {
     id: 'house-julii',
@@ -903,7 +1014,7 @@ export const goldenSonFamilyGroups: FamilyGroup[] = [
   {
     id: 'sons-of-ares',
     name: 'Sons of Ares',
-    members: ['dancer', 'fitchner'],
+    members: ['dancer', 'fitchner', 'harmony', 'mickey'],
   },
   {
     id: 'howlers',
@@ -913,7 +1024,7 @@ export const goldenSonFamilyGroups: FamilyGroup[] = [
   {
     id: 'darrow-household',
     name: "Darrow's Household",
-    members: ['theodora'],
+    members: ['theodora', 'eo'],
   },
 ];
 
