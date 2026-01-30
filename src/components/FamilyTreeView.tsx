@@ -174,7 +174,6 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
     generations: [
       { members: ['father-darrow', 'mother-darrow'] },
       { members: ['narol', 'kieran', 'darrow', 'leanna', 'eo'] },
-      { members: ['loran', 'dio'] },
     ],
     connections: [
       { from: 'father-darrow', to: 'mother-darrow', type: 'spouse' },
@@ -183,9 +182,14 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
       { from: 'father-darrow', to: 'leanna', type: 'parent-child' },
       { from: 'father-darrow', to: 'narol', type: 'sibling' },
       { from: 'darrow', to: 'eo', type: 'spouse' },
-      { from: 'eo', to: 'dio', type: 'sibling' },
+    ],
+  },
+  'eos-family': {
+    generations: [
+      { members: ['dio', 'loran'] },
+    ],
+    connections: [
       { from: 'dio', to: 'loran', type: 'spouse' },
-      { from: 'narol', to: 'loran', type: 'parent-child' },
     ],
   },
   'augustus-family': {
@@ -225,24 +229,24 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   },
 };
 
-// Priority order for family groups (character's "home" family comes first)
+// Priority order for family groups
 const familyPriority = [
   'darrow-family',
+  'eos-family',
   'augustus-family',
   'bellona-family',
   'sons-of-ares',
   'house-mars',
 ];
 
-// Positions for each family group - organized in a clear grid layout
-// Row 1: Darrow's Family (left), Augustus (center), Bellona (right)
-// Row 2: Sons of Ares (left), House Mars (right)
+// Positions - spread out with large gaps to prevent overlap
 const allFamiliesPositions: Record<string, { x: number; y: number }> = {
-  'darrow-family': { x: 400, y: 50 },
-  'augustus-family': { x: 1100, y: 50 },
-  'bellona-family': { x: 1600, y: 50 },
-  'sons-of-ares': { x: 400, y: 700 },
-  'house-mars': { x: 1200, y: 700 },
+  'darrow-family': { x: 0, y: 0 },
+  'eos-family': { x: 0, y: 550 },
+  'augustus-family': { x: 900, y: 0 },
+  'bellona-family': { x: 1400, y: 0 },
+  'sons-of-ares': { x: 900, y: 550 },
+  'house-mars': { x: 0, y: 850 },
 };
 
 export function FamilyTreeView({
