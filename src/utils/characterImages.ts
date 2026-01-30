@@ -66,8 +66,75 @@ const characterImages: Record<string, CharacterImageConfig> = {
   'octavia-lune': {
     default: '/images/characters/octavia-lune.png',
   },
+  // Alias for Golden Son (uses 'octavia' as ID)
+  octavia: {
+    default: '/images/characters/octavia-lune.png',
+  },
   fitchner: {
     default: '/images/characters/fitchner.png',
+  },
+
+  // ========== GOLDEN SON NEW CHARACTERS ==========
+
+  // House Bellona - new members
+  karnus: {
+    default: '/images/characters/karnus.png',
+  },
+  'tiberius-bellona': {
+    default: '/images/characters/tiberius-bellona.png',
+  },
+  'julia-bellona': {
+    default: '/images/characters/julia-bellona.png',
+  },
+
+  // Sovereign's Court
+  lysander: {
+    default: '/images/characters/lysander.png',
+  },
+  aja: {
+    default: '/images/characters/aja.png',
+  },
+  moira: {
+    default: '/images/characters/moira.png',
+  },
+
+  // House Arcos
+  lorn: {
+    default: '/images/characters/lorn.png',
+  },
+
+  // House Telemanus
+  kavax: {
+    default: '/images/characters/kavax.png',
+  },
+  daxo: {
+    default: '/images/characters/daxo.png',
+  },
+
+  // House Julii
+  victra: {
+    default: '/images/characters/victra.png',
+  },
+  agrippina: {
+    default: '/images/characters/agrippina.png',
+  },
+
+  // House Augustus - new members
+  pliny: {
+    default: '/images/characters/pliny.png',
+  },
+  leto: {
+    default: '/images/characters/leto.png',
+  },
+
+  // Darrow's household
+  theodora: {
+    default: '/images/characters/theodora.png',
+  },
+
+  // Other Golden Son characters
+  tactus: {
+    default: '/images/characters/tactus.png',
   },
 
   // Institute - House Mars and others
