@@ -174,30 +174,17 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
     generations: [
       { members: ['father-darrow', 'mother-darrow'] },
       { members: ['narol', 'kieran', 'darrow', 'leanna', 'eo'] },
-      { members: ['dio', 'loran'] },
+      { members: ['loran', 'dio'] },
     ],
     connections: [
-      // Parents married
       { from: 'father-darrow', to: 'mother-darrow', type: 'spouse' },
-      // Parents to children
       { from: 'father-darrow', to: 'kieran', type: 'parent-child' },
       { from: 'father-darrow', to: 'darrow', type: 'parent-child' },
       { from: 'father-darrow', to: 'leanna', type: 'parent-child' },
-      { from: 'mother-darrow', to: 'kieran', type: 'parent-child' },
-      { from: 'mother-darrow', to: 'darrow', type: 'parent-child' },
-      { from: 'mother-darrow', to: 'leanna', type: 'parent-child' },
-      // Narol is uncle (father's brother)
       { from: 'father-darrow', to: 'narol', type: 'sibling' },
-      // Darrow married to Eo
       { from: 'darrow', to: 'eo', type: 'spouse' },
-      // Siblings
-      { from: 'kieran', to: 'darrow', type: 'sibling' },
-      { from: 'darrow', to: 'leanna', type: 'sibling' },
-      // Eo's family
       { from: 'eo', to: 'dio', type: 'sibling' },
-      // Dio married to Loran
       { from: 'dio', to: 'loran', type: 'spouse' },
-      // Loran is Narol's son
       { from: 'narol', to: 'loran', type: 'parent-child' },
     ],
   },
@@ -229,12 +216,11 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   'house-mars': {
     generations: [
       { members: ['fitchner'] },
-      { members: ['darrow', 'cassius', 'sevro', 'roque'] },
-      { members: ['quinn', 'lea', 'pax', 'titus', 'antonia', 'vixus', 'julian'] },
+      { members: ['sevro', 'roque'] },
+      { members: ['quinn', 'lea', 'pax', 'titus', 'antonia', 'vixus'] },
     ],
     connections: [
       { from: 'fitchner', to: 'sevro', type: 'parent-child' },
-      { from: 'cassius', to: 'julian', type: 'sibling' },
     ],
   },
 };
@@ -248,13 +234,15 @@ const familyPriority = [
   'house-mars',
 ];
 
-// Positions for each family group when showing all - compact centered layout
+// Positions for each family group - organized in a clear grid layout
+// Row 1: Darrow's Family (left), Augustus (center), Bellona (right)
+// Row 2: Sons of Ares (left), House Mars (right)
 const allFamiliesPositions: Record<string, { x: number; y: number }> = {
-  'darrow-family': { x: 200, y: 0 },
-  'augustus-family': { x: 700, y: 0 },
-  'bellona-family': { x: 1050, y: 0 },
-  'sons-of-ares': { x: 200, y: 550 },
-  'house-mars': { x: 700, y: 550 },
+  'darrow-family': { x: 400, y: 50 },
+  'augustus-family': { x: 1100, y: 50 },
+  'bellona-family': { x: 1600, y: 50 },
+  'sons-of-ares': { x: 400, y: 700 },
+  'house-mars': { x: 1200, y: 700 },
 };
 
 export function FamilyTreeView({
@@ -267,10 +255,10 @@ export function FamilyTreeView({
   filterStatus,
 }: FamilyTreeViewProps) {
   const { nodes: initialNodes, edges: initialEdges } = useMemo(() => {
-    const NODE_WIDTH = 140;
-    const NODE_HEIGHT = 160;
-    const HORIZONTAL_GAP = 40;
-    const VERTICAL_GAP = 100;
+    const NODE_WIDTH = 130;
+    const NODE_HEIGHT = 150;
+    const HORIZONTAL_GAP = 20;
+    const VERTICAL_GAP = 80;
 
     const nodes: CharacterNode[] = [];
     const edges: Edge[] = [];
