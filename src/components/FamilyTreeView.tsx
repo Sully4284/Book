@@ -67,28 +67,34 @@ function CharacterNodeComponent({ data }: { data: CharacterNodeData }) {
         cursor-pointer hover:scale-105 transition-transform
       `}
     >
-      {/* Hidden connection handles for edges - invisible but functional */}
+      {/* Connection handles - all use center positions for cleaner lines */}
       <Handle
         type="target"
         position={Position.Top}
-        className="!opacity-0 !w-1 !h-1"
+        id="top"
+        className="!opacity-0 !w-2 !h-2"
+        style={{ top: 40 }}
       />
       <Handle
         type="source"
         position={Position.Bottom}
-        className="!opacity-0 !w-1 !h-1"
+        id="bottom"
+        className="!opacity-0 !w-2 !h-2"
+        style={{ bottom: 60 }}
       />
       <Handle
         type="target"
         position={Position.Left}
-        id="left-target"
-        className="!opacity-0 !w-1 !h-1"
+        id="left"
+        className="!opacity-0 !w-2 !h-2"
+        style={{ top: 40 }}
       />
       <Handle
         type="source"
         position={Position.Right}
-        id="right-source"
-        className="!opacity-0 !w-1 !h-1"
+        id="right"
+        className="!opacity-0 !w-2 !h-2"
+        style={{ top: 40 }}
       />
 
       {/* Portrait with color-coded frame - dark theme */}
@@ -202,10 +208,8 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
       { members: ['mustang', 'jackal'] },
     ],
     connections: [
-      // Mustang's true identity as Virginia au Augustus revealed in chapter 41
       { from: 'nero-augustus', to: 'mustang', type: 'parent-child', revealedAtChapter: 41 },
       { from: 'nero-augustus', to: 'jackal', type: 'parent-child', revealedAtChapter: 41 },
-      // Mustang and Jackal are twins - revealed in chapter 41
       { from: 'mustang', to: 'jackal', type: 'sibling', revealedAtChapter: 41 },
     ],
   },
@@ -220,20 +224,19 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   'sons-of-ares': {
     generations: [
       { members: ['fitchner'] },
+      { members: ['sevro'] },
       { members: ['dancer', 'harmony', 'mickey', 'evey', 'matteo'] },
     ],
-    connections: [],
+    connections: [
+      { from: 'fitchner', to: 'sevro', type: 'parent-child', revealedAtChapter: 44 },
+    ],
   },
   'house-mars': {
     generations: [
-      { members: ['fitchner'] },
       { members: ['sevro', 'roque'] },
       { members: ['quinn', 'lea', 'pax', 'titus', 'antonia', 'vixus'] },
     ],
-    connections: [
-      // Fitchner-Sevro relationship only revealed in chapter 44
-      { from: 'fitchner', to: 'sevro', type: 'parent-child', revealedAtChapter: 44 },
-    ],
+    connections: [],
   },
 
   // ========== GOLDEN SON LAYOUTS ==========
@@ -366,7 +369,8 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   'republic-leadership': {
     generations: [
       { members: ['mustang', 'darrow'] },
-      { members: ['pax-augustus', 'sevro', 'victra'] },
+      { members: ['pax-augustus'] },
+      { members: ['sevro', 'victra'] },
       { members: ['dancer', 'daxo', 'theodora'] },
     ],
     connections: [
@@ -389,12 +393,12 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   },
   'house-raa': {
     generations: [
-      { members: ['romulus', 'dido', 'atlas'] },
+      { members: ['romulus', 'dido'] },
       { members: ['seraphina', 'diomedes', 'marius'] },
+      { members: ['atlas'] },
     ],
     connections: [
       { from: 'romulus', to: 'dido', type: 'spouse' },
-      { from: 'romulus', to: 'atlas', type: 'sibling' },
       { from: 'romulus', to: 'seraphina', type: 'parent-child' },
       { from: 'romulus', to: 'diomedes', type: 'parent-child' },
       { from: 'romulus', to: 'marius', type: 'parent-child' },
@@ -429,11 +433,8 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   'ephraims-crew': {
     generations: [
       { members: ['ephraim', 'volga'] },
-      { members: ['trigg'] },
     ],
-    connections: [
-      { from: 'ephraim', to: 'trigg', type: 'spouse' },
-    ],
+    connections: [],
   },
   'lyrias-family': {
     generations: [
@@ -524,12 +525,10 @@ const familyPriorityByBook: Record<string, string[]> = {
     'house-telemanus',
     'house-julii',
     'house-arcos',
-    'sons-of-ares',
     'howlers',
     'darrow-household',
   ],
   'morning-star': [
-    'darrow-family',
     'house-augustus',
     'house-bellona',
     'sovereign-court',
@@ -538,7 +537,6 @@ const familyPriorityByBook: Record<string, string[]> = {
     'obsidians',
     'sons-of-ares',
     'howlers',
-    'boneriders',
     'moon-lords',
     'nakamura-siblings',
   ],
@@ -577,48 +575,71 @@ const familyPriorityByBook: Record<string, string[]> = {
   ],
 };
 
-// Positions - spread out with large gaps to prevent overlap
-const allFamiliesPositions: Record<string, { x: number; y: number }> = {
-  // Red Rising positions
-  'darrow-family': { x: 0, y: 0 },
-  'eos-family': { x: 0, y: 550 },
-  'augustus-family': { x: 900, y: 0 },
-  'bellona-family': { x: 1400, y: 0 },
-  'sons-of-ares': { x: 900, y: 550 },
-  'house-mars': { x: 0, y: 850 },
-  // Golden Son positions - spread much wider to prevent overlap
-  'house-augustus': { x: 0, y: 0 },
-  'house-bellona': { x: 700, y: 0 },
-  'sovereign-court': { x: 1400, y: 0 },
-  'house-telemanus': { x: 0, y: 550 },
-  'house-julii': { x: 500, y: 550 },
-  'house-arcos': { x: 1000, y: 550 },
-  'howlers': { x: 0, y: 950 },
-  'darrow-household': { x: 700, y: 950 },
-  // Morning Star positions
-  'obsidians': { x: 1400, y: 550 },
-  'boneriders': { x: 1400, y: 950 },
-  'moon-lords': { x: 1800, y: 0 },
-  'nakamura-siblings': { x: 1800, y: 550 },
-  // Iron Gold positions
-  'republic-leadership': { x: 0, y: 0 },
-  'house-barca': { x: 0, y: 550 },
-  'house-raa': { x: 700, y: 0 },
-  'house-lune': { x: 1400, y: 0 },
-  'society-remnant': { x: 1400, y: 550 },
-  'the-syndicate': { x: 0, y: 950 },
-  'ephraims-crew': { x: 700, y: 550 },
-  'lyrias-family': { x: 700, y: 950 },
-  // Dark Age positions
-  'society-command': { x: 1400, y: 0 },
-  'obsidian-alliance': { x: 1800, y: 0 },
-  'rim-forces': { x: 1800, y: 550 },
-  'rescue-team': { x: 1400, y: 950 },
-  'lyrias-allies': { x: 0, y: 1350 },
-  // Light Bringer positions
-  'darrows-crew': { x: 0, y: 950 },
-  'obsidian-forces': { x: 700, y: 950 },
-  'red-allies': { x: 1400, y: 950 },
+// Positions - reorganized with much more space and logical groupings
+const allFamiliesPositions: Record<string, Record<string, { x: number; y: number }>> = {
+  'red-rising': {
+    'darrow-family': { x: 0, y: 0 },
+    'eos-family': { x: 0, y: 400 },
+    'augustus-family': { x: 700, y: 0 },
+    'bellona-family': { x: 1100, y: 0 },
+    'sons-of-ares': { x: 0, y: 650 },  // Moved closer since it has Sevro connection
+    'house-mars': { x: 0, y: 1100 },
+  },
+  'golden-son': {
+    'house-augustus': { x: 0, y: 0 },
+    'house-bellona': { x: 600, y: 0 },
+    'sovereign-court': { x: 1200, y: 0 },
+    'house-telemanus': { x: 0, y: 550 },
+    'house-julii': { x: 450, y: 550 },
+    'house-arcos': { x: 850, y: 550 },
+    'howlers': { x: 0, y: 950 },
+    'darrow-household': { x: 600, y: 950 },
+  },
+  'morning-star': {
+    'house-augustus': { x: 0, y: 0 },
+    'house-bellona': { x: 500, y: 0 },
+    'sovereign-court': { x: 900, y: 0 },
+    'moon-lords': { x: 1350, y: 0 },
+    'house-telemanus': { x: 0, y: 450 },
+    'house-julii': { x: 450, y: 450 },
+    'obsidians': { x: 900, y: 450 },
+    'nakamura-siblings': { x: 1350, y: 450 },
+    'sons-of-ares': { x: 0, y: 850 },
+    'howlers': { x: 550, y: 850 },
+  },
+  'iron-gold': {
+    'republic-leadership': { x: 0, y: 0 },
+    'house-barca': { x: 0, y: 700 },
+    'house-telemanus': { x: 550, y: 700 },
+    'house-raa': { x: 650, y: 0 },
+    'house-lune': { x: 1250, y: 0 },
+    'society-remnant': { x: 1250, y: 400 },
+    'ephraims-crew': { x: 0, y: 1100 },
+    'lyrias-family': { x: 400, y: 1100 },
+    'the-syndicate': { x: 800, y: 1100 },
+  },
+  'dark-age': {
+    'republic-leadership': { x: 0, y: 0 },
+    'house-augustus': { x: 550, y: 0 },
+    'house-barca': { x: 0, y: 700 },
+    'house-telemanus': { x: 450, y: 700 },
+    'society-command': { x: 1000, y: 0 },
+    'howlers': { x: 900, y: 700 },
+    'obsidian-alliance': { x: 1550, y: 0 },
+    'rim-forces': { x: 1550, y: 450 },
+    'rescue-team': { x: 0, y: 1100 },
+    'lyrias-allies': { x: 550, y: 1100 },
+  },
+  'light-bringer': {
+    'house-augustus': { x: 0, y: 0 },
+    'house-barca': { x: 0, y: 450 },
+    'house-telemanus': { x: 450, y: 450 },
+    'society-command': { x: 600, y: 0 },
+    'darrows-crew': { x: 0, y: 850 },
+    'rim-forces': { x: 1200, y: 0 },
+    'obsidian-forces': { x: 1200, y: 400 },
+    'red-allies': { x: 600, y: 850 },
+  },
 };
 
 export function FamilyTreeView({
@@ -632,16 +653,18 @@ export function FamilyTreeView({
   bookId,
 }: FamilyTreeViewProps) {
   const { nodes: initialNodes, edges: initialEdges } = useMemo(() => {
-    const NODE_WIDTH = 130;
-    const NODE_HEIGHT = 150;
-    const HORIZONTAL_GAP = 20;
-    const VERTICAL_GAP = 80;
+    const NODE_WIDTH = 140;
+    const NODE_HEIGHT = 160;
+    const HORIZONTAL_GAP = 30;
+    const VERTICAL_GAP = 100;
 
     const nodes: CharacterNode[] = [];
     const edges: Edge[] = [];
 
     // Track which characters have been placed to avoid duplicates
     const placedCharacters = new Set<string>();
+    // Track node positions for smart edge routing
+    const nodePositions = new Map<string, { x: number; y: number; genIndex: number }>();
 
     const buildFamilyNodes = (
       groupId: string,
@@ -660,7 +683,7 @@ export function FamilyTreeView({
         nodes.push({
           id: `label-${groupId}`,
           type: 'default',
-          position: { x: offsetX, y: offsetY - 60 },
+          position: { x: offsetX, y: offsetY - 50 },
           data: { label: group.name } as unknown as CharacterNodeData,
           style: {
             background: '#1a1a1a',
@@ -688,13 +711,15 @@ export function FamilyTreeView({
           const char = charMap.get(memberId);
           if (char && !placedCharacters.has(memberId)) {
             placedCharacters.add(memberId);
+            const posX = startX + memberIndex * (NODE_WIDTH + HORIZONTAL_GAP);
+            const posY = offsetY + genIndex * (NODE_HEIGHT + VERTICAL_GAP);
+
+            nodePositions.set(char.id, { x: posX, y: posY, genIndex });
+
             nodes.push({
               id: char.id,
               type: 'character',
-              position: {
-                x: startX + memberIndex * (NODE_WIDTH + HORIZONTAL_GAP),
-                y: offsetY + genIndex * (NODE_HEIGHT + VERTICAL_GAP),
-              },
+              position: { x: posX, y: posY },
               data: { ...char, currentChapter } as CharacterNodeData,
             });
           }
@@ -710,6 +735,30 @@ export function FamilyTreeView({
           const edgeId = `${groupId}-${conn.type}-${conn.from}-${conn.to}`;
           // Check if edge already exists
           if (!edges.find((e) => e.id === edgeId)) {
+            const fromPos = nodePositions.get(conn.from);
+            const toPos = nodePositions.get(conn.to);
+
+            // Determine connection handles based on relationship type and positions
+            let sourceHandle = 'bottom';
+            let targetHandle = 'top';
+
+            if (fromPos && toPos) {
+              if (conn.type === 'spouse' || conn.type === 'sibling') {
+                // Horizontal connections - use left/right handles
+                if (fromPos.x < toPos.x) {
+                  sourceHandle = 'right';
+                  targetHandle = 'left';
+                } else {
+                  sourceHandle = 'left';
+                  targetHandle = 'right';
+                }
+              } else if (conn.type === 'parent-child') {
+                // Vertical connections - always use bottom/top
+                sourceHandle = 'bottom';
+                targetHandle = 'top';
+              }
+            }
+
             const edgeStyle = {
               'spouse': {
                 stroke: '#ec4899',
@@ -731,7 +780,9 @@ export function FamilyTreeView({
               id: edgeId,
               source: conn.from,
               target: conn.to,
-              type: conn.type === 'parent-child' ? 'smoothstep' : 'straight',
+              sourceHandle,
+              targetHandle,
+              type: 'smoothstep',
               style: edgeStyle,
               animated: conn.type === 'spouse',
             });
@@ -756,10 +807,11 @@ export function FamilyTreeView({
       // Show ALL family groups positioned in different areas
       // Use the priority list for this specific book
       const familyPriority = familyPriorityByBook[bookId] || familyPriorityByBook['red-rising'];
+      const bookPositions = allFamiliesPositions[bookId] || allFamiliesPositions['red-rising'];
 
       // Process in priority order so characters appear in their "home" family first
       familyPriority.forEach((groupId) => {
-        const pos = allFamiliesPositions[groupId] || { x: 0, y: 0 };
+        const pos = bookPositions[groupId] || { x: 0, y: 0 };
         buildFamilyNodes(groupId, pos.x, pos.y, allCharMap, true);
       });
     } else {
@@ -904,9 +956,9 @@ export function FamilyTreeView({
         onNodeClick={onNodeClick}
         nodeTypes={nodeTypes}
         fitView
-        fitViewOptions={{ padding: 0.15, minZoom: 0.5, maxZoom: 1.2 }}
+        fitViewOptions={{ padding: 0.2, minZoom: 0.4, maxZoom: 1.2 }}
         style={{ background: '#0a0a0a' }}
-        minZoom={0.4}
+        minZoom={0.3}
         maxZoom={1.5}
         defaultEdgeOptions={{
           type: 'smoothstep',
