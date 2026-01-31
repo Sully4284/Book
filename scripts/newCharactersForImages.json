@@ -1,0 +1,580 @@
+{
+  "metadata": {
+    "description": "New characters from books 3-6 (Morning Star, Iron Gold, Dark Age, Light Bringer) requiring DALL-E images",
+    "generatedDate": "2026-01-31",
+    "totalCharacters": 38,
+    "notes": "Physical descriptions compiled from book text and canonical sources. Some characters appear across multiple books."
+  },
+  "characters": [
+    {
+      "id": "sefi",
+      "name": "Sefi the Quiet",
+      "color": "Obsidian",
+      "book": "Morning Star",
+      "physicalDescription": {
+        "hair": "White/silver hair, typical of Obsidian",
+        "eyes": "Dark eyes",
+        "build": "Tall and powerful, muscular Obsidian warrior woman",
+        "height": "Very tall (Obsidians average 7+ feet)",
+        "distinguishingFeatures": "Stoic demeanor, carries herself with quiet authority, Valkyrie warrior markings",
+        "skinTone": "Pale white skin (arctic Obsidian)"
+      },
+      "keyVisualTraits": "Female Obsidian warrior queen, white hair, pale skin, muscular build, stoic expression, Valkyrie tribal markings, Arctic warrior aesthetic, intimidating presence, sister of Ragnar"
+    },
+    {
+      "id": "holiday",
+      "name": "Holiday ti Nakamura",
+      "color": "Gray",
+      "book": "Morning Star",
+      "physicalDescription": {
+        "hair": "Ashen mohawk",
+        "eyes": "One bionic eye (cybernetic implant)",
+        "build": "Athletic, soldier's build",
+        "height": "Average height for a Gray",
+        "distinguishingFeatures": "Nutcracker jaw (strong angular jaw), bionic eye, military bearing",
+        "skinTone": "From South Pacifica on Earth, likely tan/olive complexion"
+      },
+      "keyVisualTraits": "Female Gray soldier, ashen mohawk hairstyle, bionic/cybernetic eye, strong jaw, military posture, tactical appearance, South Pacific heritage, competent warrior look"
+    },
+    {
+      "id": "trigg",
+      "name": "Trigg ti Nakamura",
+      "color": "Gray",
+      "book": "Morning Star",
+      "physicalDescription": {
+        "hair": "Dark hair",
+        "eyes": "Normal eyes",
+        "build": "Soldier's build, younger looking",
+        "height": "Average",
+        "distinguishingFeatures": "Two gold teardrop tattoos under his right eye, boyish face",
+        "skinTone": "From South Pacifica, similar to Holiday"
+      },
+      "keyVisualTraits": "Male Gray soldier, boyish face, two gold teardrop tattoos under right eye, youthful appearance, military gear, Holiday's younger brother, earnest expression"
+    },
+    {
+      "id": "alia",
+      "name": "Alia Snowsparrow",
+      "color": "Obsidian",
+      "book": "Morning Star",
+      "physicalDescription": {
+        "hair": "White/silver (aged)",
+        "eyes": "Dark, intense",
+        "build": "Older but still imposing Obsidian woman",
+        "height": "Tall (Obsidian)",
+        "distinguishingFeatures": "Regal bearing, traditional Obsidian facial markings, tribal queen appearance",
+        "skinTone": "Pale white (arctic Obsidian)"
+      },
+      "keyVisualTraits": "The Pale Queen, elderly Obsidian woman, white hair, pale skin, regal and fierce, tribal queen, mother of Ragnar and Sefi, devout believer, arctic ruler aesthetic"
+    },
+    {
+      "id": "romulus",
+      "name": "Romulus au Raa",
+      "color": "Gold",
+      "book": "Morning Star",
+      "physicalDescription": {
+        "hair": "Dark hair (Rim Gold aesthetic)",
+        "eyes": "Gold (typical of Gold color)",
+        "build": "Strong, commanding presence",
+        "height": "Tall (Gold)",
+        "distinguishingFeatures": "Lost right arm and one eye at Battle of Ilium (Iron Gold), dignified bearing, Rim Gold appearance (more austere than Core Golds)",
+        "skinTone": "Golden/bronze"
+      },
+      "keyVisualTraits": "Moon Lord of Io, Rim Gold aesthetic (more austere/traditional than Core), dignified older warrior, missing right arm and one eye (later books), commanding presence, Japanese-influenced Rim culture aesthetic"
+    },
+    {
+      "id": "quicksilver",
+      "name": "Regulus ag Sun",
+      "color": "Silver",
+      "book": "Morning Star",
+      "physicalDescription": {
+        "hair": "Silver-gray",
+        "eyes": "Calculating, intelligent gaze",
+        "build": "Slim, refined",
+        "height": "Average",
+        "distinguishingFeatures": "Wealthy appearance, immaculate grooming, Silver sigils",
+        "skinTone": "Silver-tinted skin (Silver color)"
+      },
+      "keyVisualTraits": "Richest man in the Society, Silver color (silvery skin tone), refined wealthy businessman appearance, calculating expression, immaculate dress, corporate mogul aesthetic"
+    },
+    {
+      "id": "orion",
+      "name": "Orion xe Aquarii",
+      "color": "Blue",
+      "book": "Morning Star",
+      "physicalDescription": {
+        "hair": "Blue-tinged (Blue color)",
+        "eyes": "Blue-tinged with data implants",
+        "build": "Slim, navigator's build",
+        "height": "Average",
+        "distinguishingFeatures": "Blue coloring, neural interface ports, navigator markings",
+        "skinTone": "Blue-tinged skin"
+      },
+      "keyVisualTraits": "Female Blue navigator/captain, blue-tinged skin, brilliant tactician look, neural interface technology, ship captain demeanor, space navy aesthetic"
+    },
+    {
+      "id": "lilath",
+      "name": "Lilath au Faran",
+      "color": "Gold",
+      "book": "Morning Star",
+      "physicalDescription": {
+        "hair": "Bald/shaved head",
+        "eyes": "Eel-like eyes (narrow, predatory)",
+        "build": "Athletic, deadly",
+        "height": "Tall (Gold)",
+        "distinguishingFeatures": "Bald head, eel-like predatory eyes, Bonerider captain aesthetic",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "Female Gold assassin, bald head, eel-like predatory eyes, Jackal's personal killer, Bonerider aesthetic, dangerous and lethal appearance, utterly loyal to Jackal"
+    },
+    {
+      "id": "ash-lord",
+      "name": "Magnus au Grimmus",
+      "color": "Gold",
+      "book": "Morning Star",
+      "physicalDescription": {
+        "hair": "Gray/white (aged)",
+        "eyes": "Cold, calculating",
+        "build": "Formerly powerful, later emaciated from poison (Iron Gold)",
+        "height": "Tall (Gold)",
+        "distinguishingFeatures": "Battle scars, war veteran appearance, later shown as dying skeletal husk (Iron Gold)",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "The Ash Lord, elderly Gold warlord, destroyed Rhea, white/gray hair, cold ruthless expression, military commander appearance, father of Aja, later emaciated and dying from poison"
+    },
+    {
+      "id": "lyria",
+      "name": "Lyria of Lagalos",
+      "color": "Red",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Red hair (typical of Red color)",
+        "eyes": "Red-tinged eyes",
+        "build": "Small, slight (miner's descendant)",
+        "height": "Short (Red)",
+        "distinguishingFeatures": "Red coloring, survivor's look, working-class appearance",
+        "skinTone": "Red-tinged (Red color)"
+      },
+      "keyVisualTraits": "Young Red woman, red-tinged skin and hair, small build, survivor from mining clan, determined expression, humble origins, evolves from refugee to hero"
+    },
+    {
+      "id": "ephraim",
+      "name": "Ephraim ti Horn",
+      "color": "Gray",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Dark, unkempt",
+        "eyes": "Haunted look",
+        "build": "Athletic but worn",
+        "height": "Average (Gray)",
+        "distinguishingFeatures": "Drug-worn appearance, former soldier look, haunted expression",
+        "skinTone": "Gray-tinged (Gray color)"
+      },
+      "keyVisualTraits": "Male Gray thief, former Sons of Ares soldier, haunted drug-addicted appearance, widower of Trigg, skilled but broken, eventual redemption arc"
+    },
+    {
+      "id": "dido",
+      "name": "Dido au Raa",
+      "color": "Gold",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Dark (Rim Gold)",
+        "eyes": "Gold",
+        "build": "Regal, powerful",
+        "height": "Tall (Gold)",
+        "distinguishingFeatures": "Venusian origin, Rim Gold aesthetic, politically ambitious appearance",
+        "skinTone": "Golden/bronze"
+      },
+      "keyVisualTraits": "Female Rim Gold, wife of Romulus, originally from Venus, regal bearing, ambitious political figure, Rim aesthetic (austere, traditional), mother of Seraphina and Diomedes"
+    },
+    {
+      "id": "seraphina",
+      "name": "Seraphina au Raa",
+      "color": "Gold",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Dark hair (Rim Gold)",
+        "eyes": "Gold",
+        "build": "Athletic warrior woman",
+        "height": "Tall (Gold)",
+        "distinguishingFeatures": "Called 'Little Hawk', fierce warrior appearance, Rim Gold aesthetic",
+        "skinTone": "Golden/bronze"
+      },
+      "keyVisualTraits": "Young female Rim Gold warrior, called Little Hawk, daughter of Romulus, athletic warrior build, fierce determination, killed Cassius in duel, Rim aesthetic"
+    },
+    {
+      "id": "diomedes",
+      "name": "Diomedes au Raa",
+      "color": "Gold",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Dark (Rim Gold)",
+        "eyes": "Gold",
+        "build": "Powerful warrior's build, Olympic Knight",
+        "height": "Tall (Gold)",
+        "distinguishingFeatures": "Olympic Knight bearing, trained by Lorn au Arcos, stoic Rim warrior appearance",
+        "skinTone": "Golden/bronze"
+      },
+      "keyVisualTraits": "The Storm Knight of the Rim, Olympic Knight, male Rim Gold, powerful warrior build, trained by Lorn au Arcos, stoic and honorable, traditional Rim aesthetic"
+    },
+    {
+      "id": "atalantia",
+      "name": "Atalantia au Grimmus",
+      "color": "Gold",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Dark",
+        "eyes": "Gold, predatory",
+        "build": "Athletic, Fury-trained warrior",
+        "height": "Tall (Gold)",
+        "distinguishingFeatures": "Last surviving Fury (after Aja), deadly warrior appearance, commanding presence",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "The Last Fury, female Gold warrior, daughter of the Ash Lord, predatory appearance, Dictator of Society, deadly and commanding, sister of Aja aesthetic"
+    },
+    {
+      "id": "apollonius",
+      "name": "Apollonius au Valii-Rath",
+      "color": "Gold",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Golden/flowing",
+        "eyes": "Gold, theatrical",
+        "build": "Muscular, imposing",
+        "height": "Very tall (Gold)",
+        "distinguishingFeatures": "The Minotaur, flamboyant appearance, narcissistic grooming, theatrical presence",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "The Minotaur, extremely tall Gold male, flamboyant and narcissistic, flowing golden hair, theatrical personality, eloquent and dangerous, magnificent warrior"
+    },
+    {
+      "id": "atlas",
+      "name": "Atlas au Raa",
+      "color": "Gold",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Dark (Rim Gold)",
+        "eyes": "Cold, calculating",
+        "build": "Lean, dangerous",
+        "height": "Tall (Gold)",
+        "distinguishingFeatures": "The Fear Knight, psychological warfare expert, unsettling calm demeanor",
+        "skinTone": "Golden/bronze"
+      },
+      "keyVisualTraits": "The Fear Knight, male Rim Gold, brother of Romulus, master torturer, cold calculating appearance, Gorgon commander, unsettling calm, psychological terror expert"
+    },
+    {
+      "id": "duke-of-hands",
+      "name": "The Duke of Hands",
+      "color": "Pink",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Pink-tinged",
+        "eyes": "Pink (Pink color)",
+        "build": "Refined, decadent",
+        "height": "Average",
+        "distinguishingFeatures": "Carries white cane topped with octopus head, crimelord aesthetic, Pink beauty with sinister edge",
+        "skinTone": "Pink-tinged (Pink color)"
+      },
+      "keyVisualTraits": "Male Pink crimelord, white cane with octopus head, Syndicate aesthetic, refined but sinister, beautiful Pink features with criminal menace"
+    },
+    {
+      "id": "syndicate-queen",
+      "name": "The Syndicate Queen",
+      "color": "Pink",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Pink-tinged",
+        "eyes": "Pink (Pink color)",
+        "build": "Refined",
+        "height": "Unknown",
+        "distinguishingFeatures": "Mysterious leader, commands absolute fear, identity hidden",
+        "skinTone": "Pink-tinged (Pink color)"
+      },
+      "keyVisualTraits": "Mysterious Pink female, Syndicate leader, shrouded in mystery, commands fear, criminal queen, identity secret"
+    },
+    {
+      "id": "volga",
+      "name": "Volga Fjorgan",
+      "color": "Obsidian",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "White hair",
+        "eyes": "Dark",
+        "build": "Huge, powerful Obsidian woman",
+        "height": "Very tall (Obsidian)",
+        "distinguishingFeatures": "Pale skin, white hair, deemed 'defective' by Society breeding program, daughter of Ragnar Volarus",
+        "skinTone": "Pale white"
+      },
+      "keyVisualTraits": "Female Obsidian, huge and pale, white hair, daughter of Ragnar, gentle nature contrasting with size, loyal friend, granddaughter of Volsung Fa"
+    },
+    {
+      "id": "liam",
+      "name": "Liam",
+      "color": "Red",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Red (Red color)",
+        "eyes": "Damaged (blind until healed)",
+        "build": "Small, young child",
+        "height": "Short (child)",
+        "distinguishingFeatures": "Lyria's nephew, child survivor, initially blind",
+        "skinTone": "Red-tinged"
+      },
+      "keyVisualTraits": "Young Red boy, Lyria's nephew, sole family survivor, innocent child, initially damaged eyes (later healed)"
+    },
+    {
+      "id": "alexandar",
+      "name": "Alexandar au Arcos",
+      "color": "Gold",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Dark hair",
+        "eyes": "Gold",
+        "build": "Athletic, warrior's build",
+        "height": "Tall (Gold)",
+        "distinguishingFeatures": "Grandson of Lorn au Arcos, carries family honor, called 'The Griffin' and 'Pup One'",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "Young male Gold warrior, grandson of Lorn au Arcos, athletic build, honorable bearing, called The Griffin, Darrow's archLancer, killed by Lysander"
+    },
+    {
+      "id": "wulfgar",
+      "name": "Wulfgar",
+      "color": "Obsidian",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Dark/braided (Obsidian style)",
+        "eyes": "Dark",
+        "build": "Massive Obsidian warrior",
+        "height": "Very tall (Obsidian)",
+        "distinguishingFeatures": "ArchWarden of Republic, carries Ragnar's legacy, respected leader",
+        "skinTone": "Dark (Southern Obsidian)"
+      },
+      "keyVisualTraits": "Male Obsidian warrior, ArchWarden, massive build, carries Ragnar's legacy, Republic loyalist, dignified warrior"
+    },
+    {
+      "id": "ajax",
+      "name": "Ajax au Grimmus",
+      "color": "Gold",
+      "book": "Dark Age",
+      "physicalDescription": {
+        "hair": "Dark",
+        "eyes": "Gold",
+        "build": "Powerful, war engine build",
+        "height": "Tall (Gold)",
+        "distinguishingFeatures": "Son of Aja and Atlas, Iron Leopards Legate, seeking to prove himself",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "Male Gold warrior, son of Aja and Atlas, The Storm Knight, Iron Leopards commander, powerful warrior seeking glory, rivals Lysander"
+    },
+    {
+      "id": "rhonna",
+      "name": "Rhonna of Lykos",
+      "color": "Red",
+      "book": "Dark Age",
+      "physicalDescription": {
+        "hair": "Red (Red color)",
+        "eyes": "Red-tinged",
+        "build": "Athletic, soldier's build",
+        "height": "Short (Red)",
+        "distinguishingFeatures": "Darrow's niece, Howler lancer, called 'Pup Two'",
+        "skinTone": "Red-tinged"
+      },
+      "keyVisualTraits": "Young female Red warrior, Darrow's niece, Howler lancer, fierce fighter, called Pup Two, partner to Alexandar"
+    },
+    {
+      "id": "thraxa",
+      "name": "Thraxa au Telemanus",
+      "color": "Gold",
+      "book": "Dark Age",
+      "physicalDescription": {
+        "hair": "Red/auburn (Telemanus family)",
+        "eyes": "Gold",
+        "build": "Powerful, muscular warrior woman",
+        "height": "Tall (Gold, Telemanus build)",
+        "distinguishingFeatures": "Kavax's daughter, fights with warhammer, called The Hammer",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "Female Gold warrior, Kavax's daughter, The Hammer, fights with warhammer, muscular powerful build, Telemanus red hair, fierce warrior"
+    },
+    {
+      "id": "kalindora",
+      "name": "Kalindora au San",
+      "color": "Gold",
+      "book": "Dark Age",
+      "physicalDescription": {
+        "hair": "Unknown (likely dark or golden)",
+        "eyes": "Gold",
+        "build": "Athletic, Olympic Knight",
+        "height": "Tall (Gold)",
+        "distinguishingFeatures": "The Love Knight, Olympic Knight, aunt to Alexandar, romantic interest to Lysander",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "Female Gold, Olympic Knight, The Love Knight, aunt to Alexandar au Arcos, elegant warrior, later romantically involved with Lysander"
+    },
+    {
+      "id": "volsung-fa",
+      "name": "Volsung Fa",
+      "color": "Obsidian",
+      "book": "Dark Age",
+      "physicalDescription": {
+        "hair": "White/gray (aged)",
+        "eyes": "Dark, intense",
+        "build": "Massive, legendary warrior",
+        "height": "Extremely tall (legendary Obsidian)",
+        "distinguishingFeatures": "The Allfather, father of Ragnar and Sefi, ancient warrior markings, legendary presence",
+        "skinTone": "Pale (arctic Obsidian)"
+      },
+      "keyVisualTraits": "The Allfather, legendary male Obsidian warlord, massive build, ancient warrior, white/gray hair, father of Ragnar and Sefi, grandfather of Volga, came from beyond Kuiper Belt"
+    },
+    {
+      "id": "valdir",
+      "name": "Valdir",
+      "color": "Obsidian",
+      "book": "Dark Age",
+      "physicalDescription": {
+        "hair": "Dark/braided",
+        "eyes": "Dark",
+        "build": "Massive Obsidian warrior",
+        "height": "Very tall (Obsidian)",
+        "distinguishingFeatures": "Sefi's lover, Obsidian warrior",
+        "skinTone": "Dark or pale Obsidian"
+      },
+      "keyVisualTraits": "Male Obsidian warrior, Sefi's romantic partner, massive build, loyal warrior"
+    },
+    {
+      "id": "harnassus",
+      "name": "Cadus Harnassus",
+      "color": "Orange",
+      "book": "Dark Age",
+      "physicalDescription": {
+        "hair": "Orange-tinged",
+        "eyes": "Orange (Orange color)",
+        "build": "Engineer's build, practical",
+        "height": "Average",
+        "distinguishingFeatures": "Orange engineer, Imperator of Republic, practical demeanor",
+        "skinTone": "Orange-tinged"
+      },
+      "keyVisualTraits": "Male Orange engineer, Darrow's Imperator, practical engineer appearance, Republic military leader, competent and reliable"
+    },
+    {
+      "id": "pax-augustus",
+      "name": "Pax Augustus",
+      "color": "Gold",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Golden (like mother Virginia)",
+        "eyes": "Gold",
+        "build": "Young, growing",
+        "height": "Young Gold child/teen",
+        "distinguishingFeatures": "Son of Darrow and Mustang, named after Pax au Telemanus, golden hair like mother",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "Young male Gold, son of Darrow and Virginia, golden hair like mother, named after Pax au Telemanus, heir to Republic, brave young Gold"
+    },
+    {
+      "id": "electra",
+      "name": "Electra au Barca",
+      "color": "Gold",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Dark (like Sevro)",
+        "eyes": "Gold",
+        "build": "Young, fierce",
+        "height": "Young Gold child",
+        "distinguishingFeatures": "Daughter of Sevro and Victra, fierce spirit, takes after parents",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "Young female Gold, daughter of Sevro and Victra, fierce spirit, takes after both parents, wild and brave"
+    },
+    {
+      "id": "pytha",
+      "name": "Pytha",
+      "color": "Blue",
+      "book": "Light Bringer",
+      "physicalDescription": {
+        "hair": "Blue-tinged",
+        "eyes": "Blue (Blue color)",
+        "build": "Pilot's build",
+        "height": "Average",
+        "distinguishingFeatures": "Blue pilot, helped Cassius survive exile, loyal companion",
+        "skinTone": "Blue-tinged"
+      },
+      "keyVisualTraits": "Female Blue pilot, helped Cassius survive, loyal companion, space pilot aesthetic, Blue coloring"
+    },
+    {
+      "id": "aurae",
+      "name": "Aurae",
+      "color": "Pink",
+      "book": "Light Bringer",
+      "physicalDescription": {
+        "hair": "Pink-tinged",
+        "eyes": "Pink (Pink color)",
+        "build": "Refined, Pink aesthetic",
+        "height": "Average",
+        "distinguishingFeatures": "Pink companion who helped Cassius, left Darrow a book",
+        "skinTone": "Pink-tinged"
+      },
+      "keyVisualTraits": "Female Pink, beautiful Pink features, helped Cassius during exile, compassionate, left meaningful book for Darrow"
+    },
+    {
+      "id": "pax-son",
+      "name": "Pax (baby)",
+      "color": "Gold",
+      "book": "Morning Star",
+      "physicalDescription": {
+        "hair": "Golden (like mother)",
+        "eyes": "Gold",
+        "build": "Infant",
+        "height": "Baby",
+        "distinguishingFeatures": "Darrow and Virginia's infant son at end of Morning Star, golden hair",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "Baby Gold, son of Darrow and Virginia, golden hair, newborn revealed at end of Morning Star (same character as pax-augustus, earlier)"
+    },
+    {
+      "id": "figment",
+      "name": "Figment",
+      "color": "Unknown",
+      "book": "Iron Gold",
+      "physicalDescription": {
+        "hair": "Unknown",
+        "eyes": "Unknown",
+        "build": "Unknown",
+        "height": "Unknown",
+        "distinguishingFeatures": "Mysterious figure who implanted parasite in Lyria, Syndicate operative",
+        "skinTone": "Unknown"
+      },
+      "keyVisualTraits": "Mysterious Syndicate operative, implanted parasite in Lyria, shadowy figure, identity unclear"
+    },
+    {
+      "id": "ulysses",
+      "name": "Ulysses au Barca",
+      "color": "Gold",
+      "book": "Dark Age",
+      "physicalDescription": {
+        "hair": "Unknown (infant)",
+        "eyes": "Gold",
+        "build": "Infant",
+        "height": "Baby",
+        "distinguishingFeatures": "Victra and Sevro's infant son, killed by Harmony",
+        "skinTone": "Golden"
+      },
+      "keyVisualTraits": "Infant Gold, son of Sevro and Victra, killed by Harmony and Red Hand, tragic victim"
+    },
+    {
+      "id": "deanna",
+      "name": "Deanna of Lykos",
+      "color": "Red",
+      "book": "Morning Star",
+      "physicalDescription": {
+        "hair": "Gray (aged)",
+        "eyes": "Red-tinged",
+        "build": "Small, older woman",
+        "height": "Short (Red)",
+        "distinguishingFeatures": "Darrow's mother, aged appearance, miner's wife",
+        "skinTone": "Red-tinged"
+      },
+      "keyVisualTraits": "Elderly Red woman, Darrow's mother, gray hair, weathered appearance, miner's wife, loving mother figure"
+    }
+  ]
+}

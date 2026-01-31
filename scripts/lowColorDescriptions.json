@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "description": "Physical descriptions for lowColor characters from the Red Rising series for DALL-E image generation",
+    "colorTraits": {
+      "Red": "Red-tinted hair (rusty red, deep crimson, auburn), red-tinged eyes, typically shorter stature (under 5'5\"), compact muscular builds from hard labor, weathered skin",
+      "Gray": "Gray-tinted hair (steel gray, silver), gray eyes, military bearing, athletic/combat-ready builds, often scarred from military service",
+      "Blue": "Blue-tinted hair and eyes, tall thin builds, pale skin from ship life, often have cybernetic implants for navigation",
+      "Pink": "Genetically engineered for beauty, flawless skin, graceful movements, typically have pink-tinted features, designed for pleasure and companionship"
+    },
+    "imagePromptNotes": "All prompts should end with: Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+  },
+  "characters": [
+    {
+      "id": "lyria",
+      "name": "Lyria of Lagalos",
+      "color": "Red",
+      "bookAppearance": "Iron Gold, Dark Age",
+      "physicalDescription": {
+        "colorTraits": "Deep rusty red hair, red-tinged eyes characteristic of Reds",
+        "height": "Small, around 5'2\" - petite even for a Red",
+        "build": "Thin, wiry, malnourished appearance from refugee life, later gains some muscle",
+        "hairColorStyle": "Long rusty red hair, often unkempt and dirty from refugee conditions, later more maintained",
+        "eyeColor": "Red-tinged brown eyes, fierce and defiant despite circumstances",
+        "distinctiveFeatures": "Young face (late teens/early twenties), survivor's hardness in her expression, hands calloused from labor, carries grief and anger visibly",
+        "scars": "Various minor scars from refugee camp life and violence she witnesses",
+        "typicalClothing": "Initially ragged refugee clothing, later simple utilitarian clothes, never ornate"
+      },
+      "dallePrompt": "Single portrait of a young Red woman from mining colony, deep rusty red hair worn long and slightly unkempt, red-tinged brown eyes with fierce defiant expression, petite thin build around 5'2\", hardened survivor look despite young age, calloused laborer hands, wearing simple worn utilitarian clothing, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "ephraim",
+      "name": "Ephraim ti Horn",
+      "color": "Gray",
+      "bookAppearance": "Iron Gold, Dark Age",
+      "physicalDescription": {
+        "colorTraits": "Gray-tinted features typical of Gray color caste, military bearing despite dishonor",
+        "height": "Average height for a Gray, around 5'10\"",
+        "build": "Lean, athletic, former special operations soldier build maintained despite addiction",
+        "hairColorStyle": "Short cropped gray-black hair, military style",
+        "eyeColor": "Gray eyes, haunted and weary, showing signs of substance abuse and regret",
+        "distinctiveFeatures": "Weathered handsome face showing hard living, cynical smirk, dark circles under eyes, tremor in hands from stimulant use",
+        "scars": "Various combat scars from his time as a Gray Legionnaire and special operations",
+        "typicalClothing": "Worn civilian clothes, often disheveled, practical thief attire, avoids military uniforms despite background"
+      },
+      "dallePrompt": "Single portrait of a Gray military man turned criminal, short cropped gray-black hair, haunted gray eyes with dark circles, lean athletic special forces build, weathered handsome face showing hard living and regret, cynical weary expression, slight stubble, wearing worn civilian clothing practical for theft, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "holiday",
+      "name": "Holiday ti Nakamura",
+      "color": "Gray",
+      "bookAppearance": "Golden Son, Morning Star, Iron Gold, Dark Age",
+      "physicalDescription": {
+        "colorTraits": "Gray-tinted features, typical Gray military appearance",
+        "height": "Average to tall for a woman, around 5'8\"",
+        "build": "Athletic, muscular, soldier's physique, compact and efficient",
+        "hairColorStyle": "Short practical gray-black hair, military cut, sometimes shaved sides",
+        "eyeColor": "Sharp gray eyes, alert and calculating",
+        "distinctiveFeatures": "Japanese ancestry visible in features, disciplined military bearing, moves with lethal efficiency, loyal determined expression",
+        "scars": "Combat scars from numerous battles, including wounds sustained protecting others",
+        "typicalClothing": "Gray Legion armor or practical military fatigues, always armed, utilitarian"
+      },
+      "dallePrompt": "Single portrait of a Gray military woman soldier, short practical gray-black hair with shaved sides, sharp calculating gray eyes, athletic muscular compact build, Japanese ancestry features, disciplined military bearing, loyal determined expression, subtle combat scars, wearing gray military armor and fatigues, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "trigg",
+      "name": "Trigg ti Nakamura",
+      "color": "Gray",
+      "bookAppearance": "Golden Son, Morning Star",
+      "physicalDescription": {
+        "colorTraits": "Gray-tinted features, typical Gray military appearance",
+        "height": "Average height, around 5'9\"",
+        "build": "Lean, athletic, special operations soldier build",
+        "hairColorStyle": "Short cropped gray-black hair, military cut",
+        "eyeColor": "Gray eyes, warmer than typical Gray, hint of humor",
+        "distinctiveFeatures": "Japanese ancestry like his sister Holiday, slightly softer features than Holiday but still military bearing, charming smile",
+        "scars": "Combat scars from missions",
+        "typicalClothing": "Gray special operations armor, tactical gear, sometimes undercover civilian clothes"
+      },
+      "dallePrompt": "Single portrait of a Gray special operations soldier man, short cropped gray-black military hair, warm gray eyes with hint of humor, lean athletic special forces build, Japanese ancestry features, charming expression despite military bearing, subtle combat scars, wearing gray tactical special operations armor, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "dancer",
+      "name": "Dancer",
+      "color": "Red",
+      "bookAppearance": "Red Rising, Golden Son, Morning Star, Iron Gold, Dark Age",
+      "physicalDescription": {
+        "colorTraits": "Red hair (now graying), red-tinged eyes characteristic of Reds",
+        "height": "Average for a Red, around 5'5\" to 5'6\"",
+        "build": "Powerful stocky build of a former Helldiver, now somewhat diminished by injuries",
+        "hairColorStyle": "Red hair going gray, unkempt, practical cut",
+        "eyeColor": "Intense red-brown eyes, burn with revolutionary fervor",
+        "distinctiveFeatures": "Former Helldiver turned rebel leader, scarred neck from pitviper venom (deep pitted scars), crippled left arm and leg from torture/injury, walks with a limp, face weathered by hard life and constant struggle",
+        "scars": "Extensive scarring on neck from pitviper venom attack, other scars from years of rebellion",
+        "typicalClothing": "Dark utilitarian clothing befitting a revolutionary leader, practical and unassuming"
+      },
+      "dallePrompt": "Single portrait of a powerful Red revolutionary leader man in his forties, red hair streaked with gray, intense red-brown eyes burning with determination, stocky former miner build, deeply pitted scars on neck from venom attack, weathered face showing years of struggle, crippled left arm visible, wearing dark utilitarian revolutionary clothing, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "harmony",
+      "name": "Harmony",
+      "color": "Red",
+      "bookAppearance": "Red Rising, Golden Son, Morning Star, Iron Gold, Dark Age",
+      "physicalDescription": {
+        "colorTraits": "Red hair, red-tinged eyes characteristic of Reds",
+        "height": "Average for a Red woman, around 5'3\" to 5'4\"",
+        "build": "Wiry, lean, hardened by constant violence and warfare",
+        "hairColorStyle": "Red hair, often wild and unkempt",
+        "eyeColor": "Cold angry red-brown eyes filled with rage and hatred",
+        "distinctiveFeatures": "Half her face severely scarred from steam burn (burn scar covering left side of face), the unscarred side was once beautiful, cold ruthless expression, fanatic's intensity",
+        "scars": "Massive steam burn scar covering half her face, other battle scars",
+        "typicalClothing": "Dark practical rebel fighter clothing, always armed, militant appearance"
+      },
+      "dallePrompt": "Single portrait of a fierce Red rebel woman, red hair wild and unkempt, cold angry red-brown eyes full of rage, wiry hardened build, half her face covered in severe burn scars while other half shows former beauty, fanatical ruthless expression, wearing dark practical rebel fighter clothing, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "orion",
+      "name": "Orion xe Aquarii",
+      "color": "Blue",
+      "bookAppearance": "Golden Son, Morning Star, Iron Gold, Dark Age",
+      "physicalDescription": {
+        "colorTraits": "Blue-tinted hair and features characteristic of Blues, cybernetic enhancements for navigation",
+        "height": "Tall and thin, around 5'10\" to 6'0\"",
+        "build": "Extremely thin, elongated limbs, almost skeletal - typical of Blues bred for zero-gravity ship work",
+        "hairColorStyle": "Blue-black hair, often worn short for practicality with naval helmet",
+        "eyeColor": "Pale blue eyes with visible cybernetic implants, eyes designed for reading star charts and holographic displays",
+        "distinctiveFeatures": "Gaunt angular face, long thin fingers perfect for manipulation of controls, pale almost translucent skin from ship life, data ports visible on temples, moves with fluid grace despite thin frame",
+        "scars": "Minimal physical scars but visible cybernetic modifications at temples and behind ears",
+        "typicalClothing": "Blue naval uniform of a ship commander, practical shipboard attire"
+      },
+      "dallePrompt": "Single portrait of a tall thin Blue naval commander woman, blue-black short hair, pale blue cybernetically enhanced eyes with visible implants at temples, extremely thin elongated build bred for starship life, gaunt angular face with pale almost translucent skin, long delicate fingers, data ports visible at temples, wearing blue naval commander uniform, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "theodora",
+      "name": "Theodora",
+      "color": "Pink",
+      "bookAppearance": "Golden Son, Morning Star, Iron Gold, Dark Age",
+      "physicalDescription": {
+        "colorTraits": "Pink-tinted features characteristic of Pinks, genetically engineered beauty now faded with age",
+        "height": "Average, around 5'6\"",
+        "build": "Graceful, elegant, mature figure - past the prime courtesan years but still carries herself beautifully",
+        "hairColorStyle": "Pink-tinted hair, styled elegantly, may have some gray showing",
+        "eyeColor": "Soft pink-hued eyes, wise and knowing, have seen many secrets",
+        "distinctiveFeatures": "Older Pink woman (rare as most are discarded when beauty fades), former Rose of exceptional beauty now matured, graceful composed demeanor, moves with trained elegance, knowing smile, carries secrets",
+        "scars": "None visible - Pinks are bred for physical perfection",
+        "typicalClothing": "Elegant but modest clothing in soft pink and rose tones, refined without being ostentatious"
+      },
+      "dallePrompt": "Single portrait of an older Pink woman past prime courtesan age, pink-tinted elegant hair with hints of gray, soft wise pink-hued eyes that have heard many secrets, graceful mature figure still carrying trained elegance, composed knowing expression, flawless aged skin, wearing elegant modest clothing in soft rose and pink tones, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "pytha",
+      "name": "Pytha",
+      "color": "Blue",
+      "bookAppearance": "Iron Gold, Dark Age",
+      "physicalDescription": {
+        "colorTraits": "Blue-tinted hair and features characteristic of Blues, cybernetic enhancements",
+        "height": "Tall for a woman, around 5'9\" to 5'11\"",
+        "build": "Thin, angular, typical Blue physique bred for zero-gravity",
+        "hairColorStyle": "Blue-black hair, kept practical for ship work",
+        "eyeColor": "Pale blue cybernetically enhanced eyes",
+        "distinctiveFeatures": "Skilled pilot and navigator serving Ephraim, angular Blue features, visible cybernetic ports, calm professional demeanor, long thin fingers for delicate ship controls",
+        "scars": "Cybernetic modifications visible",
+        "typicalClothing": "Practical pilot jumpsuit, Blue color accents, shipboard attire"
+      },
+      "dallePrompt": "Single portrait of a tall thin Blue pilot woman, blue-black practical hair, pale blue cybernetically enhanced eyes with visible implants, thin angular build typical of Blues, calm professional demeanor, long thin skilled pilot fingers, cybernetic ports visible at temples, wearing practical pilot jumpsuit with blue accents, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    }
+  ]
+}

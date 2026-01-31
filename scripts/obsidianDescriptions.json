@@ -1,0 +1,127 @@
+{
+  "characters": [
+    {
+      "id": "ragnar",
+      "name": "Ragnar Volarus",
+      "description": {
+        "height": "Over 8 feet tall (approximately 2.5 meters), towering over even the tallest Golds",
+        "build": "Massively muscular, described as a giant among giants, with shoulders broader than most doorways, arms thick as tree trunks",
+        "hairColor": "White-blonde, almost platinum",
+        "hairStyle": "Long, often worn loose or in warrior braids typical of Obsidian culture",
+        "skinTone": "Pale white, almost alabaster, characteristic of the ice-dwelling Obsidian race",
+        "tattoos": "Ritual Obsidian markings and tribal tattoos on face and body, dark ink contrasting against pale skin",
+        "eyeColor": "Pale blue, described as ice-colored or glacier blue",
+        "scars": "Multiple battle scars across face and body from years of combat as a slave warrior, including marks from the Golds who enslaved him",
+        "distinctiveFeatures": "Enormous size even among Obsidians, square jaw, fierce intimidating presence, moves with surprising grace for his size, gentle eyes that contrast with his fearsome appearance",
+        "clothing": "Typically wears dark combat armor or furs, minimal ornamentation as befitting a warrior slave turned revolutionary",
+        "weapons": "Massive razor (sword), capable of wielding weapons that would be two-handed for normal humans with one hand, known for using enormous axes and hammers in battle"
+      },
+      "prompt": "Single portrait of a colossal Obsidian warrior man over 8 feet tall, massively muscular build with shoulders twice normal width, long white-blonde platinum hair worn in warrior braids, extremely pale alabaster white skin, dark ritual tribal tattoos on face and neck, pale ice-blue glacier eyes, multiple battle scars on face, square powerful jaw, fierce yet noble expression, wearing dark battle armor with fur trim, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "sefi",
+      "name": "Sefi the Quiet",
+      "description": {
+        "height": "Over 7 feet tall, tall even for an Obsidian woman",
+        "build": "Powerfully built warrior woman, athletic and muscular, with the imposing physique of an Obsidian queen",
+        "hairColor": "White-blonde, platinum",
+        "hairStyle": "Long and often braided in traditional Obsidian warrior style, sometimes decorated with metal rings or beads",
+        "skinTone": "Pale white, characteristic Obsidian complexion",
+        "tattoos": "Traditional Obsidian face tattoos and markings, symbols of her status as a war leader and later queen",
+        "eyeColor": "Pale blue, glacier-like",
+        "scars": "Battle scars from leading her people in war",
+        "distinctiveFeatures": "Called 'the Quiet' because she rarely speaks, communicates through presence and action, noble bearing befitting royalty, Ragnar's sister, fierce protective nature, stoic expression",
+        "clothing": "Obsidian warrior queen attire, dark furs and armor adorned with symbols of her people, crown or circlet denoting her status as leader of the Obsidian people",
+        "weapons": "Massive curved blade, axes, and other traditional Obsidian weapons"
+      },
+      "prompt": "Single portrait of a towering Obsidian warrior queen woman over 7 feet tall, powerfully athletic muscular build, long white-blonde platinum hair in elaborate warrior braids with metal decorations, extremely pale alabaster white skin, traditional dark tribal face tattoos, pale glacier-blue eyes, stoic noble expression rarely speaking, battle scars, wearing dark fur-trimmed armor with queen's circlet, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "volsung-fa",
+      "name": "Volsung Fá (The Allfather)",
+      "description": {
+        "height": "Approximately 9 feet tall, one of the largest Obsidians ever seen, a true giant",
+        "build": "Enormously muscular and powerful, described as almost impossibly large, built like a mountain",
+        "hairColor": "White, possibly grey-white with age",
+        "hairStyle": "Long, wild, and unkempt, befitting a barbarian warlord",
+        "skinTone": "Pale, possibly weathered from years in harsh conditions beyond the Core worlds",
+        "tattoos": "Extensive ritual scarification and tattoos covering much of his body and face, marking his status as the mythical Allfather returned",
+        "eyeColor": "Pale, cold, described as calculating and cruel",
+        "scars": "Heavily scarred from countless battles, ritual scarification as part of his assumed identity",
+        "distinctiveFeatures": "Claims to be the legendary Allfather of Obsidian mythology, wears a crown of skulls, commands the Ascomanni (space viking raiders), radiates terrifying presence, cunning intelligence behind the barbarian facade",
+        "clothing": "Barbaric armor made from bones, furs, and salvaged metal, adorned with trophies from conquered enemies, crown made of human skulls",
+        "weapons": "Massive war axe, oversized razor, weapons of immense size that only he can wield"
+      },
+      "prompt": "Single portrait of an impossibly massive Obsidian warlord man approximately 9 feet tall, enormously muscular mountain-like build, long wild white hair, extremely pale weathered skin, extensive dark ritual scarification and tribal tattoos covering face and body, pale cold calculating eyes, heavily battle-scarred, wearing barbaric armor made of bones and fur with skull trophies and a crown of human skulls, terrifying presence, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "volga",
+      "name": "Volga Fjorgan",
+      "description": {
+        "height": "Over 7 feet tall, large for a woman but considered smaller among Obsidians",
+        "build": "Muscular and powerful but more slender than most Obsidians, athletic rather than bulky, described as having an almost graceful power",
+        "hairColor": "White-blonde, platinum",
+        "hairStyle": "Long, often worn in practical styles for combat",
+        "skinTone": "Pale white, typical Obsidian complexion",
+        "tattoos": "Minimal compared to traditional Obsidians, as she was raised outside her culture",
+        "eyeColor": "Pale blue, described as gentle despite her intimidating size",
+        "scars": "Develops scars through her journey but fewer than warriors raised in Obsidian tradition",
+        "distinctiveFeatures": "Daughter of Ragnar Volarus (revealed later), raised by Ephraim ti Horn, gentle nature that belies her warrior heritage, struggles with identity between violence and compassion, surprisingly kind eyes for an Obsidian",
+        "clothing": "Practical clothing and armor, less ornate than traditional Obsidian warriors, often dressed for function rather than display",
+        "weapons": "Learns to fight with razor and traditional weapons, capable but not naturally inclined to violence"
+      },
+      "prompt": "Single portrait of a tall Obsidian young woman over 7 feet tall, athletic muscular but slender build more graceful than bulky, long white-blonde platinum hair, extremely pale white skin, minimal tattoos, pale blue gentle kind eyes contrasting with her intimidating size, young features showing inner conflict between gentleness and warrior heritage, wearing practical dark combat clothing and light armor, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "valdir",
+      "name": "Valdir the Unshorn",
+      "description": {
+        "height": "Approximately 8 feet tall, massive Obsidian warrior",
+        "build": "Extremely muscular and powerful, built for war, among the most formidable Obsidian warriors",
+        "hairColor": "White-blonde, never cut (hence 'the Unshorn')",
+        "hairStyle": "Extremely long uncut hair reaching past his waist, a sacred tradition for Obsidian warriors who have never been defeated - cutting hair represents shame or defeat",
+        "skinTone": "Pale white, typical Obsidian",
+        "tattoos": "Traditional Obsidian warrior tattoos and markings on face and body",
+        "eyeColor": "Pale blue, ice-colored",
+        "scars": "Battle scars from many combats, though undefeated",
+        "distinctiveFeatures": "Called 'the Unshorn' because his hair has never been cut - a mark of an undefeated warrior in Obsidian culture, one of Sefi's most trusted lieutenants, fierce loyalty, proud bearing",
+        "clothing": "Traditional Obsidian warrior armor, furs and dark metals, adorned with symbols of his victories",
+        "weapons": "Massive traditional Obsidian weapons including axes, war hammers, and razor"
+      },
+      "prompt": "Single portrait of a massive Obsidian warrior man approximately 8 feet tall, extremely muscular powerful build, extremely long uncut white-blonde hair reaching past waist marking him as an undefeated warrior, pale white skin, traditional dark tribal face tattoos and body markings, pale ice-blue eyes, battle scars, proud fierce expression of an undefeated champion, wearing traditional Obsidian warrior armor with dark furs and metal adorned with victory symbols, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    }
+  ],
+  "obsidianTraits": {
+    "generalDescription": "Obsidians are one of the lowest Colors in the Society hierarchy, genetically engineered to be massive warriors. They live on the polar regions of planets, particularly Mars and Earth, and have been conditioned to worship the Golds as gods. They are characterized by their enormous size (typically 7-9 feet tall), pale white skin adapted to arctic conditions, white-blonde or platinum hair, pale blue or grey eyes, and heavily muscular builds.",
+    "culturalElements": {
+      "tattoos": "Ritual facial and body tattoos in dark ink are common, denoting clan, status, and achievements",
+      "hair": "Uncut hair (being 'unshorn') is a mark of an undefeated warrior; cutting hair represents defeat or shame",
+      "weapons": "Traditional weapons include massive axes, war hammers, and oversized blades; they also adapt to razors in the modern era",
+      "religion": "Traditionally worship Golds as gods, though this changes during the Rising"
+    },
+    "physicalRange": {
+      "height": "Typically 7-9+ feet tall",
+      "skinTone": "Pale white to alabaster",
+      "hairColor": "White-blonde, platinum, or silver-white",
+      "eyeColor": "Pale blue, ice blue, glacier blue, or grey"
+    }
+  },
+  "imageGenerationNotes": {
+    "style": "Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait",
+    "avoidances": [
+      "No multiple people - single person only",
+      "No text, letters, or words in the image",
+      "No piercings or modern jewelry",
+      "Maintain consistent art style with existing characters",
+      "No fantasy creature features - human features only"
+    ],
+    "obsidianSpecific": [
+      "Emphasize enormous size and muscular build",
+      "Pale white/alabaster skin is essential",
+      "White-blonde/platinum hair color",
+      "Pale blue/ice-colored eyes",
+      "Dark tribal tattoos on face and body",
+      "Dark fur-trimmed armor and traditional warrior attire"
+    ]
+  }
+}

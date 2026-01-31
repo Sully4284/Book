@@ -1,0 +1,183 @@
+{
+  "metadata": {
+    "description": "Physical descriptions for Gold antagonist characters from the Red Rising series for DALL-E image generation",
+    "notes": [
+      "All Golds are genetically engineered to be tall (typically 6'6\" to 7'+) with golden hair and gold/amber eyes",
+      "Peerless Scarred have ritual facial scars earned through Institute combat",
+      "Descriptions compiled from book series: Iron Gold, Dark Age, Light Bringer",
+      "DALL-E prompt rules: single person only, no text, no piercings, consistent art style"
+    ],
+    "created": "2025-01-31"
+  },
+  "characters": [
+    {
+      "id": "lysander-adult",
+      "name": "Lysander au Lune",
+      "titles": ["Heir of Silenius", "The Morning Knight"],
+      "physicalDescription": {
+        "height": "Tall, lean athletic build typical of Golds",
+        "build": "Lean, athletic, trained in razorcraft and warfare",
+        "hairColor": "Golden hair",
+        "hairStyle": "Well-groomed, aristocratic styling",
+        "skinTone": "Fair, pale gold-tinged skin typical of Golds",
+        "eyeColor": "Pale gold eyes, described as calculating and intelligent",
+        "facialFeatures": "Classically handsome features, aquiline nose, resembles his grandmother Octavia",
+        "scars": "Peerless Scarred mark on cheekbone (earned later in series)",
+        "distinctiveFeatures": "Projects calm philosophical demeanor, calculating intelligence behind his eyes, imperial bearing as heir to the Lune dynasty",
+        "age": "Early to mid twenties in later books"
+      },
+      "appearance": {
+        "armorStyle": "White and gold armor bearing the crescent moon sigil of House Lune",
+        "clothing": "Imperial white and gold robes when not in armor",
+        "weapons": "Razor (curved blade), trained in the Willow Way sword style"
+      },
+      "prompt": "Single portrait of a young adult Gold man in his early twenties, lean athletic warrior build, golden hair well-groomed aristocratic style, pale gold intelligent calculating eyes, classically handsome aquiline features, scar on cheekbone marking him Peerless Scarred, wearing ornate white and gold armor with crescent moon sigil, imperial heir bearing, philosophical but dangerous expression, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "atalantia",
+      "name": "Atalantia au Grimmus",
+      "titles": ["Dictator of the Society", "The Ash Lady"],
+      "physicalDescription": {
+        "height": "Tall, imposing Gold female height",
+        "build": "Athletic warrior build, smallest of the three Grimmus sisters but still formidable",
+        "hairColor": "Dark hair (unlike typical Golds - the Grimmus sisters are noted for darker coloring)",
+        "hairStyle": "Often styled in elaborate fashion befitting her station",
+        "skinTone": "Dark-skinned (the Grimmus family has darker complexion than typical Golds)",
+        "eyeColor": "Dark eyes, described as predatory and calculating",
+        "facialFeatures": "Beautiful but cruel features, seductive and dangerous, sharp aristocratic bone structure",
+        "scars": "Peerless Scarred mark on cheekbone",
+        "distinctiveFeatures": "Known for her manipulative nature, uses sexuality as a weapon, projects both allure and menace",
+        "age": "Middle-aged, mature woman in her prime"
+      },
+      "appearance": {
+        "armorStyle": "Black and gold armor, elaborate and regal",
+        "clothing": "Often in elegant gowns that still allow for combat, dark colors",
+        "weapons": "Razor, master of political manipulation and military strategy"
+      },
+      "prompt": "Single portrait of a mature dark-skinned Gold woman, athletic warrior build, dark hair styled elaborately, dark predatory calculating eyes, beautiful but cruel aristocratic features, scar on cheekbone marking her Peerless Scarred, seductive yet dangerous expression, wearing ornate black and gold armor befitting a military dictator, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "ajax",
+      "name": "Ajax au Grimmus",
+      "titles": ["The Storm Knight", "Son of Aja"],
+      "physicalDescription": {
+        "height": "Extremely tall, massive even for a Gold (over 7 feet)",
+        "build": "Massive muscular build, inherited his mother Aja's formidable physique, one of the largest warriors alive",
+        "hairColor": "Dark hair (Grimmus family trait)",
+        "hairStyle": "Military cut, practical for warfare",
+        "skinTone": "Dark-skinned like his mother Aja",
+        "eyeColor": "Dark eyes, intense and brooding",
+        "facialFeatures": "Handsome but brutal features, strong jaw, intimidating presence",
+        "scars": "Peerless Scarred mark, possibly additional battle scars",
+        "distinctiveFeatures": "Known as one of the greatest warriors of his generation, arrogant bearing, carries himself with absolute confidence in his martial prowess",
+        "age": "Young adult, late twenties"
+      },
+      "appearance": {
+        "armorStyle": "Heavy black and gold pulseArmor, storm motifs",
+        "clothing": "Military attire when not in armor",
+        "weapons": "Razor, renowned for brutal efficiency in combat"
+      },
+      "prompt": "Single portrait of a massive dark-skinned Gold warrior man over 7 feet tall, extremely muscular powerful build, dark hair military cut, dark intense brooding eyes, handsome but brutal features with strong jaw, scar on cheekbone marking him Peerless Scarred, arrogant confident warrior expression, wearing heavy black and gold pulseArmor with storm motifs, intimidating Olympic Knight presence, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "atlas",
+      "name": "Atlas au Raa",
+      "titles": ["The Fear Knight", "Pale Horse of the Rim"],
+      "physicalDescription": {
+        "height": "Tall Gold height, imposing presence",
+        "build": "Lean, powerful, built for endurance and psychological warfare rather than brute strength",
+        "hairColor": "Dark hair (Raa family tends toward darker coloring)",
+        "hairStyle": "Severe, practical styling",
+        "skinTone": "Tanned olive skin from Rim worlds",
+        "eyeColor": "Pale unsettling eyes, described as seeing through people",
+        "facialFeatures": "Gaunt, severe features, appears older than his years due to harsh experiences, hollow cheeks",
+        "scars": "Peerless Scarred mark, weathered face showing signs of torture survival",
+        "distinctiveFeatures": "Master of psychological warfare and torture, unsettling calm demeanor, moves with predatory stillness, eyes that seem to pierce the soul",
+        "age": "Older, weathered appearance (50s-60s)"
+      },
+      "appearance": {
+        "armorStyle": "Pale or bone-white armor, utilitarian and menacing",
+        "clothing": "Simple, severe clothing reflecting his ascetic nature",
+        "weapons": "Razor, but primarily uses psychological manipulation as his weapon"
+      },
+      "prompt": "Single portrait of a gaunt severe Gold man with weathered appearance, lean powerful build, dark hair severe practical style, pale unsettling eyes that pierce the soul, hollow cheeks and harsh features aged beyond his years, scar on cheekbone marking him Peerless Scarred, face showing signs of hardship, unsettling calm predatory expression, wearing pale bone-white utilitarian armor, master torturer and psychological warfare specialist aura, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "apollonius",
+      "name": "Apollonius au Valii-Rath",
+      "titles": ["The Minotaur", "The Poet of Deimos"],
+      "physicalDescription": {
+        "height": "Extremely tall, towers over most Golds",
+        "build": "Massive, muscular, bull-like physique matching his Minotaur title",
+        "hairColor": "Golden hair",
+        "hairStyle": "Flowing, dramatic, often wild and theatrical",
+        "skinTone": "Golden-tanned skin",
+        "eyeColor": "Golden eyes, wild and theatrical",
+        "facialFeatures": "Dramatically handsome, theatrical expressions, broad strong features",
+        "scars": "Peerless Scarred mark, wears scars as badges of honor",
+        "distinctiveFeatures": "Flamboyant and theatrical personality, known for poetry and dramatic speeches, laughs at death, madman genius quality, narcissistic but genuinely brilliant",
+        "age": "Prime adult years, late twenties to thirties"
+      },
+      "appearance": {
+        "armorStyle": "Elaborate golden armor with bull/minotaur motifs",
+        "clothing": "Theatrical, flamboyant attire, often partially undressed to show physique",
+        "weapons": "Razor, fights with dramatic flair"
+      },
+      "prompt": "Single portrait of a massive theatrical Gold warrior man, extremely tall bull-like muscular physique, flowing wild golden hair, golden wild theatrical eyes, dramatically handsome broad strong features, scar on cheekbone marking him Peerless Scarred, flamboyant narcissistic expression with hint of madness, wearing elaborate golden armor with bull minotaur motifs, Poet of Deimos theatrical warrior presence, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "diomedes",
+      "name": "Diomedes au Raa",
+      "titles": ["The Storm Knight of the Rim", "Heir to the Morning Chair"],
+      "physicalDescription": {
+        "height": "Tall Gold height, athletic warrior build",
+        "build": "Athletic, disciplined warrior physique, trained in Rim martial traditions",
+        "hairColor": "Dark hair (Raa family trait)",
+        "hairStyle": "Practical military styling",
+        "skinTone": "Olive-tanned skin from Rim worlds",
+        "eyeColor": "Dark eyes, intense but honorable",
+        "facialFeatures": "Handsome, noble features, carries himself with quiet dignity",
+        "scars": "Peerless Scarred mark on cheekbone",
+        "distinctiveFeatures": "Known for honor and duty, conflicted between family loyalty and personal morality, stoic demeanor, one of the greatest razormasters alive",
+        "age": "Young adult, similar age to Lysander"
+      },
+      "appearance": {
+        "armorStyle": "Rim Dominion armor in darker utilitarian colors",
+        "clothing": "Practical Rim military attire",
+        "weapons": "Master of the razor, fights with disciplined precision"
+      },
+      "prompt": "Single portrait of an athletic dark-haired Gold warrior man, disciplined powerful build, dark hair practical military style, dark intense honorable eyes, handsome noble features with quiet dignity, olive-tanned skin, scar on cheekbone marking him Peerless Scarred, stoic conflicted expression showing inner honor, wearing utilitarian dark Rim Dominion armor, greatest razormaster bearing, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    },
+    {
+      "id": "kalindora",
+      "name": "Kalindora au San",
+      "titles": ["The Love Knight", "Olympic Knight"],
+      "physicalDescription": {
+        "height": "Tall athletic Gold female height",
+        "build": "Athletic, powerful warrior build befitting an Olympic Knight",
+        "hairColor": "Golden hair",
+        "hairStyle": "Warrior practical but still feminine",
+        "skinTone": "Fair gold-tinged skin",
+        "eyeColor": "Golden eyes, capable of warmth and deadly focus",
+        "facialFeatures": "Beautiful warrior features, combines femininity with deadly purpose",
+        "scars": "Peerless Scarred mark, battle scars from years of combat",
+        "distinctiveFeatures": "Known for her romantic relationship with Darrow's enemy, complex character torn between love and duty, fierce loyalty, one of the deadliest women alive",
+        "age": "Adult woman in her prime, thirties to forties"
+      },
+      "appearance": {
+        "armorStyle": "Elegant gold and white Olympic Knight armor",
+        "clothing": "Refined attire befitting her station when not in armor",
+        "weapons": "Razor, master duelist"
+      },
+      "prompt": "Single portrait of an athletic Gold warrior woman, powerful Olympic Knight build, golden hair in warrior practical style, golden eyes showing both warmth and deadly focus, beautiful features combining femininity with lethal purpose, scar on cheekbone marking her Peerless Scarred, expression showing complex inner conflict between love and duty, wearing elegant gold and white Olympic Knight armor, one of the deadliest warriors alive bearing, Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings"
+    }
+  ],
+  "promptTemplate": {
+    "suffix": "Red Rising sci-fi fantasy style, dramatic lighting, dark atmospheric background, digital art portrait, single person only, no text, no piercings",
+    "notes": [
+      "All prompts include standard rules to avoid common DALL-E issues",
+      "Each character prompt can be used directly with DALL-E 3",
+      "Maintain consistent art style with existing character portraits"
+    ]
+  }
+}
