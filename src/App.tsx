@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { allBooks, getFamilyGroupsForBook } from './data';
 import { useCharacterData } from './hooks/useCharacterData';
 import { CharacterGrid } from './components/CharacterGrid';
@@ -7,6 +7,46 @@ import { FamilyTreeView } from './components/FamilyTreeView';
 import type { CharacterStatus } from './types';
 
 type ViewMode = 'grid' | 'tree';
+
+// Book branding colors based on book covers
+const bookBranding: Record<string, { primary: string; secondary: string; glow: string; gradient: string }> = {
+  'red-rising': {
+    primary: '#DC2626',
+    secondary: '#991B1B',
+    glow: '0 0 10px rgba(220, 38, 38, 0.7), 0 0 20px rgba(220, 38, 38, 0.5), 0 0 30px rgba(220, 38, 38, 0.3)',
+    gradient: 'from-red-600 to-red-800',
+  },
+  'golden-son': {
+    primary: '#EAB308',
+    secondary: '#A16207',
+    glow: '0 0 10px rgba(234, 179, 8, 0.7), 0 0 20px rgba(234, 179, 8, 0.5), 0 0 30px rgba(234, 179, 8, 0.3)',
+    gradient: 'from-yellow-500 to-amber-600',
+  },
+  'morning-star': {
+    primary: '#60A5FA',
+    secondary: '#1D4ED8',
+    glow: '0 0 10px rgba(96, 165, 250, 0.7), 0 0 20px rgba(96, 165, 250, 0.5), 0 0 30px rgba(96, 165, 250, 0.3)',
+    gradient: 'from-blue-400 to-blue-600',
+  },
+  'iron-gold': {
+    primary: '#F97316',
+    secondary: '#C2410C',
+    glow: '0 0 10px rgba(249, 115, 22, 0.7), 0 0 20px rgba(249, 115, 22, 0.5), 0 0 30px rgba(249, 115, 22, 0.3)',
+    gradient: 'from-orange-500 to-red-600',
+  },
+  'dark-age': {
+    primary: '#A8A29E',
+    secondary: '#78716C',
+    glow: '0 0 10px rgba(168, 162, 158, 0.7), 0 0 20px rgba(168, 162, 158, 0.5), 0 0 30px rgba(168, 162, 158, 0.3)',
+    gradient: 'from-stone-400 to-stone-600',
+  },
+  'light-bringer': {
+    primary: '#D4D4D4',
+    secondary: '#A3A3A3',
+    glow: '0 0 10px rgba(212, 212, 212, 0.7), 0 0 20px rgba(212, 212, 212, 0.5), 0 0 30px rgba(212, 212, 212, 0.3)',
+    gradient: 'from-neutral-300 to-neutral-500',
+  },
+};
 
 function App() {
   const [selectedBookId, setSelectedBookId] = useState('red-rising');
@@ -58,6 +98,26 @@ function App() {
   const visibleCharacters = processedCharacters.filter((c) => c.isVisible);
   const hasActiveFilters = filterColor || filterStatus || searchQuery || selectedFamilyGroup;
 
+  // Track title animation state
+  const [titleAnimating, setTitleAnimating] = useState(false);
+  const [displayedTitle, setDisplayedTitle] = useState(selectedBook.title);
+  const prevBookIdRef = useRef(selectedBookId);
+
+  // Handle title animation when book changes
+  useEffect(() => {
+    if (prevBookIdRef.current !== selectedBookId) {
+      setTitleAnimating(true);
+      // Fade out, then change title, then fade in
+      setTimeout(() => {
+        setDisplayedTitle(selectedBook.title);
+        setTimeout(() => {
+          setTitleAnimating(false);
+        }, 50);
+      }, 300);
+      prevBookIdRef.current = selectedBookId;
+    }
+  }, [selectedBookId, selectedBook.title]);
+
   // Generate random stars for the header background
   const stars = Array.from({ length: 60 }, (_, i) => ({
     id: i,
@@ -68,11 +128,10 @@ function App() {
     animationDelay: `${Math.random() * 3}s`,
   }));
 
-  // Dynamic title color based on selected book
-  const titleColor = selectedBookId === 'golden-son' ? '#EAB308' : '#DC2626';
-  const titleGlow = selectedBookId === 'golden-son'
-    ? '0 0 10px rgba(234, 179, 8, 0.7), 0 0 20px rgba(234, 179, 8, 0.5), 0 0 30px rgba(234, 179, 8, 0.3)'
-    : '0 0 10px rgba(220, 38, 38, 0.7), 0 0 20px rgba(220, 38, 38, 0.5), 0 0 30px rgba(220, 38, 38, 0.3)';
+  // Get book branding
+  const branding = bookBranding[selectedBookId] || bookBranding['red-rising'];
+  const titleColor = branding.primary;
+  const titleGlow = branding.glow;
 
   // Calculate progress
   const progressPercent = Math.round(((currentChapter) / (selectedBook.chapters.length - 1)) * 100);
@@ -101,10 +160,12 @@ function App() {
         </div>
 
         <div className="max-w-[1800px] mx-auto px-8 sm:px-12 lg:px-20 relative z-10">
-          {/* Title - more compact */}
+          {/* Title - more compact with animation */}
           <div className="py-6 text-center">
             <h1
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-wider uppercase transition-all duration-500"
+              className={`text-3xl sm:text-4xl lg:text-5xl font-bold tracking-wider uppercase transition-all duration-300 ${
+                titleAnimating ? 'opacity-0 transform -translate-y-2' : 'opacity-100 transform translate-y-0'
+              }`}
               style={{
                 fontFamily: "'Orbitron', 'Rajdhani', 'Audiowide', sans-serif",
                 color: titleColor,
@@ -112,9 +173,13 @@ function App() {
                 letterSpacing: '0.15em',
               }}
             >
-              {selectedBook.title}
+              {displayedTitle}
             </h1>
-            <p className="text-zinc-500 text-xs mt-1 tracking-[0.3em] uppercase">
+            <p
+              className={`text-zinc-500 text-xs mt-1 tracking-[0.3em] uppercase transition-all duration-300 ${
+                titleAnimating ? 'opacity-0' : 'opacity-100'
+              }`}
+            >
               Character Guide
             </p>
           </div>
@@ -169,20 +234,20 @@ function App() {
               {/* Book selector */}
               <div className="relative flex items-center gap-3">
                 <div
-                  className="flex items-center justify-center w-10 h-10 rounded-lg"
+                  className="flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-300"
                   style={{
-                    backgroundColor: selectedBookId === 'golden-son' ? 'rgba(234, 179, 8, 0.1)' : 'rgba(220, 38, 38, 0.1)',
-                    border: `1px solid ${selectedBookId === 'golden-son' ? 'rgba(234, 179, 8, 0.3)' : 'rgba(220, 38, 38, 0.3)'}`,
+                    backgroundColor: `${branding.primary}15`,
+                    border: `1px solid ${branding.primary}40`,
                   }}
                 >
                   <svg
-                    className="w-5 h-5"
+                    className="w-5 h-5 transition-all duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                     style={{
-                      color: selectedBookId === 'golden-son' ? '#EAB308' : '#DC2626',
-                      filter: `drop-shadow(0 0 4px ${selectedBookId === 'golden-son' ? 'rgba(234, 179, 8, 0.5)' : 'rgba(220, 38, 38, 0.5)'})`,
+                      color: branding.primary,
+                      filter: `drop-shadow(0 0 4px ${branding.primary}80)`,
                     }}
                   >
                     <path
@@ -239,8 +304,11 @@ function App() {
                 <div className="hidden md:flex items-center gap-3">
                   <div className="w-28 h-2 bg-zinc-800 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-red-600 to-amber-500 transition-all duration-300"
-                      style={{ width: `${progressPercent}%` }}
+                      className="h-full transition-all duration-300"
+                      style={{
+                        width: `${progressPercent}%`,
+                        background: `linear-gradient(to right, ${branding.primary}, ${branding.secondary})`,
+                      }}
                     />
                   </div>
                   <span className="text-sm text-zinc-400 w-12">{progressPercent}%</span>
@@ -258,21 +326,8 @@ function App() {
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-44 lg:w-52 pl-10 pr-5 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600 focus:ring-1 focus:ring-zinc-600 transition-colors"
+                    className="w-44 lg:w-52 pl-4 pr-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600 focus:ring-1 focus:ring-zinc-600 transition-colors [&::-webkit-search-cancel-button]:hidden [&::-webkit-search-decoration]:hidden"
                   />
-                  <svg
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
                 </div>
               )}
 

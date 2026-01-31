@@ -182,6 +182,111 @@ const characterImages: Record<string, CharacterImageConfig> = {
   podginus: {
     default: '/images/characters/podginus.png',
   },
+
+  // ========== MORNING STAR & LATER BOOKS ==========
+
+  // Obsidians
+  ragnar: {
+    default: '/images/characters/ragnar.png',
+  },
+  sefi: {
+    default: '/images/characters/sefi.png',
+  },
+  alia: {
+    default: '/images/characters/alia.png',
+  },
+  volga: {
+    default: '/images/characters/volga.png',
+  },
+  'volsung-fa': {
+    default: '/images/characters/volsung-fa.png',
+  },
+  valdir: {
+    default: '/images/characters/valdir.png',
+  },
+  wulfgar: {
+    default: '/images/characters/wulfgar.png',
+  },
+
+  // Grays - new
+  holiday: {
+    default: '/images/characters/holiday.png',
+  },
+  trigg: {
+    default: '/images/characters/trigg.png',
+  },
+  ephraim: {
+    default: '/images/characters/ephraim.png',
+  },
+
+  // Reds - new
+  lyria: {
+    default: '/images/characters/lyria.png',
+  },
+  rhonna: {
+    default: '/images/characters/rhonna.png',
+  },
+
+  // Gold protagonists/allies
+  alexandar: {
+    default: '/images/characters/alexandar.png',
+  },
+  thraxa: {
+    default: '/images/characters/thraxa.png',
+  },
+  'pax-augustus': {
+    default: '/images/characters/pax-augustus.png',
+  },
+  electra: {
+    default: '/images/characters/electra.png',
+  },
+
+  // Gold antagonists
+  apollonius: {
+    default: '/images/characters/apollonius.png',
+  },
+  atlas: {
+    default: '/images/characters/atlas.png',
+  },
+  atalantia: {
+    default: '/images/characters/atalantia.png',
+  },
+  ajax: {
+    default: '/images/characters/ajax.png',
+  },
+  'lysander-adult': {
+    default: '/images/characters/lysander-adult.png',
+  },
+
+  // Rim Golds
+  romulus: {
+    default: '/images/characters/romulus.png',
+  },
+  dido: {
+    default: '/images/characters/dido.png',
+  },
+  diomedes: {
+    default: '/images/characters/diomedes.png',
+  },
+  seraphina: {
+    default: '/images/characters/seraphina.png',
+  },
+  kalindora: {
+    default: '/images/characters/kalindora.png',
+  },
+
+  // Blues
+  orion: {
+    default: '/images/characters/orion.png',
+  },
+  pytha: {
+    default: '/images/characters/pytha.png',
+  },
+
+  // Silver
+  quicksilver: {
+    default: '/images/characters/quicksilver.png',
+  },
 };
 
 export function getCharacterImage(
