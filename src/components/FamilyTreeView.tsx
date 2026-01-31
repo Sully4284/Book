@@ -575,70 +575,91 @@ const familyPriorityByBook: Record<string, string[]> = {
   ],
 };
 
-// Positions - reorganized with much more space and logical groupings
+// Positions - calculated based on actual family sizes
+// Each node needs ~170px width (140 + 30 gap), ~260px height (160 + 100 gap)
+// Adding extra 100px padding between groups
 const allFamiliesPositions: Record<string, Record<string, { x: number; y: number }>> = {
   'red-rising': {
+    // Row 1: darrow-family (5 wide, 2 gen), augustus-family (2 wide, 2 gen), bellona-family (2 wide, 1 gen)
     'darrow-family': { x: 0, y: 0 },
-    'eos-family': { x: 0, y: 400 },
-    'augustus-family': { x: 700, y: 0 },
-    'bellona-family': { x: 1100, y: 0 },
-    'sons-of-ares': { x: 0, y: 650 },  // Moved closer since it has Sevro connection
-    'house-mars': { x: 0, y: 1100 },
+    'augustus-family': { x: 1000, y: 0 },
+    'bellona-family': { x: 1500, y: 0 },
+    // Row 2: eos-family (2 wide, 1 gen)
+    'eos-family': { x: 0, y: 600 },
+    // Row 3: sons-of-ares (5 wide, 3 gen), house-mars (6 wide, 2 gen)
+    'sons-of-ares': { x: 0, y: 900 },
+    'house-mars': { x: 1100, y: 900 },
   },
   'golden-son': {
+    // Row 1: house-augustus (3 wide, 3 gen), house-bellona (3 wide, 2 gen), sovereign-court (3 wide, 2 gen)
     'house-augustus': { x: 0, y: 0 },
-    'house-bellona': { x: 600, y: 0 },
-    'sovereign-court': { x: 1200, y: 0 },
-    'house-telemanus': { x: 0, y: 550 },
-    'house-julii': { x: 450, y: 550 },
-    'house-arcos': { x: 850, y: 550 },
-    'howlers': { x: 0, y: 950 },
-    'darrow-household': { x: 600, y: 950 },
+    'house-bellona': { x: 700, y: 0 },
+    'sovereign-court': { x: 1400, y: 0 },
+    // Row 2: house-telemanus (3 wide, 2 gen), house-julii (2 wide, 2 gen), house-arcos (1 wide, 2 gen)
+    'house-telemanus': { x: 0, y: 650 },
+    'house-julii': { x: 650, y: 650 },
+    'house-arcos': { x: 1100, y: 650 },
+    // Row 3: howlers (4 wide, 1 gen), darrow-household (1 wide, 2 gen)
+    'howlers': { x: 0, y: 1200 },
+    'darrow-household': { x: 900, y: 1200 },
   },
   'morning-star': {
+    // Row 1: house-augustus (2 wide), house-bellona (1 wide), sovereign-court (3 wide), moon-lords (1 wide)
     'house-augustus': { x: 0, y: 0 },
     'house-bellona': { x: 500, y: 0 },
-    'sovereign-court': { x: 900, y: 0 },
-    'moon-lords': { x: 1350, y: 0 },
-    'house-telemanus': { x: 0, y: 450 },
-    'house-julii': { x: 450, y: 450 },
-    'obsidians': { x: 900, y: 450 },
-    'nakamura-siblings': { x: 1350, y: 450 },
-    'sons-of-ares': { x: 0, y: 850 },
-    'howlers': { x: 550, y: 850 },
+    'sovereign-court': { x: 850, y: 0 },
+    'moon-lords': { x: 1500, y: 0 },
+    // Row 2: house-telemanus (3 wide), house-julii (2 wide), obsidians (2 wide), nakamura-siblings (2 wide)
+    'house-telemanus': { x: 0, y: 600 },
+    'house-julii': { x: 600, y: 600 },
+    'obsidians': { x: 1050, y: 600 },
+    'nakamura-siblings': { x: 1500, y: 600 },
+    // Row 3: sons-of-ares (5 wide, 3 gen), howlers (4 wide, 1 gen)
+    'sons-of-ares': { x: 0, y: 1150 },
+    'howlers': { x: 1000, y: 1150 },
   },
   'iron-gold': {
+    // Row 1: republic-leadership (3 wide, 4 gen = needs 1100 height), house-raa (3 wide, 3 gen), house-lune (2 wide, 2 gen)
     'republic-leadership': { x: 0, y: 0 },
-    'house-barca': { x: 0, y: 700 },
-    'house-telemanus': { x: 550, y: 700 },
-    'house-raa': { x: 650, y: 0 },
-    'house-lune': { x: 1250, y: 0 },
-    'society-remnant': { x: 1250, y: 400 },
-    'ephraims-crew': { x: 0, y: 1100 },
-    'lyrias-family': { x: 400, y: 1100 },
-    'the-syndicate': { x: 800, y: 1100 },
+    'house-raa': { x: 700, y: 0 },
+    'house-lune': { x: 1400, y: 0 },
+    // Row 2: positioned below republic-leadership's 4 generations
+    'house-barca': { x: 0, y: 1150 },
+    'house-telemanus': { x: 500, y: 1150 },
+    'society-remnant': { x: 1400, y: 600 },
+    // Row 3: bottom groups
+    'ephraims-crew': { x: 0, y: 1650 },
+    'lyrias-family': { x: 500, y: 1650 },
+    'the-syndicate': { x: 1000, y: 1650 },
   },
   'dark-age': {
+    // Row 1: republic-leadership (3 wide, 4 gen), society-command (4 wide, 2 gen), obsidian-alliance (2 wide, 2 gen)
     'republic-leadership': { x: 0, y: 0 },
-    'house-augustus': { x: 550, y: 0 },
-    'house-barca': { x: 0, y: 700 },
-    'house-telemanus': { x: 450, y: 700 },
-    'society-command': { x: 1000, y: 0 },
-    'howlers': { x: 900, y: 700 },
-    'obsidian-alliance': { x: 1550, y: 0 },
-    'rim-forces': { x: 1550, y: 450 },
-    'rescue-team': { x: 0, y: 1100 },
-    'lyrias-allies': { x: 550, y: 1100 },
+    'society-command': { x: 700, y: 0 },
+    'obsidian-alliance': { x: 1500, y: 0 },
+    // Below republic-leadership
+    'house-augustus': { x: 0, y: 1150 },
+    'house-barca': { x: 500, y: 1150 },
+    // Middle column
+    'howlers': { x: 700, y: 600 },
+    'rim-forces': { x: 1500, y: 600 },
+    // Row 3: house-telemanus, rescue-team, lyrias-allies
+    'house-telemanus': { x: 0, y: 1650 },
+    'rescue-team': { x: 500, y: 1650 },
+    'lyrias-allies': { x: 1100, y: 1650 },
   },
   'light-bringer': {
+    // Row 1: house-augustus (3 wide), society-command (4 wide, 2 gen), obsidian-forces (1 wide, 2 gen)
     'house-augustus': { x: 0, y: 0 },
-    'house-barca': { x: 0, y: 450 },
-    'house-telemanus': { x: 450, y: 450 },
     'society-command': { x: 600, y: 0 },
-    'darrows-crew': { x: 0, y: 850 },
-    'rim-forces': { x: 1200, y: 0 },
-    'obsidian-forces': { x: 1200, y: 400 },
-    'red-allies': { x: 600, y: 850 },
+    'obsidian-forces': { x: 1400, y: 0 },
+    // Row 2: house-barca (2 wide), house-telemanus (2 wide), rim-forces (2 wide), red-allies (2 wide)
+    'house-barca': { x: 0, y: 600 },
+    'house-telemanus': { x: 500, y: 600 },
+    'rim-forces': { x: 1000, y: 600 },
+    'red-allies': { x: 1400, y: 600 },
+    // Row 3: darrows-crew (4 wide, 2 gen = needs ~600 width)
+    'darrows-crew': { x: 0, y: 1100 },
   },
 };
 
