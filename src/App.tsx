@@ -73,7 +73,6 @@ function App() {
   const titleGlow = selectedBookId === 'golden-son'
     ? '0 0 10px rgba(234, 179, 8, 0.7), 0 0 20px rgba(234, 179, 8, 0.5), 0 0 30px rgba(234, 179, 8, 0.3)'
     : '0 0 10px rgba(220, 38, 38, 0.7), 0 0 20px rgba(220, 38, 38, 0.5), 0 0 30px rgba(220, 38, 38, 0.3)';
-  const accentColor = selectedBookId === 'golden-son' ? 'amber' : 'red';
 
   // Calculate progress
   const progressPercent = Math.round(((currentChapter) / (selectedBook.chapters.length - 1)) * 100);
