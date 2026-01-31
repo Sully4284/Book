@@ -218,6 +218,7 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   },
   'sons-of-ares': {
     generations: [
+      { members: ['fitchner'] },
       { members: ['dancer', 'harmony', 'mickey', 'evey', 'matteo'] },
     ],
     connections: [],
@@ -244,19 +245,25 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
     connections: [
       { from: 'nero-augustus', to: 'mustang', type: 'parent-child' },
       { from: 'nero-augustus', to: 'jackal', type: 'parent-child' },
+      { from: 'nero-augustus', to: 'leto', type: 'parent-child' },
       { from: 'mustang', to: 'jackal', type: 'sibling' },
+      { from: 'mustang', to: 'leto', type: 'sibling' },
+      { from: 'jackal', to: 'leto', type: 'sibling' },
     ],
   },
   'house-bellona': {
     generations: [
       { members: ['tiberius-bellona', 'julia-bellona'] },
-      { members: ['cassius', 'karnus'] },
+      { members: ['cassius', 'karnus', 'julian'] },
     ],
     connections: [
       { from: 'tiberius-bellona', to: 'julia-bellona', type: 'spouse' },
       { from: 'tiberius-bellona', to: 'cassius', type: 'parent-child' },
       { from: 'tiberius-bellona', to: 'karnus', type: 'parent-child' },
+      { from: 'tiberius-bellona', to: 'julian', type: 'parent-child' },
       { from: 'cassius', to: 'karnus', type: 'sibling' },
+      { from: 'cassius', to: 'julian', type: 'sibling' },
+      { from: 'karnus', to: 'julian', type: 'sibling' },
     ],
   },
   'sovereign-court': {
@@ -272,10 +279,12 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   'house-telemanus': {
     generations: [
       { members: ['kavax'] },
-      { members: ['daxo'] },
+      { members: ['daxo', 'pax'] },
     ],
     connections: [
       { from: 'kavax', to: 'daxo', type: 'parent-child' },
+      { from: 'kavax', to: 'pax', type: 'parent-child' },
+      { from: 'daxo', to: 'pax', type: 'sibling' },
     ],
   },
   'house-julii': {
@@ -305,6 +314,7 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   },
   'darrow-household': {
     generations: [
+      { members: ['eo'] },
       { members: ['theodora'] },
     ],
     connections: [],
@@ -343,15 +353,15 @@ const allFamiliesPositions: Record<string, { x: number; y: number }> = {
   'bellona-family': { x: 1400, y: 0 },
   'sons-of-ares': { x: 900, y: 550 },
   'house-mars': { x: 0, y: 850 },
-  // Golden Son positions
+  // Golden Son positions - spread much wider to prevent overlap
   'house-augustus': { x: 0, y: 0 },
   'house-bellona': { x: 700, y: 0 },
-  'sovereign-court': { x: 1300, y: 0 },
-  'house-telemanus': { x: 0, y: 500 },
-  'house-julii': { x: 500, y: 500 },
-  'house-arcos': { x: 1000, y: 500 },
-  'howlers': { x: 0, y: 850 },
-  'darrow-household': { x: 600, y: 850 },
+  'sovereign-court': { x: 1400, y: 0 },
+  'house-telemanus': { x: 0, y: 550 },
+  'house-julii': { x: 500, y: 550 },
+  'house-arcos': { x: 1000, y: 550 },
+  'howlers': { x: 0, y: 950 },
+  'darrow-household': { x: 700, y: 950 },
 };
 
 export function FamilyTreeView({
