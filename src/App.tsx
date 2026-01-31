@@ -1,5 +1,5 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
-import { allBooks, getFamilyGroupsForBook } from './data';
+import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
+import { allBooks, getFamilyGroupsForBook, getCharacterImportance } from './data';
 import { useCharacterData } from './hooks/useCharacterData';
 import { CharacterGrid } from './components/CharacterGrid';
 import { CharacterModal } from './components/CharacterModal';
@@ -79,6 +79,15 @@ function App() {
     currentChapter
   );
 
+  // Sort characters by importance for the grid view
+  const sortedCharacters = useMemo(() => {
+    return [...processedCharacters].sort((a, b) => {
+      const importanceA = getCharacterImportance(selectedBookId, a.id);
+      const importanceB = getCharacterImportance(selectedBookId, b.id);
+      return importanceA - importanceB;
+    });
+  }, [processedCharacters, selectedBookId]);
+
   const selectedCharacter = processedCharacters.find(
     (c) => c.id === selectedCharacterId
   );
@@ -92,10 +101,10 @@ function App() {
   }, []);
 
   const uniqueColors = Array.from(
-    new Set(processedCharacters.filter((c) => c.isVisible).map((c) => c.color))
+    new Set(sortedCharacters.filter((c) => c.isVisible).map((c) => c.color))
   );
 
-  const visibleCharacters = processedCharacters.filter((c) => c.isVisible);
+  const visibleCharacters = sortedCharacters.filter((c) => c.isVisible);
   const hasActiveFilters = filterColor || filterStatus || searchQuery || selectedFamilyGroup;
 
   // Track title animation state
@@ -442,7 +451,7 @@ function App() {
         {/* View content - full width */}
         {viewMode === 'grid' ? (
           <CharacterGrid
-            characters={processedCharacters}
+            characters={sortedCharacters}
             selectedCharacterId={selectedCharacterId}
             onCharacterClick={handleCharacterClick}
             filterColor={filterColor}
@@ -465,6 +474,7 @@ function App() {
               currentChapter={currentChapter}
               filterColor={filterColor}
               filterStatus={filterStatus}
+              bookId={selectedBookId}
             />
           </div>
         )}

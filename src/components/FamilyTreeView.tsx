@@ -39,6 +39,7 @@ interface FamilyTreeViewProps {
   currentChapter: number;
   filterColor: string | null;
   filterStatus: CharacterStatus | null;
+  bookId: string;
 }
 
 // Color to accent mapping for tree nodes
@@ -278,13 +279,17 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   },
   'house-telemanus': {
     generations: [
-      { members: ['kavax'] },
-      { members: ['daxo', 'pax'] },
+      { members: ['kavax', 'niobe'] },
+      { members: ['daxo', 'pax', 'thraxa'] },
     ],
     connections: [
+      { from: 'kavax', to: 'niobe', type: 'spouse' },
       { from: 'kavax', to: 'daxo', type: 'parent-child' },
       { from: 'kavax', to: 'pax', type: 'parent-child' },
+      { from: 'kavax', to: 'thraxa', type: 'parent-child' },
       { from: 'daxo', to: 'pax', type: 'sibling' },
+      { from: 'daxo', to: 'thraxa', type: 'sibling' },
+      { from: 'pax', to: 'thraxa', type: 'sibling' },
     ],
   },
   'house-julii': {
@@ -301,8 +306,11 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   'house-arcos': {
     generations: [
       { members: ['lorn'] },
+      { members: ['alexandar'] },
     ],
-    connections: [],
+    connections: [
+      { from: 'lorn', to: 'alexandar', type: 'parent-child' },
+    ],
   },
   'howlers': {
     generations: [
@@ -319,30 +327,255 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
     ],
     connections: [],
   },
+
+  // ========== MORNING STAR LAYOUTS ==========
+  'nakamura-siblings': {
+    generations: [
+      { members: ['holiday', 'trigg'] },
+    ],
+    connections: [
+      { from: 'holiday', to: 'trigg', type: 'sibling' },
+    ],
+  },
+  'obsidians': {
+    generations: [
+      { members: ['alia'] },
+      { members: ['ragnar', 'sefi'] },
+    ],
+    connections: [
+      { from: 'alia', to: 'ragnar', type: 'parent-child' },
+      { from: 'alia', to: 'sefi', type: 'parent-child' },
+      { from: 'ragnar', to: 'sefi', type: 'sibling' },
+    ],
+  },
+  'boneriders': {
+    generations: [
+      { members: ['jackal'] },
+      { members: ['lilath', 'antonia'] },
+    ],
+    connections: [],
+  },
+  'moon-lords': {
+    generations: [
+      { members: ['romulus'] },
+    ],
+    connections: [],
+  },
+
+  // ========== IRON GOLD LAYOUTS ==========
+  'republic-leadership': {
+    generations: [
+      { members: ['mustang', 'darrow'] },
+      { members: ['pax-augustus', 'sevro', 'victra'] },
+      { members: ['dancer', 'daxo', 'theodora'] },
+    ],
+    connections: [
+      { from: 'mustang', to: 'darrow', type: 'spouse' },
+      { from: 'mustang', to: 'pax-augustus', type: 'parent-child' },
+      { from: 'darrow', to: 'pax-augustus', type: 'parent-child' },
+      { from: 'sevro', to: 'victra', type: 'spouse' },
+    ],
+  },
+  'house-barca': {
+    generations: [
+      { members: ['sevro', 'victra'] },
+      { members: ['electra'] },
+    ],
+    connections: [
+      { from: 'sevro', to: 'victra', type: 'spouse' },
+      { from: 'sevro', to: 'electra', type: 'parent-child' },
+      { from: 'victra', to: 'electra', type: 'parent-child' },
+    ],
+  },
+  'house-raa': {
+    generations: [
+      { members: ['romulus', 'dido', 'atlas'] },
+      { members: ['seraphina', 'diomedes', 'marius'] },
+    ],
+    connections: [
+      { from: 'romulus', to: 'dido', type: 'spouse' },
+      { from: 'romulus', to: 'atlas', type: 'sibling' },
+      { from: 'romulus', to: 'seraphina', type: 'parent-child' },
+      { from: 'romulus', to: 'diomedes', type: 'parent-child' },
+      { from: 'romulus', to: 'marius', type: 'parent-child' },
+      { from: 'seraphina', to: 'diomedes', type: 'sibling' },
+      { from: 'seraphina', to: 'marius', type: 'sibling' },
+      { from: 'diomedes', to: 'marius', type: 'sibling' },
+    ],
+  },
+  'house-lune': {
+    generations: [
+      { members: ['lysander'] },
+      { members: ['cassius', 'pytha'] },
+    ],
+    connections: [],
+  },
+  'society-remnant': {
+    generations: [
+      { members: ['ash-lord'] },
+      { members: ['atalantia', 'apollonius'] },
+    ],
+    connections: [
+      { from: 'ash-lord', to: 'atalantia', type: 'parent-child' },
+    ],
+  },
+  'the-syndicate': {
+    generations: [
+      { members: ['syndicate-queen'] },
+      { members: ['duke-of-hands'] },
+    ],
+    connections: [],
+  },
+  'ephraims-crew': {
+    generations: [
+      { members: ['ephraim', 'volga'] },
+      { members: ['trigg'] },
+    ],
+    connections: [
+      { from: 'ephraim', to: 'trigg', type: 'spouse' },
+    ],
+  },
+  'lyrias-family': {
+    generations: [
+      { members: ['lyria', 'liam'] },
+    ],
+    connections: [],
+  },
+
+  // ========== DARK AGE LAYOUTS ==========
+  'society-command': {
+    generations: [
+      { members: ['atalantia'] },
+      { members: ['lysander', 'ajax', 'atlas', 'apollonius'] },
+    ],
+    connections: [
+      { from: 'atalantia', to: 'ajax', type: 'parent-child' },
+    ],
+  },
+  'obsidian-alliance': {
+    generations: [
+      { members: ['volsung-fa'] },
+      { members: ['sefi', 'volga'] },
+    ],
+    connections: [
+      { from: 'volsung-fa', to: 'sefi', type: 'parent-child' },
+      { from: 'volsung-fa', to: 'volga', type: 'parent-child' },
+    ],
+  },
+  'rim-forces': {
+    generations: [
+      { members: ['diomedes', 'atlas'] },
+    ],
+    connections: [],
+  },
+  'rescue-team': {
+    generations: [
+      { members: ['ephraim', 'volga'] },
+      { members: ['pax-augustus', 'electra'] },
+    ],
+    connections: [],
+  },
+  'lyrias-allies': {
+    generations: [
+      { members: ['lyria', 'victra', 'volga'] },
+    ],
+    connections: [],
+  },
+
+  // ========== LIGHT BRINGER LAYOUTS ==========
+  'darrows-crew': {
+    generations: [
+      { members: ['darrow', 'cassius'] },
+      { members: ['apollonius', 'thraxa', 'pytha', 'aurae'] },
+    ],
+    connections: [],
+  },
+  'obsidian-forces': {
+    generations: [
+      { members: ['volsung-fa'] },
+      { members: ['volga'] },
+    ],
+    connections: [
+      { from: 'volsung-fa', to: 'volga', type: 'parent-child' },
+    ],
+  },
+  'red-allies': {
+    generations: [
+      { members: ['lyria', 'volga'] },
+    ],
+    connections: [],
+  },
 };
 
-// Priority order for family groups - Red Rising
-const redRisingFamilyPriority = [
-  'darrow-family',
-  'eos-family',
-  'augustus-family',
-  'bellona-family',
-  'sons-of-ares',
-  'house-mars',
-];
-
-// Priority order for family groups - Golden Son
-const goldenSonFamilyPriority = [
-  'house-augustus',
-  'house-bellona',
-  'sovereign-court',
-  'house-telemanus',
-  'house-julii',
-  'house-arcos',
-  'sons-of-ares',
-  'howlers',
-  'darrow-household',
-];
+// Priority order for family groups by book
+const familyPriorityByBook: Record<string, string[]> = {
+  'red-rising': [
+    'darrow-family',
+    'eos-family',
+    'augustus-family',
+    'bellona-family',
+    'sons-of-ares',
+    'house-mars',
+  ],
+  'golden-son': [
+    'house-augustus',
+    'house-bellona',
+    'sovereign-court',
+    'house-telemanus',
+    'house-julii',
+    'house-arcos',
+    'sons-of-ares',
+    'howlers',
+    'darrow-household',
+  ],
+  'morning-star': [
+    'darrow-family',
+    'house-augustus',
+    'house-bellona',
+    'sovereign-court',
+    'house-telemanus',
+    'house-julii',
+    'obsidians',
+    'sons-of-ares',
+    'howlers',
+    'boneriders',
+    'moon-lords',
+    'nakamura-siblings',
+  ],
+  'iron-gold': [
+    'republic-leadership',
+    'house-barca',
+    'house-telemanus',
+    'house-raa',
+    'house-lune',
+    'society-remnant',
+    'the-syndicate',
+    'ephraims-crew',
+    'lyrias-family',
+  ],
+  'dark-age': [
+    'republic-leadership',
+    'house-augustus',
+    'house-barca',
+    'house-telemanus',
+    'society-command',
+    'howlers',
+    'obsidian-alliance',
+    'rim-forces',
+    'rescue-team',
+    'lyrias-allies',
+  ],
+  'light-bringer': [
+    'house-augustus',
+    'house-barca',
+    'house-telemanus',
+    'society-command',
+    'darrows-crew',
+    'rim-forces',
+    'obsidian-forces',
+    'red-allies',
+  ],
+};
 
 // Positions - spread out with large gaps to prevent overlap
 const allFamiliesPositions: Record<string, { x: number; y: number }> = {
@@ -362,6 +595,30 @@ const allFamiliesPositions: Record<string, { x: number; y: number }> = {
   'house-arcos': { x: 1000, y: 550 },
   'howlers': { x: 0, y: 950 },
   'darrow-household': { x: 700, y: 950 },
+  // Morning Star positions
+  'obsidians': { x: 1400, y: 550 },
+  'boneriders': { x: 1400, y: 950 },
+  'moon-lords': { x: 1800, y: 0 },
+  'nakamura-siblings': { x: 1800, y: 550 },
+  // Iron Gold positions
+  'republic-leadership': { x: 0, y: 0 },
+  'house-barca': { x: 0, y: 550 },
+  'house-raa': { x: 700, y: 0 },
+  'house-lune': { x: 1400, y: 0 },
+  'society-remnant': { x: 1400, y: 550 },
+  'the-syndicate': { x: 0, y: 950 },
+  'ephraims-crew': { x: 700, y: 550 },
+  'lyrias-family': { x: 700, y: 950 },
+  // Dark Age positions
+  'society-command': { x: 1400, y: 0 },
+  'obsidian-alliance': { x: 1800, y: 0 },
+  'rim-forces': { x: 1800, y: 550 },
+  'rescue-team': { x: 1400, y: 950 },
+  'lyrias-allies': { x: 0, y: 1350 },
+  // Light Bringer positions
+  'darrows-crew': { x: 0, y: 950 },
+  'obsidian-forces': { x: 700, y: 950 },
+  'red-allies': { x: 1400, y: 950 },
 };
 
 export function FamilyTreeView({
@@ -372,6 +629,7 @@ export function FamilyTreeView({
   currentChapter,
   filterColor,
   filterStatus,
+  bookId,
 }: FamilyTreeViewProps) {
   const { nodes: initialNodes, edges: initialEdges } = useMemo(() => {
     const NODE_WIDTH = 130;
@@ -496,9 +754,8 @@ export function FamilyTreeView({
 
     if (!selectedFamilyGroup) {
       // Show ALL family groups positioned in different areas
-      // Determine which book we're in based on family group IDs
-      const isGoldenSon = familyGroups.some(g => g.id === 'house-augustus' || g.id === 'sovereign-court');
-      const familyPriority = isGoldenSon ? goldenSonFamilyPriority : redRisingFamilyPriority;
+      // Use the priority list for this specific book
+      const familyPriority = familyPriorityByBook[bookId] || familyPriorityByBook['red-rising'];
 
       // Process in priority order so characters appear in their "home" family first
       familyPriority.forEach((groupId) => {
@@ -568,7 +825,7 @@ export function FamilyTreeView({
     }
 
     return { nodes, edges };
-  }, [characters, selectedFamilyGroup, familyGroups, currentChapter, filterColor, filterStatus]);
+  }, [characters, selectedFamilyGroup, familyGroups, currentChapter, filterColor, filterStatus, bookId]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
