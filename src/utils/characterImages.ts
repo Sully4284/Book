@@ -287,6 +287,26 @@ const characterImages: Record<string, CharacterImageConfig> = {
   quicksilver: {
     default: '/images/characters/quicksilver.png',
   },
+
+  // Additional characters
+  liam: {
+    default: '/images/characters/liam.png',
+  },
+  niobe: {
+    default: '/images/characters/niobe.png',
+  },
+  marius: {
+    default: '/images/characters/marius.png',
+  },
+  'ash-lord': {
+    default: '/images/characters/ash-lord.png',
+  },
+  'duke-of-hands': {
+    default: '/images/characters/duke-of-hands.png',
+  },
+  'syndicate-queen': {
+    default: '/images/characters/syndicate-queen.png',
+  },
 };
 
 export function getCharacterImage(
