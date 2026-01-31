@@ -124,34 +124,34 @@ function App() {
 
       {/* Main Control Bar - unified controls */}
       <div className="sticky top-0 z-40 bg-[#0a0a0a]/95 backdrop-blur-sm border-b border-zinc-800/50">
-        <div className="max-w-[1800px] mx-auto px-8 sm:px-12 lg:px-20 py-4">
+        <div className="max-w-[1800px] mx-auto px-8 sm:px-12 lg:px-20 py-5">
           {/* Main controls row */}
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
             {/* Left: View toggle */}
-            <div className="flex items-center gap-4">
-              <div className="inline-flex rounded-xl bg-zinc-900 p-1.5 border border-zinc-800">
+            <div className="flex items-center gap-5">
+              <div className="inline-flex rounded-xl bg-zinc-900 p-2 border border-zinc-800">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg transition-all ${
+                  className={`flex items-center gap-3 px-6 py-3 text-sm font-medium rounded-lg transition-all ${
                     viewMode === 'grid'
                       ? 'bg-zinc-700 text-white shadow-lg'
                       : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50'
                   }`}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                   </svg>
                   <span>Grid</span>
                 </button>
                 <button
                   onClick={() => setViewMode('tree')}
-                  className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg transition-all ${
+                  className={`flex items-center gap-3 px-6 py-3 text-sm font-medium rounded-lg transition-all ${
                     viewMode === 'tree'
                       ? 'bg-zinc-700 text-white shadow-lg'
                       : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50'
                   }`}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                   </svg>
                   <span>Family Tree</span>
@@ -159,40 +159,46 @@ function App() {
               </div>
 
               {/* Character count badge */}
-              <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-zinc-900/50 rounded-lg border border-zinc-800">
-                <span className="text-zinc-400 text-sm">{visibleCharacters.length}</span>
-                <span className="text-zinc-600 text-sm">characters</span>
+              <div className="hidden sm:flex items-center gap-3 px-5 py-2.5 bg-zinc-900/50 rounded-lg border border-zinc-800">
+                <span className="text-zinc-300 text-sm font-medium">{visibleCharacters.length}</span>
+                <span className="text-zinc-500 text-sm">characters</span>
               </div>
             </div>
 
             {/* Center: Book & Chapter selectors side-by-side */}
-            <div className="flex flex-col sm:flex-row items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
               {/* Book selector */}
-              <div className="relative">
-                <div className="flex items-center gap-2">
-                  <div className={`flex items-center justify-center w-9 h-9 rounded-lg bg-${accentColor}-500/10 border border-${accentColor}-500/30`}>
-                    <svg
-                      className={`w-4 h-4 text-${accentColor}-500`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      style={{
-                        color: selectedBookId === 'golden-son' ? '#EAB308' : '#DC2626',
-                        filter: `drop-shadow(0 0 4px ${selectedBookId === 'golden-son' ? 'rgba(234, 179, 8, 0.5)' : 'rgba(220, 38, 38, 0.5)'})`,
-                      }}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                      />
-                    </svg>
-                  </div>
+              <div className="relative flex items-center gap-3">
+                <div
+                  className="flex items-center justify-center w-10 h-10 rounded-lg"
+                  style={{
+                    backgroundColor: selectedBookId === 'golden-son' ? 'rgba(234, 179, 8, 0.1)' : 'rgba(220, 38, 38, 0.1)',
+                    border: `1px solid ${selectedBookId === 'golden-son' ? 'rgba(234, 179, 8, 0.3)' : 'rgba(220, 38, 38, 0.3)'}`,
+                  }}
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    style={{
+                      color: selectedBookId === 'golden-son' ? '#EAB308' : '#DC2626',
+                      filter: `drop-shadow(0 0 4px ${selectedBookId === 'golden-son' ? 'rgba(234, 179, 8, 0.5)' : 'rgba(220, 38, 38, 0.5)'})`,
+                    }}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    />
+                  </svg>
+                </div>
+                <div className="relative">
                   <select
                     value={selectedBookId}
                     onChange={(e) => handleBookChange(e.target.value)}
-                    className="appearance-none pl-3 pr-8 py-2 bg-zinc-900 border border-zinc-700 rounded-lg cursor-pointer text-sm text-white font-medium min-w-[140px] focus:outline-none focus:border-zinc-500 transition-all"
+                    className="appearance-none pl-4 pr-10 py-2.5 bg-zinc-900 border border-zinc-700 rounded-lg cursor-pointer text-sm text-white font-medium min-w-[160px] focus:outline-none focus:border-zinc-500 transition-all"
                   >
                     {allBooks.map((book) => (
                       <option key={book.id} value={book.id}>
@@ -200,22 +206,22 @@ function App() {
                       </option>
                     ))}
                   </select>
-                  <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>
               </div>
 
               {/* Divider */}
-              <div className="hidden sm:block w-px h-8 bg-zinc-700" />
+              <div className="hidden sm:block w-px h-10 bg-zinc-700" />
 
               {/* Chapter selector with progress */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <div className="relative">
                   <select
                     value={currentChapter}
                     onChange={(e) => setCurrentChapter(Number(e.target.value))}
-                    className="appearance-none pl-3 pr-8 py-2 bg-zinc-900 border border-zinc-700 rounded-lg cursor-pointer text-sm text-white font-medium min-w-[220px] focus:outline-none focus:border-zinc-500 transition-all"
+                    className="appearance-none pl-4 pr-10 py-2.5 bg-zinc-900 border border-zinc-700 rounded-lg cursor-pointer text-sm text-white font-medium min-w-[240px] focus:outline-none focus:border-zinc-500 transition-all"
                   >
                     {selectedBook.chapters.map((chapter) => (
                       <option key={chapter.number} value={chapter.number}>
@@ -225,26 +231,26 @@ function App() {
                       </option>
                     ))}
                   </select>
-                  <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>
 
                 {/* Progress indicator */}
-                <div className="hidden md:flex items-center gap-2">
-                  <div className="w-24 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                <div className="hidden md:flex items-center gap-3">
+                  <div className="w-28 h-2 bg-zinc-800 rounded-full overflow-hidden">
                     <div
                       className="h-full bg-gradient-to-r from-red-600 to-amber-500 transition-all duration-300"
                       style={{ width: `${progressPercent}%` }}
                     />
                   </div>
-                  <span className="text-xs text-zinc-500 w-10">{progressPercent}%</span>
+                  <span className="text-sm text-zinc-400 w-12">{progressPercent}%</span>
                 </div>
               </div>
             </div>
 
             {/* Right: Search and Filter */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               {/* Search - only show in grid view */}
               {viewMode === 'grid' && (
                 <div className="relative">
@@ -253,10 +259,10 @@ function App() {
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-40 lg:w-48 pl-9 pr-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600 focus:ring-1 focus:ring-zinc-600 transition-colors"
+                    className="w-44 lg:w-52 pl-10 pr-5 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-600 focus:ring-1 focus:ring-zinc-600 transition-colors"
                   />
                   <svg
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -274,13 +280,13 @@ function App() {
               {/* Filter toggle button */}
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                className={`flex items-center gap-3 px-6 py-3 rounded-xl text-sm font-medium transition-all ${
                   showFilters || hasActiveFilters
                     ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
                     : 'bg-zinc-900 text-zinc-400 border border-zinc-800 hover:text-white hover:border-zinc-700'
                 }`}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -298,17 +304,17 @@ function App() {
 
           {/* Expandable filter panel */}
           {showFilters && (
-            <div className="mt-4 pt-4 border-t border-zinc-800">
-              <div className="flex flex-wrap items-end gap-4">
+            <div className="mt-6 pt-6 border-t border-zinc-800">
+              <div className="flex flex-wrap items-end gap-6">
                 {/* Color filter */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-medium text-zinc-400 uppercase tracking-wide">
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
                     Color
                   </label>
                   <select
                     value={filterColor || ''}
                     onChange={(e) => setFilterColor(e.target.value || null)}
-                    className="px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white cursor-pointer focus:outline-none focus:border-zinc-600 min-w-[140px]"
+                    className="px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white cursor-pointer focus:outline-none focus:border-zinc-600 min-w-[160px]"
                   >
                     <option value="">All Colors</option>
                     {uniqueColors.map((color) => (
@@ -320,8 +326,8 @@ function App() {
                 </div>
 
                 {/* Status filter */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-medium text-zinc-400 uppercase tracking-wide">
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
                     Status
                   </label>
                   <select
@@ -329,7 +335,7 @@ function App() {
                     onChange={(e) =>
                       setFilterStatus((e.target.value as CharacterStatus) || null)
                     }
-                    className="px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white cursor-pointer focus:outline-none focus:border-zinc-600 min-w-[140px]"
+                    className="px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white cursor-pointer focus:outline-none focus:border-zinc-600 min-w-[160px]"
                   >
                     <option value="">All Statuses</option>
                     <option value="alive">Alive</option>
@@ -339,14 +345,14 @@ function App() {
                 </div>
 
                 {/* Family group selector */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-medium text-zinc-400 uppercase tracking-wide">
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
                     Group
                   </label>
                   <select
                     value={selectedFamilyGroup || ''}
                     onChange={(e) => setSelectedFamilyGroup(e.target.value || null)}
-                    className="px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white cursor-pointer focus:outline-none focus:border-zinc-600 min-w-[180px]"
+                    className="px-4 py-2.5 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white cursor-pointer focus:outline-none focus:border-zinc-600 min-w-[200px]"
                   >
                     <option value="">All Characters</option>
                     {familyGroups.map((group) => (
@@ -366,7 +372,7 @@ function App() {
                       setSelectedFamilyGroup(null);
                       setSearchQuery('');
                     }}
-                    className="px-4 py-2 text-sm text-zinc-400 hover:text-white transition-colors border border-zinc-700 rounded-lg hover:border-zinc-600"
+                    className="px-5 py-2.5 text-sm text-zinc-400 hover:text-white transition-colors border border-zinc-700 rounded-lg hover:border-zinc-600"
                   >
                     Clear all
                   </button>
@@ -377,8 +383,8 @@ function App() {
         </div>
       </div>
 
-      {/* Main content - full width */}
-      <main className="w-full px-8 sm:px-12 lg:px-20 py-6">
+      {/* Main content - full width with proper spacing */}
+      <main className="w-full px-8 sm:px-12 lg:px-20 py-8">
         {/* View content - full width */}
         {viewMode === 'grid' ? (
           <CharacterGrid
