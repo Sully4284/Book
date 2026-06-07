@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import type { Character, CharacterStatus, Relationship } from '../types';
+import type { BiographyEntry, Character, CharacterStatus, Relationship } from '../types';
 
 interface ProcessedCharacter {
   id: string;
@@ -12,6 +12,8 @@ interface ProcessedCharacter {
   additionalDetails?: string;
   relationships: Relationship[];
   isVisible: boolean;
+  // Full cumulative biography revealed up to the current book/chapter, in order.
+  biography: BiographyEntry[];
 }
 
 export function useCharacterData(
@@ -22,10 +24,23 @@ export function useCharacterData(
     return characters
       .filter((char) => char.firstAppearance <= currentChapter)
       .map((char) => {
-        // Get the most recent info for the current chapter
-        const relevantInfo = char.progressiveInfo
-          .filter((info) => info.chapter <= currentChapter)
-          .sort((a, b) => b.chapter - a.chapter)[0];
+        // All biography beats revealed so far: beats from earlier books are
+        // always visible, beats from the current book unlock by chapter. Sort
+        // chronologically across the whole series.
+        const revealedInfo = char.progressiveInfo
+          .filter((info) => info.alwaysVisible || info.chapter <= currentChapter)
+          .sort((a, b) => (a.order ?? a.chapter) - (b.order ?? b.chapter));
+
+        // The most recent beat drives the headline summary and current status.
+        const relevantInfo = revealedInfo[revealedInfo.length - 1];
+
+        const biography: BiographyEntry[] = revealedInfo.map((info) => ({
+          bookId: info.sourceBookId,
+          bookTitle: info.sourceBookTitle,
+          chapterLabel: info.chapterLabel ?? (info.chapter === 0 ? 'Prologue' : `Ch ${info.chapter}`),
+          description: info.description,
+          additionalDetails: info.additionalDetails,
+        }));
 
         // Filter relationships to only show ones revealed by current chapter
         const visibleRelationships = char.relationships.filter(
@@ -56,6 +71,7 @@ export function useCharacterData(
           additionalDetails: relevantInfo?.additionalDetails,
           relationships: visibleRelationships,
           isVisible: char.firstAppearance <= currentChapter,
+          biography,
         };
       });
   }, [characters, currentChapter]);
