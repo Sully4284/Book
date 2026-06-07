@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
-import { allBooks, getFamilyGroupsForBook, getCharacterImportance } from './data';
+import { allBooks, getCumulativeCharacters, getCumulativeFamilyGroups, getCumulativeImportance } from './data';
 import { useCharacterData } from './hooks/useCharacterData';
 import { CharacterGrid } from './components/CharacterGrid';
 import { CharacterModal } from './components/CharacterModal';
@@ -61,7 +61,17 @@ function App() {
 
   // Get the currently selected book
   const selectedBook = allBooks.find((b) => b.id === selectedBookId) || allBooks[0];
-  const familyGroups = getFamilyGroupsForBook(selectedBookId);
+  const familyGroups = useMemo(
+    () => getCumulativeFamilyGroups(selectedBookId),
+    [selectedBookId]
+  );
+
+  // Characters accumulate across the series: a later book shows everyone met so
+  // far, not just the characters that book happens to re-introduce.
+  const cumulativeCharacters = useMemo(
+    () => getCumulativeCharacters(selectedBookId),
+    [selectedBookId]
+  );
 
   // Handle book change - reset chapter to 0 (Prologue) and clear filters
   const handleBookChange = useCallback((bookId: string) => {
@@ -75,15 +85,15 @@ function App() {
   }, []);
 
   const processedCharacters = useCharacterData(
-    selectedBook.characters,
+    cumulativeCharacters,
     currentChapter
   );
 
   // Sort characters by importance for the grid view
   const sortedCharacters = useMemo(() => {
     return [...processedCharacters].sort((a, b) => {
-      const importanceA = getCharacterImportance(selectedBookId, a.id);
-      const importanceB = getCharacterImportance(selectedBookId, b.id);
+      const importanceA = getCumulativeImportance(selectedBookId, a.id);
+      const importanceB = getCumulativeImportance(selectedBookId, b.id);
       return importanceA - importanceB;
     });
   }, [processedCharacters, selectedBookId]);
