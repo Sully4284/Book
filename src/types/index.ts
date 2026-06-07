@@ -22,6 +22,22 @@ export interface CharacterInfo {
   description: string;
   status: CharacterStatus;
   additionalDetails?: string;
+  // Provenance added when characters are accumulated across books, so the
+  // biography can be labelled by book/chapter and ordered across the series.
+  sourceBookId?: string;
+  sourceBookTitle?: string;
+  chapterLabel?: string; // e.g. "Prologue" or "Ch 12: The Carving"
+  order?: number; // global ordering across the whole series
+  alwaysVisible?: boolean; // true for beats from already-finished books
+}
+
+// A single revealed beat in a character's cumulative biography.
+export interface BiographyEntry {
+  bookId?: string;
+  bookTitle?: string;
+  chapterLabel: string;
+  description: string;
+  additionalDetails?: string;
 }
 
 export interface Relationship {

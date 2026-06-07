@@ -112,26 +112,47 @@ export function getBookById(bookId: string): Book | undefined {
 // book together with all of the books that precede it.
 // ============================================================================
 
-// Collapse a character into a "fully revealed" form, as if the reader has
-// finished the book it came from: everything is visible from chapter 0, the
-// final name is used, and only the most up-to-date info snapshot is kept.
-function fullyRevealCharacter(char: Character): Character {
-  const latestInfo: CharacterInfo[] =
-    char.progressiveInfo.length > 0
-      ? [{ ...[...char.progressiveInfo].sort((a, b) => b.chapter - a.chapter)[0], chapter: 0 }]
-      : [];
+// Build a human-readable label for a chapter within a book.
+function formatChapterLabel(book: Book, chapter: number): string {
+  const match = book.chapters.find((c) => c.number === chapter);
+  if (chapter === 0) return match?.title ?? 'Prologue';
+  return match ? `Ch ${chapter}: ${match.title}` : `Ch ${chapter}`;
+}
 
-  const finalName =
-    char.progressiveNames && char.progressiveNames.length > 0
-      ? [...char.progressiveNames].sort((a, b) => b.chapter - a.chapter)[0].name
-      : char.name;
+// Tag a character's biography beats, relationships and names with where they
+// came from in the series. Beats from books the reader has already finished
+// (`!isCurrent`) are marked always-visible and fully revealed; beats from the
+// current book keep their chapter so they unlock as the reader progresses.
+function annotateCharacter(
+  char: Character,
+  book: Book,
+  bookIndex: number,
+  isCurrent: boolean
+): Character {
+  const progressiveInfo: CharacterInfo[] = char.progressiveInfo.map((info) => ({
+    ...info,
+    sourceBookId: book.id,
+    sourceBookTitle: book.title,
+    chapterLabel: formatChapterLabel(book, info.chapter),
+    order: bookIndex * 1000 + info.chapter,
+    alwaysVisible: !isCurrent,
+  }));
+
+  let progressiveNames = char.progressiveNames;
+  if (!isCurrent && char.progressiveNames && char.progressiveNames.length > 0) {
+    // Reader has finished this book, so reveal the character's final name.
+    const finalName = [...char.progressiveNames].sort((a, b) => b.chapter - a.chapter)[0].name;
+    progressiveNames = [{ chapter: 0, name: finalName }];
+  }
 
   return {
     ...char,
-    firstAppearance: 0,
-    progressiveNames: char.progressiveNames ? [{ chapter: 0, name: finalName }] : undefined,
-    relationships: char.relationships.map((rel) => ({ ...rel, revealedAtChapter: 0 })),
-    progressiveInfo: latestInfo,
+    firstAppearance: isCurrent ? char.firstAppearance : 0,
+    progressiveNames,
+    progressiveInfo,
+    relationships: isCurrent
+      ? char.relationships
+      : char.relationships.map((rel) => ({ ...rel, revealedAtChapter: 0 })),
   };
 }
 
@@ -148,46 +169,42 @@ function dedupeRelationships(relationships: Relationship[]): Relationship[] {
   return Array.from(seen.values());
 }
 
-// Layer the current book's progressive data on top of a character who is
-// already known from an earlier book: they stay visible from the start, but
-// their info/relationships keep advancing as the reader moves through the
-// current book.
-function layerCurrentBook(carried: Character, current: Character): Character {
+// Fold a later appearance of a character into an earlier one, accumulating
+// their full life story across books. Identity fields (name, colour, house,
+// portrait) take the most recent appearance; beats and relationships are
+// unioned so the biography spans the whole series.
+function mergeCharacters(existing: Character, incoming: Character): Character {
   const mergedNames: ProgressiveName[] | undefined =
-    carried.progressiveNames || current.progressiveNames
-      ? [...(carried.progressiveNames ?? []), ...(current.progressiveNames ?? [])]
+    existing.progressiveNames || incoming.progressiveNames
+      ? [...(existing.progressiveNames ?? []), ...(incoming.progressiveNames ?? [])]
       : undefined;
 
   return {
-    ...current,
-    firstAppearance: 0,
-    progressiveInfo: [...carried.progressiveInfo, ...current.progressiveInfo],
+    ...incoming,
+    firstAppearance: Math.min(existing.firstAppearance, incoming.firstAppearance),
+    progressiveInfo: [...existing.progressiveInfo, ...incoming.progressiveInfo],
     progressiveNames: mergedNames,
-    relationships: dedupeRelationships([...carried.relationships, ...current.relationships]),
+    relationships: dedupeRelationships([...existing.relationships, ...incoming.relationships]),
   };
 }
 
 // Get every character the reader has encountered up to and including the given
-// book. Characters from earlier books are carried forward fully revealed;
-// characters in the current book keep their progressive reveal behaviour.
+// book, each carrying their full cumulative biography. Beats from earlier books
+// are always visible; beats from the current book unlock by chapter.
 export function getCumulativeCharacters(bookId: string): Character[] {
   const bookIndex = allBooks.findIndex((book) => book.id === bookId);
   if (bookIndex < 0) return [];
-  if (bookIndex === 0) return allBooks[0].characters;
 
   const merged = new Map<string, Character>();
 
-  // Carry forward everyone from earlier books, fully revealed (latest book wins).
-  for (let i = 0; i < bookIndex; i++) {
-    for (const char of allBooks[i].characters) {
-      merged.set(char.id, fullyRevealCharacter(char));
+  for (let i = 0; i <= bookIndex; i++) {
+    const book = allBooks[i];
+    const isCurrent = i === bookIndex;
+    for (const char of book.characters) {
+      const annotated = annotateCharacter(char, book, i, isCurrent);
+      const existing = merged.get(char.id);
+      merged.set(char.id, existing ? mergeCharacters(existing, annotated) : annotated);
     }
-  }
-
-  // Layer the current book on top.
-  for (const char of allBooks[bookIndex].characters) {
-    const carried = merged.get(char.id);
-    merged.set(char.id, carried ? layerCurrentBook(carried, char) : char);
   }
 
   return Array.from(merged.values());
