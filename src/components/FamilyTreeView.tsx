@@ -55,9 +55,10 @@ const colorAccents: Record<string, string> = {
 function CharacterNodeComponent({ data }: { data: CharacterNodeData }) {
   const isAlive = data.status === 'alive';
 
-  const currentChapter = (data.currentChapter as number) || 1;
-  const characterImage = getCharacterImage(data.id, currentChapter);
-  const isCarved = isCharacterCarved(data.id, currentChapter);
+  const currentChapter = (data.currentChapter as number) ?? 0;
+  const bookId = (data.bookId as string) || 'red-rising';
+  const characterImage = getCharacterImage(data.id, currentChapter, bookId);
+  const isCarved = isCharacterCarved(data.id, currentChapter, bookId);
   const accentColor = isCarved ? '#C9A227' : (colorAccents[data.color] || '#6B7280');
 
   return (
@@ -182,8 +183,9 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   // ========== RED RISING LAYOUTS ==========
   'darrow-family': {
     generations: [
-      { members: ['father-darrow', 'mother-darrow'] },
-      { members: ['narol', 'kieran', 'darrow', 'leanna', 'eo'] },
+      { members: ['narol', 'father-darrow', 'mother-darrow'] },
+      { members: ['kieran', 'leanna', 'darrow', 'eo'] },
+      { members: ['dio', 'loran'] },
     ],
     connections: [
       { from: 'father-darrow', to: 'mother-darrow', type: 'spouse' },
@@ -192,6 +194,8 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
       { from: 'father-darrow', to: 'leanna', type: 'parent-child' },
       { from: 'father-darrow', to: 'narol', type: 'sibling' },
       { from: 'darrow', to: 'eo', type: 'spouse' },
+      { from: 'eo', to: 'dio', type: 'sibling' },
+      { from: 'dio', to: 'loran', type: 'spouse' },
     ],
   },
   'eos-family': {
@@ -233,8 +237,7 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
   },
   'house-mars': {
     generations: [
-      { members: ['sevro', 'roque'] },
-      { members: ['quinn', 'lea', 'pax', 'titus', 'antonia', 'vixus'] },
+      { members: ['sevro', 'roque', 'quinn', 'lea', 'pax', 'titus', 'antonia', 'vixus'] },
     ],
     connections: [],
   },
@@ -512,7 +515,6 @@ const familyLayouts: Record<string, FamilyTreeLayout> = {
 const familyPriorityByBook: Record<string, string[]> = {
   'red-rising': [
     'darrow-family',
-    'eos-family',
     'augustus-family',
     'bellona-family',
     'sons-of-ares',
@@ -525,10 +527,12 @@ const familyPriorityByBook: Record<string, string[]> = {
     'house-telemanus',
     'house-julii',
     'house-arcos',
+    'sons-of-ares',
     'howlers',
     'darrow-household',
   ],
   'morning-star': [
+    'darrow-family',
     'house-augustus',
     'house-bellona',
     'sovereign-court',
@@ -539,10 +543,12 @@ const familyPriorityByBook: Record<string, string[]> = {
     'howlers',
     'moon-lords',
     'nakamura-siblings',
+    'boneriders',
   ],
   'iron-gold': [
-    'republic-leadership',
     'house-barca',
+    'republic-leadership',
+    'howlers',
     'house-telemanus',
     'house-raa',
     'house-lune',
@@ -552,9 +558,9 @@ const familyPriorityByBook: Record<string, string[]> = {
     'lyrias-family',
   ],
   'dark-age': [
-    'republic-leadership',
     'house-augustus',
     'house-barca',
+    'republic-leadership',
     'house-telemanus',
     'society-command',
     'howlers',
@@ -575,94 +581,6 @@ const familyPriorityByBook: Record<string, string[]> = {
   ],
 };
 
-// Positions - calculated based on actual family sizes
-// Each node needs ~170px width (140 + 30 gap), ~260px height (160 + 100 gap)
-// Adding extra 100px padding between groups
-const allFamiliesPositions: Record<string, Record<string, { x: number; y: number }>> = {
-  'red-rising': {
-    // Row 1: darrow-family (5 wide, 2 gen), augustus-family (2 wide, 2 gen), bellona-family (2 wide, 1 gen)
-    'darrow-family': { x: 0, y: 0 },
-    'augustus-family': { x: 1000, y: 0 },
-    'bellona-family': { x: 1500, y: 0 },
-    // Row 2: eos-family (2 wide, 1 gen)
-    'eos-family': { x: 0, y: 600 },
-    // Row 3: sons-of-ares (5 wide, 3 gen), house-mars (6 wide, 2 gen)
-    'sons-of-ares': { x: 0, y: 900 },
-    'house-mars': { x: 1100, y: 900 },
-  },
-  'golden-son': {
-    // Row 1: house-augustus (3 wide, 3 gen), house-bellona (3 wide, 2 gen), sovereign-court (3 wide, 2 gen)
-    'house-augustus': { x: 0, y: 0 },
-    'house-bellona': { x: 700, y: 0 },
-    'sovereign-court': { x: 1400, y: 0 },
-    // Row 2: house-telemanus (3 wide, 2 gen), house-julii (2 wide, 2 gen), house-arcos (1 wide, 2 gen)
-    'house-telemanus': { x: 0, y: 650 },
-    'house-julii': { x: 650, y: 650 },
-    'house-arcos': { x: 1100, y: 650 },
-    // Row 3: howlers (4 wide, 1 gen), darrow-household (1 wide, 2 gen)
-    'howlers': { x: 0, y: 1200 },
-    'darrow-household': { x: 900, y: 1200 },
-  },
-  'morning-star': {
-    // Row 1: house-augustus (2 wide), house-bellona (1 wide), sovereign-court (3 wide), moon-lords (1 wide)
-    'house-augustus': { x: 0, y: 0 },
-    'house-bellona': { x: 500, y: 0 },
-    'sovereign-court': { x: 850, y: 0 },
-    'moon-lords': { x: 1500, y: 0 },
-    // Row 2: house-telemanus (3 wide), house-julii (2 wide), obsidians (2 wide), nakamura-siblings (2 wide)
-    'house-telemanus': { x: 0, y: 600 },
-    'house-julii': { x: 600, y: 600 },
-    'obsidians': { x: 1050, y: 600 },
-    'nakamura-siblings': { x: 1500, y: 600 },
-    // Row 3: sons-of-ares (5 wide, 3 gen), howlers (4 wide, 1 gen)
-    'sons-of-ares': { x: 0, y: 1150 },
-    'howlers': { x: 1000, y: 1150 },
-  },
-  'iron-gold': {
-    // Row 1: republic-leadership (3 wide, 4 gen = needs 1100 height), house-raa (3 wide, 3 gen), house-lune (2 wide, 2 gen)
-    'republic-leadership': { x: 0, y: 0 },
-    'house-raa': { x: 700, y: 0 },
-    'house-lune': { x: 1400, y: 0 },
-    // Row 2: positioned below republic-leadership's 4 generations
-    'house-barca': { x: 0, y: 1150 },
-    'house-telemanus': { x: 500, y: 1150 },
-    'society-remnant': { x: 1400, y: 600 },
-    // Row 3: bottom groups
-    'ephraims-crew': { x: 0, y: 1650 },
-    'lyrias-family': { x: 500, y: 1650 },
-    'the-syndicate': { x: 1000, y: 1650 },
-  },
-  'dark-age': {
-    // Row 1: republic-leadership (3 wide, 4 gen), society-command (4 wide, 2 gen), obsidian-alliance (2 wide, 2 gen)
-    'republic-leadership': { x: 0, y: 0 },
-    'society-command': { x: 700, y: 0 },
-    'obsidian-alliance': { x: 1500, y: 0 },
-    // Below republic-leadership
-    'house-augustus': { x: 0, y: 1150 },
-    'house-barca': { x: 500, y: 1150 },
-    // Middle column
-    'howlers': { x: 700, y: 600 },
-    'rim-forces': { x: 1500, y: 600 },
-    // Row 3: house-telemanus, rescue-team, lyrias-allies
-    'house-telemanus': { x: 0, y: 1650 },
-    'rescue-team': { x: 500, y: 1650 },
-    'lyrias-allies': { x: 1100, y: 1650 },
-  },
-  'light-bringer': {
-    // Row 1: house-augustus (3 wide), society-command (4 wide, 2 gen), obsidian-forces (1 wide, 2 gen)
-    'house-augustus': { x: 0, y: 0 },
-    'society-command': { x: 600, y: 0 },
-    'obsidian-forces': { x: 1400, y: 0 },
-    // Row 2: house-barca (2 wide), house-telemanus (2 wide), rim-forces (2 wide), red-allies (2 wide)
-    'house-barca': { x: 0, y: 600 },
-    'house-telemanus': { x: 500, y: 600 },
-    'rim-forces': { x: 1000, y: 600 },
-    'red-allies': { x: 1400, y: 600 },
-    // Row 3: darrows-crew (4 wide, 2 gen = needs ~600 width)
-    'darrows-crew': { x: 0, y: 1100 },
-  },
-};
-
 export function FamilyTreeView({
   characters,
   selectedFamilyGroup,
@@ -678,33 +596,123 @@ export function FamilyTreeView({
     const NODE_HEIGHT = 160;
     const HORIZONTAL_GAP = 30;
     const VERTICAL_GAP = 100;
+    const GROUP_GAP_X = 160;
+    const GROUP_GAP_Y = 140;
+    const LABEL_HEIGHT = 50;
+    const ROW_MAX_WIDTH = 2400;
+    const MEMBERS_PER_ROW = 6;
 
     const nodes: CharacterNode[] = [];
     const edges: Edge[] = [];
-
-    // Track which characters have been placed to avoid duplicates
-    const placedCharacters = new Set<string>();
-    // Track node positions for smart edge routing
     const nodePositions = new Map<string, { x: number; y: number; genIndex: number }>();
 
-    const buildFamilyNodes = (
-      groupId: string,
-      offsetX: number,
-      offsetY: number,
-      charMap: Map<string, ProcessedCharacter>,
-      addGroupLabel: boolean = false
-    ) => {
-      const layout = familyLayouts[groupId];
+    const selectedGroup = selectedFamilyGroup
+      ? familyGroups.find((g) => g.id === selectedFamilyGroup)
+      : undefined;
+
+    // Characters visible at this chapter, after filters
+    const charMap = new Map(
+      characters
+        .filter((c) => {
+          if (!c.isVisible) return false;
+          if (filterColor && c.color !== filterColor) return false;
+          if (filterStatus && c.status !== filterStatus) return false;
+          if (selectedFamilyGroup && !selectedGroup?.members.includes(c.id)) return false;
+          return true;
+        })
+        .map((c) => [c.id, c] as const)
+    );
+
+    interface PlannedGroup {
+      id: string;
+      name: string;
+      generations: string[][];
+      connections: FamilyTreeLayout['connections'];
+      width: number;
+      height: number;
+    }
+
+    const rowWidth = (count: number) => count * NODE_WIDTH + (count - 1) * HORIZONTAL_GAP;
+    const chunk = (ids: string[]) => {
+      const rows: string[][] = [];
+      for (let i = 0; i < ids.length; i += MEMBERS_PER_ROW) rows.push(ids.slice(i, i + MEMBERS_PER_ROW));
+      return rows;
+    };
+
+    const placed = new Set<string>();
+    const planned: PlannedGroup[] = [];
+
+    const planGroup = (groupId: string) => {
       const group = familyGroups.find((g) => g.id === groupId);
+      if (!group) return;
+      const layout = familyLayouts[groupId];
+      const memberSet = new Set(group.members);
+      const generations = (layout?.generations ?? []).map((gen) =>
+        gen.members.filter((id) => memberSet.has(id) && charMap.has(id) && !placed.has(id))
+      );
+      const inLayout = new Set(generations.flat());
+      // Members the hand-made layout doesn't mention still get a row, so nobody silently vanishes
+      const extras = group.members.filter(
+        (id) => charMap.has(id) && !placed.has(id) && !inLayout.has(id)
+      );
+      const nonEmpty = [...generations, ...chunk(extras)].filter((g) => g.length > 0);
+      if (nonEmpty.length === 0) return; // nothing to show yet: no label, no empty box
+      nonEmpty.flat().forEach((id) => placed.add(id));
+      const widest = Math.max(...nonEmpty.map((g) => g.length));
+      planned.push({
+        id: groupId,
+        name: group.name,
+        generations: nonEmpty,
+        connections: layout?.connections ?? [],
+        width: rowWidth(widest),
+        height: nonEmpty.length * NODE_HEIGHT + (nonEmpty.length - 1) * VERTICAL_GAP,
+      });
+    };
 
-      if (!layout || !group) return;
+    if (selectedFamilyGroup) {
+      planGroup(selectedFamilyGroup);
+    } else {
+      const priority = familyPriorityByBook[bookId] ?? [];
+      priority.forEach(planGroup);
+      familyGroups.filter((g) => !priority.includes(g.id)).forEach((g) => planGroup(g.id));
+    }
 
-      // Add group label node when showing all families - dark theme
-      if (addGroupLabel) {
+    // Characters that belong to no group get a cluster of their own
+    const leftovers = [...charMap.keys()].filter((id) => !placed.has(id));
+    if (leftovers.length > 0) {
+      const generations = chunk(leftovers);
+      const widest = Math.max(...generations.map((g) => g.length));
+      planned.push({
+        id: 'others',
+        name: 'Other Characters',
+        generations,
+        connections: [],
+        width: rowWidth(widest),
+        height: generations.length * NODE_HEIGHT + (generations.length - 1) * VERTICAL_GAP,
+      });
+      leftovers.forEach((id) => placed.add(id));
+    }
+
+    // Pack groups into rows, wrapping when a row fills up
+    const showLabels = !selectedFamilyGroup;
+    let cursorX = 0;
+    let cursorY = 0;
+    let rowHeight = 0;
+
+    planned.forEach((group) => {
+      if (cursorX > 0 && cursorX + group.width > ROW_MAX_WIDTH) {
+        cursorX = 0;
+        cursorY += rowHeight + GROUP_GAP_Y;
+        rowHeight = 0;
+      }
+      const originX = cursorX;
+      const originY = cursorY + (showLabels ? LABEL_HEIGHT : 0);
+
+      if (showLabels) {
         nodes.push({
-          id: `label-${groupId}`,
+          id: `label-${group.id}`,
           type: 'default',
-          position: { x: offsetX, y: offsetY - 50 },
+          position: { x: originX, y: cursorY },
           data: { label: group.name } as unknown as CharacterNodeData,
           style: {
             background: '#1a1a1a',
@@ -720,182 +728,68 @@ export function FamilyTreeView({
         });
       }
 
-      // Position nodes by generation
-      layout.generations.forEach((gen, genIndex) => {
-        const visibleMembers = gen.members.filter(
-          (id) => charMap.has(id) && !placedCharacters.has(id)
-        );
-        const totalWidth = visibleMembers.length * NODE_WIDTH + (visibleMembers.length - 1) * HORIZONTAL_GAP;
-        const startX = offsetX - totalWidth / 2 + NODE_WIDTH / 2;
-
-        visibleMembers.forEach((memberId, memberIndex) => {
+      group.generations.forEach((members, genIndex) => {
+        const startX = originX + (group.width - rowWidth(members.length)) / 2;
+        members.forEach((memberId, memberIndex) => {
           const char = charMap.get(memberId);
-          if (char && !placedCharacters.has(memberId)) {
-            placedCharacters.add(memberId);
-            const posX = startX + memberIndex * (NODE_WIDTH + HORIZONTAL_GAP);
-            const posY = offsetY + genIndex * (NODE_HEIGHT + VERTICAL_GAP);
-
-            nodePositions.set(char.id, { x: posX, y: posY, genIndex });
-
-            nodes.push({
-              id: char.id,
-              type: 'character',
-              position: { x: posX, y: posY },
-              data: { ...char, currentChapter } as CharacterNodeData,
-            });
-          }
-        });
-      });
-
-      // Add connections from the layout (only if both characters are placed AND chapter requirements met)
-      layout.connections.forEach((conn) => {
-        // Check if this connection should be revealed based on chapter
-        const isConnectionRevealed = !conn.revealedAtChapter || conn.revealedAtChapter <= currentChapter;
-
-        if (placedCharacters.has(conn.from) && placedCharacters.has(conn.to) && isConnectionRevealed) {
-          const edgeId = `${groupId}-${conn.type}-${conn.from}-${conn.to}`;
-          // Check if edge already exists
-          if (!edges.find((e) => e.id === edgeId)) {
-            const fromPos = nodePositions.get(conn.from);
-            const toPos = nodePositions.get(conn.to);
-
-            // Determine connection handles based on relationship type and positions
-            let sourceHandle = 'bottom';
-            let targetHandle = 'top';
-
-            if (fromPos && toPos) {
-              if (conn.type === 'spouse' || conn.type === 'sibling') {
-                // Horizontal connections - use left/right handles
-                if (fromPos.x < toPos.x) {
-                  sourceHandle = 'right';
-                  targetHandle = 'left';
-                } else {
-                  sourceHandle = 'left';
-                  targetHandle = 'right';
-                }
-              } else if (conn.type === 'parent-child') {
-                // Vertical connections - always use bottom/top
-                sourceHandle = 'bottom';
-                targetHandle = 'top';
-              }
-            }
-
-            const edgeStyle = {
-              'spouse': {
-                stroke: '#ec4899',
-                strokeWidth: 2,
-                strokeDasharray: '8,4',
-              },
-              'parent-child': {
-                stroke: '#22c55e',
-                strokeWidth: 2,
-              },
-              'sibling': {
-                stroke: '#6b7280',
-                strokeWidth: 1,
-                strokeDasharray: '4,4',
-              },
-            }[conn.type];
-
-            edges.push({
-              id: edgeId,
-              source: conn.from,
-              target: conn.to,
-              sourceHandle,
-              targetHandle,
-              type: 'smoothstep',
-              style: edgeStyle,
-              animated: conn.type === 'spouse',
-            });
-          }
-        }
-      });
-    };
-
-    // Build character map from all visible characters, applying filters
-    const allCharMap = new Map(
-      characters
-        .filter((c) => {
-          if (!c.isVisible) return false;
-          if (filterColor && c.color !== filterColor) return false;
-          if (filterStatus && c.status !== filterStatus) return false;
-          return true;
-        })
-        .map((c) => [c.id, c])
-    );
-
-    if (!selectedFamilyGroup) {
-      // Show ALL family groups positioned in different areas
-      // Use the priority list for this specific book
-      const familyPriority = familyPriorityByBook[bookId] || familyPriorityByBook['red-rising'];
-      const bookPositions = allFamiliesPositions[bookId] || allFamiliesPositions['red-rising'];
-
-      // Process in priority order so characters appear in their "home" family first
-      familyPriority.forEach((groupId) => {
-        const pos = bookPositions[groupId] || { x: 0, y: 0 };
-        buildFamilyNodes(groupId, pos.x, pos.y, allCharMap, true);
-      });
-    } else {
-      // Show single family group
-      const group = familyGroups.find((g) => g.id === selectedFamilyGroup);
-      if (!group) {
-        return { nodes: [] as CharacterNode[], edges: [] as Edge[] };
-      }
-
-      const groupCharacters = characters.filter(
-        (c) => group.members.includes(c.id) && c.isVisible
-      );
-      const charMap = new Map(groupCharacters.map((c) => [c.id, c]));
-      const layout = familyLayouts[selectedFamilyGroup];
-
-      if (layout) {
-        buildFamilyNodes(selectedFamilyGroup, 0, 0, charMap, false);
-      } else {
-        // Fallback: position in a grid and connect based on relationships
-        groupCharacters.forEach((char, index) => {
+          if (!char) return;
+          const posX = startX + memberIndex * (NODE_WIDTH + HORIZONTAL_GAP);
+          const posY = originY + genIndex * (NODE_HEIGHT + VERTICAL_GAP);
+          nodePositions.set(char.id, { x: posX, y: posY, genIndex });
           nodes.push({
             id: char.id,
             type: 'character',
-            position: {
-              x: (index % 4) * (NODE_WIDTH + HORIZONTAL_GAP),
-              y: Math.floor(index / 4) * (NODE_HEIGHT + VERTICAL_GAP),
-            },
-            data: { ...char, currentChapter } as CharacterNodeData,
+            position: { x: posX, y: posY },
+            data: { ...char, currentChapter, bookId } as CharacterNodeData,
           });
         });
+      });
 
-        // Add edges based on relationship data
-        const seenEdges = new Set<string>();
-        groupCharacters.forEach((char) => {
-          char.relationships.forEach((rel) => {
-            if (charMap.has(rel.targetId)) {
-              const edgeId = [char.id, rel.targetId].sort().join('-');
-              if (!seenEdges.has(edgeId)) {
-                seenEdges.add(edgeId);
+      const groupIds = new Set(group.generations.flat());
+      group.connections.forEach((conn) => {
+        const isRevealed = !conn.revealedAtChapter || conn.revealedAtChapter <= currentChapter;
+        if (!isRevealed || !groupIds.has(conn.from) || !groupIds.has(conn.to)) return;
+        const fromPos = nodePositions.get(conn.from);
+        const toPos = nodePositions.get(conn.to);
+        if (!fromPos || !toPos) return;
+        const edgeId = `${group.id}-${conn.type}-${conn.from}-${conn.to}`;
+        if (edges.some((e) => e.id === edgeId)) return;
 
-                const isSpouse = rel.type === 'spouse';
-                const isFamily = rel.type === 'parent' || rel.type === 'child' || rel.type === 'sibling';
+        // Left/top handles are targets and right/bottom handles are sources, so
+        // horizontal links always run from the left-hand node to the right-hand one.
+        let source = conn.from;
+        let target = conn.to;
+        let sourceHandle = 'bottom';
+        let targetHandle = 'top';
+        if (conn.type === 'spouse' || conn.type === 'sibling') {
+          if (fromPos.x > toPos.x) {
+            source = conn.to;
+            target = conn.from;
+          }
+          sourceHandle = 'right';
+          targetHandle = 'left';
+        }
+        const edgeStyle = {
+          spouse: { stroke: '#ec4899', strokeWidth: 2, strokeDasharray: '8,4' },
+          'parent-child': { stroke: '#22c55e', strokeWidth: 2 },
+          sibling: { stroke: '#6b7280', strokeWidth: 1, strokeDasharray: '4,4' },
+        }[conn.type];
 
-                edges.push({
-                  id: edgeId,
-                  source: char.id,
-                  target: rel.targetId,
-                  type: 'smoothstep',
-                  label: rel.type,
-                  style: {
-                    stroke: isSpouse ? '#ec4899' : isFamily ? '#22c55e' : '#f59e0b',
-                    strokeWidth: isSpouse ? 2 : 1,
-                    strokeDasharray: isSpouse ? '8,4' : undefined,
-                  },
-                  labelStyle: { fill: '#666', fontSize: 10 },
-                  animated: isSpouse,
-                });
-              }
-            }
-          });
+        edges.push({
+          id: edgeId,
+          source,
+          target,
+          sourceHandle,
+          targetHandle,
+          type: 'smoothstep',
+          style: edgeStyle,
+          animated: conn.type === 'spouse',
         });
-      }
-    }
+      });
+
+      cursorX += group.width + GROUP_GAP_X;
+      rowHeight = Math.max(rowHeight, group.height + (showLabels ? LABEL_HEIGHT : 0));
+    });
 
     return { nodes, edges };
   }, [characters, selectedFamilyGroup, familyGroups, currentChapter, filterColor, filterStatus, bookId]);
@@ -970,6 +864,7 @@ export function FamilyTreeView({
       </div>
 
       <ReactFlow
+        key={`${bookId}|${selectedFamilyGroup ?? ''}|${currentChapter}|${filterColor ?? ''}|${filterStatus ?? ''}`}
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
@@ -977,9 +872,9 @@ export function FamilyTreeView({
         onNodeClick={onNodeClick}
         nodeTypes={nodeTypes}
         fitView
-        fitViewOptions={{ padding: 0.2, minZoom: 0.4, maxZoom: 1.2 }}
+        fitViewOptions={{ padding: 0.15, minZoom: 0.1, maxZoom: 1.2 }}
         style={{ background: '#0a0a0a' }}
-        minZoom={0.3}
+        minZoom={0.1}
         maxZoom={1.5}
         defaultEdgeOptions={{
           type: 'smoothstep',

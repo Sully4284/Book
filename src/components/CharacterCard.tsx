@@ -14,6 +14,7 @@ interface CharacterCardProps {
   onClick: () => void;
   isSelected: boolean;
   currentChapter: number;
+  bookId: string;
 }
 
 // Color to accent mapping for borders
@@ -35,9 +36,10 @@ export function CharacterCard({
   onClick,
   isSelected,
   currentChapter,
+  bookId,
 }: CharacterCardProps) {
-  const characterImage = getCharacterImage(id, currentChapter);
-  const isCarved = isCharacterCarved(id, currentChapter);
+  const characterImage = getCharacterImage(id, currentChapter, bookId);
+  const isCarved = isCharacterCarved(id, currentChapter, bookId);
   const accentColor = isCarved ? '#C9A227' : (colorAccents[color] || '#6B7280');
 
   return (

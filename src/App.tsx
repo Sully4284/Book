@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { allBooks, getCumulativeCharacters, getCumulativeFamilyGroups, getCumulativeImportance } from './data';
 import { useCharacterData } from './hooks/useCharacterData';
 import { CharacterGrid } from './components/CharacterGrid';
@@ -73,15 +73,26 @@ function App() {
     [selectedBookId]
   );
 
-  // Handle book change - reset chapter to 0 (Prologue) and clear filters
+  // Title crossfade state - driven from the change handler rather than an effect
+  const [titleAnimating, setTitleAnimating] = useState(false);
+  const [displayedTitle, setDisplayedTitle] = useState(selectedBook.title);
+
+  // Handle book change - reset chapter to 0 (Prologue), clear filters, crossfade the title
   const handleBookChange = useCallback((bookId: string) => {
+    const nextBook = allBooks.find((b) => b.id === bookId);
+    const nextTitle = nextBook?.title ?? '';
     setSelectedBookId(bookId);
-    setCurrentChapter(0);
+    setCurrentChapter(nextBook?.chapters[0]?.number ?? 0);
     setSelectedCharacterId(null);
     setSelectedFamilyGroup(null);
     setFilterColor(null);
     setFilterStatus(null);
     setSearchQuery('');
+    setTitleAnimating(true);
+    window.setTimeout(() => {
+      setDisplayedTitle(nextTitle);
+      window.setTimeout(() => setTitleAnimating(false), 50);
+    }, 300);
   }, []);
 
   const processedCharacters = useCharacterData(
@@ -117,35 +128,17 @@ function App() {
   const visibleCharacters = sortedCharacters.filter((c) => c.isVisible);
   const hasActiveFilters = filterColor || filterStatus || searchQuery || selectedFamilyGroup;
 
-  // Track title animation state
-  const [titleAnimating, setTitleAnimating] = useState(false);
-  const [displayedTitle, setDisplayedTitle] = useState(selectedBook.title);
-  const prevBookIdRef = useRef(selectedBookId);
-
-  // Handle title animation when book changes
-  useEffect(() => {
-    if (prevBookIdRef.current !== selectedBookId) {
-      setTitleAnimating(true);
-      // Fade out, then change title, then fade in
-      setTimeout(() => {
-        setDisplayedTitle(selectedBook.title);
-        setTimeout(() => {
-          setTitleAnimating(false);
-        }, 50);
-      }, 300);
-      prevBookIdRef.current = selectedBookId;
-    }
-  }, [selectedBookId, selectedBook.title]);
-
-  // Generate random stars for the header background
-  const stars = Array.from({ length: 60 }, (_, i) => ({
-    id: i,
-    left: `${Math.random() * 100}%`,
-    top: `${Math.random() * 100}%`,
-    size: Math.random() * 2 + 0.5,
-    opacity: Math.random() * 0.7 + 0.3,
-    animationDelay: `${Math.random() * 3}s`,
-  }));
+  // Star field for the header - generated once so it doesn't reshuffle on every re-render
+  const [stars] = useState(() =>
+    Array.from({ length: 60 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      size: Math.random() * 2 + 0.5,
+      opacity: Math.random() * 0.7 + 0.3,
+      animationDelay: `${Math.random() * 3}s`,
+    }))
+  );
 
   // Get book branding
   const branding = bookBranding[selectedBookId] || bookBranding['red-rising'];
@@ -153,7 +146,8 @@ function App() {
   const titleGlow = branding.glow;
 
   // Calculate progress
-  const progressPercent = Math.round(((currentChapter) / (selectedBook.chapters.length - 1)) * 100);
+  const chapterIndex = Math.max(0, selectedBook.chapters.findIndex((c) => c.number === currentChapter));
+  const progressPercent = Math.round((chapterIndex / Math.max(1, selectedBook.chapters.length - 1)) * 100);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
@@ -215,7 +209,7 @@ function App() {
               <div className="inline-flex rounded-xl bg-zinc-900 p-2 border border-zinc-800">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`flex items-center gap-3 px-6 py-3 text-sm font-medium rounded-lg transition-all ${
+                  className={`flex items-center gap-3 px-6 py-3 text-sm font-medium rounded-lg transition-all whitespace-nowrap ${
                     viewMode === 'grid'
                       ? 'bg-zinc-700 text-white shadow-lg'
                       : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50'
@@ -228,7 +222,7 @@ function App() {
                 </button>
                 <button
                   onClick={() => setViewMode('tree')}
-                  className={`flex items-center gap-3 px-6 py-3 text-sm font-medium rounded-lg transition-all ${
+                  className={`flex items-center gap-3 px-6 py-3 text-sm font-medium rounded-lg transition-all whitespace-nowrap ${
                     viewMode === 'tree'
                       ? 'bg-zinc-700 text-white shadow-lg'
                       : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50'
@@ -308,7 +302,7 @@ function App() {
                   >
                     {selectedBook.chapters.map((chapter) => (
                       <option key={chapter.number} value={chapter.number}>
-                        {chapter.number === 0
+                        {chapter.number === 0 || chapter.title === 'Epilogue'
                           ? chapter.title
                           : `Ch ${chapter.number}: ${chapter.title}`}
                       </option>
@@ -461,6 +455,7 @@ function App() {
         {/* View content - full width */}
         {viewMode === 'grid' ? (
           <CharacterGrid
+            bookId={selectedBookId}
             characters={sortedCharacters}
             selectedCharacterId={selectedCharacterId}
             onCharacterClick={handleCharacterClick}
@@ -494,6 +489,7 @@ function App() {
       {selectedCharacter && (
         <CharacterModal
           {...selectedCharacter}
+          bookId={selectedBookId}
           allCharacters={processedCharacters.map((c) => ({
             id: c.id,
             name: c.name,

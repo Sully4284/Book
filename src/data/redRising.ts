@@ -54,7 +54,7 @@ const characters: Character[] = [
   {
     id: 'darrow',
     name: 'Darrow',
-    aliases: ['The Reaper', 'Darrow of Lykos', 'Darrow au Andromedus'],
+    aliases: ['The Reaper', 'Darrow au Andromedus'],
     color: 'Red',
     house: 'Mars',
     firstAppearance: 1,
@@ -100,8 +100,8 @@ const characters: Character[] = [
         additionalDetails: 'Physical transformation includes bone density enhancement, new eyes, and complete reshaping of his body.',
       },
       {
-        chapter: 16,
-        description: 'Enters the Institute under the identity of Darrow au Andromedus. Drafted first by House Mars.',
+        chapter: 17,
+        description: 'Enters the Institute under the identity of Darrow au Andromedus. Drafted tenth overall by House Mars.',
         status: 'alive',
       },
       {
@@ -112,7 +112,7 @@ const characters: Character[] = [
       },
       {
         chapter: 24,
-        description: 'Leads a faction against Titus au Ladros within House Mars. Earns the nickname "Reaper" for his deadly efficiency.',
+        description: 'Leads a faction against Titus au Ladros within House Mars. Already dubbed "Reaper" (from ch 21) for the curved slingBlade he chose as his weapon.',
         status: 'alive',
       },
     ],
@@ -127,8 +127,7 @@ const characters: Character[] = [
     firstAppearance: 1,
     relationships: [
       { targetId: 'darrow', type: 'spouse', revealedAtChapter: 1 },
-      { targetId: 'dio', type: 'sibling', revealedAtChapter: 1 },
-      { targetId: 'liam', type: 'sibling', revealedAtChapter: 1 },
+      { targetId: 'dio', type: 'sibling', revealedAtChapter: 3 },
     ],
     progressiveInfo: [
       {
@@ -138,7 +137,7 @@ const characters: Character[] = [
       },
       {
         chapter: 4,
-        description: 'Shows Darrow a hidden garden with real stars - proof that Mars has been terraformed. Asks him to fight for their people\'s freedom.',
+        description: 'Shows Darrow a hidden garden open to the night sky and real stars, and asks him to fight for something more than the Laurel.',
         status: 'alive',
       },
       {
@@ -172,7 +171,7 @@ const characters: Character[] = [
       },
       {
         chapter: 3,
-        description: 'Has a wife and twin children. Known to be more cautious than Darrow.',
+        description: 'Has a wife and three-year-old twins, a son and a daughter.',
         status: 'alive',
       },
     ],
@@ -189,19 +188,19 @@ const characters: Character[] = [
     progressiveInfo: [
       {
         chapter: 1,
-        description: 'Darrow\'s sister. Tall and quiet like their mother.',
+        description: 'Darrow\'s sister, who murmurs a lament at their father\'s hanging.',
         status: 'alive',
       },
       {
         chapter: 6,
-        description: 'Works in the Webbery. Silently witnesses Darrow taking Eo\'s body for burial.',
+        description: 'Tall and quiet like their mother. Works in the Webbery. Silently witnesses Darrow taking Eo\'s body for burial.',
         status: 'alive',
       },
     ],
   },
   {
     id: 'mother-darrow',
-    name: 'Deanna',
+    name: "Darrow's Mother",
     color: 'Red',
     firstAppearance: 1,
     relationships: [
@@ -209,12 +208,12 @@ const characters: Character[] = [
       { targetId: 'kieran', type: 'child', revealedAtChapter: 1 },
       { targetId: 'leanna', type: 'child', revealedAtChapter: 1 },
       { targetId: 'father-darrow', type: 'spouse', revealedAtChapter: 1 },
-      { targetId: 'narol', type: 'sibling', revealedAtChapter: 1, description: 'Brother-in-law' },
+      { targetId: 'narol', type: 'ally', revealedAtChapter: 1, description: 'Brother-in-law' },
     ],
     progressiveInfo: [
       {
         chapter: 1,
-        description: 'A woman who has seen hardship. Lost her husband to execution. Makes blood soup from pitvipers.',
+        description: 'A woman who has seen hardship. Lost her husband to execution.',
         status: 'alive',
       },
       {
@@ -226,7 +225,11 @@ const characters: Character[] = [
   },
   {
     id: 'father-darrow',
-    name: 'Dale',
+    name: "Darrow's Father",
+    progressiveNames: [
+      { chapter: 1, name: "Darrow's Father" },
+      { chapter: 14, name: 'Dale' },
+    ],
     color: 'Red',
     firstAppearance: 1,
     relationships: [
@@ -239,7 +242,12 @@ const characters: Character[] = [
     progressiveInfo: [
       {
         chapter: 1,
-        description: 'Executed by hanging for leading the Dancer\'s Rebellion - a peaceful protest for increased food rations.',
+        description: 'Hanged by the Grays when Darrow was six; Darrow did not cry.',
+        status: 'dead',
+      },
+      {
+        chapter: 3,
+        description: 'Executed for leading the Dancer\'s Rebellion - a peaceful protest for increased food rations.',
         status: 'dead',
         additionalDetails: 'His legacy haunts Darrow. Nine men were hanged, but he was last, dying doing the Devil\'s Dance.',
       },
@@ -263,14 +271,18 @@ const characters: Character[] = [
       },
       {
         chapter: 3,
-        description: 'Taught Darrow to dance, including the forbidden Reaping Dance. Once the best dancer in Lykos.',
+        description: 'Plays the zither at the Laurel feast; taught Darrow to dance. Only thirty-five but worn down by drink.',
         status: 'alive',
       },
       {
         chapter: 7,
-        description: 'Revealed to be a secret agent for the Sons of Ares. Drugged Darrow and faked his death to save him.',
+        description: 'Drugged Darrow at the wake and buried him alive so the Sons of Ares could dig him up.',
         status: 'alive',
-        additionalDetails: 'Has been an informer for the rebellion since before Darrow\'s father\'s death.',
+      },
+      {
+        chapter: 8,
+        description: 'Revealed to have been a Sons of Ares informer since before Darrow\'s father\'s death.',
+        status: 'alive',
       },
     ],
   },
@@ -280,7 +292,7 @@ const characters: Character[] = [
     color: 'Red',
     firstAppearance: 3,
     relationships: [
-      { targetId: 'eo', type: 'sibling', revealedAtChapter: 1 },
+      { targetId: 'eo', type: 'sibling', revealedAtChapter: 3 },
       { targetId: 'loran', type: 'spouse', revealedAtChapter: 3 },
     ],
     progressiveInfo: [
@@ -334,18 +346,18 @@ const characters: Character[] = [
     progressiveInfo: [
       {
         chapter: 7,
-        description: 'Leader of the local Sons of Ares cell. A powerful man near Darrow\'s height but older, maybe in his forties.',
+        description: 'Leader of the local Sons of Ares cell who dug Darrow up from his grave.',
         status: 'alive',
       },
       {
         chapter: 8,
-        description: 'Former Helldiver from the colony Tyros. His left arm and leg are crippled from pitviper bites. Has many scars on his neck from the venom.',
+        description: 'Former Helldiver from the colony Tyros. A powerful man near Darrow\'s height but older, maybe in his forties. His left arm hangs limp from nerve damage, and pitviper bite scars mark his neck.',
         status: 'alive',
         additionalDetails: 'Claims not to be Ares himself, but clearly commands the local rebellion.',
       },
       {
         chapter: 9,
-        description: 'Reveals the truth to Darrow - that Mars has been terraformed for 300 years and Reds are slaves, not pioneers.',
+        description: 'Reveals the truth - Reds were sent to Mars five hundred years ago, the other Colors settled the surface three hundred years back, and the Reds have been slaves, not pioneers, ever since.',
         status: 'alive',
       },
     ],
@@ -367,9 +379,13 @@ const characters: Character[] = [
       },
       {
         chapter: 8,
-        description: 'Dancer\'s partner. Filled with rage and hatred for the Golds. Trains Darrow physically.',
+        description: 'Dancer\'s partner in the cell. Cold, and consumed by hatred for the Golds.',
         status: 'alive',
-        additionalDetails: 'Lost someone dear to her - the unscarred part of her face reveals this pain.',
+      },
+      {
+        chapter: 12,
+        description: 'Trains Darrow in the gym beneath Mickey\'s club.',
+        status: 'alive',
       },
     ],
   },
@@ -413,7 +429,7 @@ const characters: Character[] = [
       },
       {
         chapter: 12,
-        description: 'Never speaks but shows kindness to Darrow. Gives him a feather from her wings.',
+        description: 'Rarely speaks, but tells Darrow he is beautiful when she sees his new Sigils, and secretly slips one of her feathers into his pocket.',
         status: 'alive',
       },
     ],
@@ -442,32 +458,42 @@ const characters: Character[] = [
     name: 'Nero au Augustus',
     aliases: ['The ArchGovernor'],
     color: 'Gold',
-    firstAppearance: 5,
+    firstAppearance: 3,
     relationships: [
-      { targetId: 'mustang', type: 'child', revealedAtChapter: 41 },
-      { targetId: 'jackal', type: 'child', revealedAtChapter: 41 },
+      { targetId: 'mustang', type: 'child', revealedAtChapter: 43 },
+      { targetId: 'jackal', type: 'child', revealedAtChapter: 34 },
     ],
     progressiveInfo: [
       {
+        chapter: 3,
+        description: 'The ArchGovernor of Mars. Podginus awards Darrow the Laurel on his behalf.',
+        status: 'alive',
+      },
+      {
         chapter: 5,
-        description: 'The ArchGovernor of Mars. One of the most powerful Golds. Cold and imperious with a scar on his cheekbone marking him as Peerless Scarred.',
+        description: 'One of the most powerful Golds. Cold and imperious with a scar on his cheekbone marking him as Peerless Scarred.',
         status: 'alive',
       },
       {
         chapter: 6,
-        description: 'Orders Eo\'s execution with casual indifference. Darrow swears vengeance against him.',
+        description: 'Attends Eo\'s trial in person and, fascinated, says \'Let her sing\'; presides over her hanging with cold indifference.',
         status: 'alive',
         additionalDetails: 'His contempt for lowReds is absolute.',
       },
       {
-        chapter: 41,
-        description: 'Father of both Mustang (Virginia) and the Jackal (Adrius).',
+        chapter: 34,
+        description: 'Father of the Jackal, Adrius; the Proctors are rigging the game so his son wins.',
+        status: 'alive',
+      },
+      {
+        chapter: 43,
+        description: 'Also father of Mustang - Virginia au Augustus, the Jackal\'s twin.',
         status: 'alive',
       },
     ],
   },
   {
-    id: 'octavia-lune',
+    id: 'octavia',
     name: 'Octavia au Lune',
     aliases: ['The Sovereign'],
     color: 'Gold',
@@ -484,18 +510,13 @@ const characters: Character[] = [
   },
   {
     id: 'fitchner',
-    name: 'Fitchner au Barca',
-    // Progressive name reveal - surname hidden until chapter 44
-    progressiveNames: [
-      { chapter: 17, name: 'Fitchner' },
-      { chapter: 44, name: 'Fitchner au Barca' },
-    ],
+    name: 'Fitchner',
     aliases: ['Proctor Mars'],
     color: 'Gold',
     house: 'Mars',
     firstAppearance: 17,
     relationships: [
-      { targetId: 'sevro', type: 'child', revealedAtChapter: 44 },
+      { targetId: 'sevro', type: 'child', revealedAtChapter: 39 },
     ],
     progressiveInfo: [
       {
@@ -509,8 +530,8 @@ const characters: Character[] = [
         status: 'alive',
       },
       {
-        chapter: 44,
-        description: 'Revealed to be Sevro\'s father.',
+        chapter: 39,
+        description: 'Darrow realizes from their shared coloring and manner that Fitchner is Sevro\'s father; Fitchner admits it and agrees to help against Apollo.',
         status: 'alive',
       },
     ],
@@ -522,13 +543,18 @@ const characters: Character[] = [
     name: 'Cassius au Bellona',
     color: 'Gold',
     house: 'Mars',
-    firstAppearance: 17,
+    firstAppearance: 15,
     relationships: [
       { targetId: 'darrow', type: 'friend', revealedAtChapter: 17 },
-      { targetId: 'julian', type: 'sibling', revealedAtChapter: 17 },
+      { targetId: 'julian', type: 'sibling', revealedAtChapter: 18 },
       { targetId: 'quinn', type: 'ally', revealedAtChapter: 22 },
     ],
     progressiveInfo: [
+      {
+        chapter: 15,
+        description: 'Cassius au Bellona, son of Praetor Tiberius au Bellona. First encountered during Darrow\'s Institute testing.',
+        status: 'alive',
+      },
       {
         chapter: 17,
         description: 'Son of a powerful Bellona family. Handsome, charismatic, and skilled with a blade. Quickly befriends Darrow.',
@@ -540,15 +566,15 @@ const characters: Character[] = [
         status: 'alive',
       },
       {
-        chapter: 21,
+        chapter: 22,
         description: 'Partners with Darrow to lead a faction within House Mars. Excellent fighter and natural leader.',
         status: 'alive',
       },
       {
-        chapter: 28,
-        description: 'Discovers that Darrow killed Julian. Their friendship shatters.',
+        chapter: 33,
+        description: 'Shown a holo by the Jackal\'s people proving Darrow killed Julian in the Passage. Duels Darrow, stabs him, and leaves him bleeding in the mud.',
         status: 'alive',
-        additionalDetails: 'Stabs Darrow and leaves him for dead.',
+        additionalDetails: 'Their friendship shatters.',
       },
     ],
   },
@@ -557,15 +583,20 @@ const characters: Character[] = [
     name: 'Julian au Bellona',
     color: 'Gold',
     house: 'Mars',
-    firstAppearance: 17,
+    firstAppearance: 16,
     relationships: [
-      { targetId: 'cassius', type: 'sibling', revealedAtChapter: 17 },
+      { targetId: 'cassius', type: 'sibling', revealedAtChapter: 18 },
       { targetId: 'darrow', type: 'enemy', revealedAtChapter: 19 },
     ],
     progressiveInfo: [
       {
-        chapter: 17,
-        description: 'Cassius\'s twin brother. Kind and gentle, more scholar than warrior.',
+        chapter: 16,
+        description: 'A polite, well-bred Gold who befriends Darrow on arrival; mentions an older brother already at the Institute.',
+        status: 'alive',
+      },
+      {
+        chapter: 18,
+        description: 'Revealed to be Cassius\'s non-identical twin brother. Kind and gentle, more scholar than warrior.',
         status: 'alive',
       },
       {
@@ -578,30 +609,35 @@ const characters: Character[] = [
   },
   {
     id: 'sevro',
-    name: 'Sevro au Barca',
-    // Progressive name reveal - surname hidden until chapter 44 when parentage is revealed
-    progressiveNames: [
-      { chapter: 17, name: 'Sevro' },
-      { chapter: 44, name: 'Sevro au Barca' },
-    ],
+    name: 'Sevro',
     aliases: ['Goblin'],
     color: 'Gold',
     house: 'Mars',
-    firstAppearance: 17,
+    firstAppearance: 16,
     relationships: [
       { targetId: 'darrow', type: 'friend', revealedAtChapter: 20 },
-      { targetId: 'fitchner', type: 'parent', revealedAtChapter: 44 },
+      { targetId: 'fitchner', type: 'parent', revealedAtChapter: 39 },
       { targetId: 'quinn', type: 'friend', revealedAtChapter: 22 },
     ],
     progressiveInfo: [
       {
+        chapter: 16,
+        description: 'The smallest Gold at the Institute. Wild-eyed and feral.',
+        status: 'alive',
+      },
+      {
         chapter: 17,
-        description: 'The smallest Gold at the Institute. Picked last in the draft. Wild-eyed and feral.',
+        description: 'Picked last in the draft.',
         status: 'alive',
       },
       {
         chapter: 21,
-        description: 'Lives alone in the wilderness, hunting wolves and wearing their skins. Called "Goblin" by the others.',
+        description: 'Called "Goblin" by the others.',
+        status: 'alive',
+      },
+      {
+        chapter: 22,
+        description: 'Drags a dead wolf into the castle and takes to wearing its skin.',
         status: 'alive',
       },
       {
@@ -610,8 +646,8 @@ const characters: Character[] = [
         status: 'alive',
       },
       {
-        chapter: 29,
-        description: 'Becomes one of Darrow\'s most loyal followers. Forms the core of the Howlers.',
+        chapter: 30,
+        description: 'Leads the Howlers - six wolf-cloaked lowDrafts Darrow forms under his tutelage.',
         status: 'alive',
       },
     ],
@@ -625,22 +661,22 @@ const characters: Character[] = [
     firstAppearance: 26,
     relationships: [
       { targetId: 'darrow', type: 'ally', revealedAtChapter: 26 },
-      { targetId: 'nero-augustus', type: 'parent', revealedAtChapter: 41 },
-      { targetId: 'jackal', type: 'sibling', revealedAtChapter: 41 },
+      { targetId: 'nero-augustus', type: 'parent', revealedAtChapter: 43 },
+      { targetId: 'jackal', type: 'sibling', revealedAtChapter: 43 },
     ],
     progressiveInfo: [
       {
         chapter: 26,
-        description: 'A cunning Gold from House Minerva. Earns the nickname "Mustang" for her wild spirit. First encounters Darrow as an enemy.',
+        description: 'A quick, clever Gold from House Minerva who bests Darrow and Sevro in a raid and taunts them; Darrow dubs her "Mustang" on the spot.',
         status: 'alive',
       },
       {
         chapter: 31,
-        description: 'Her House falls. She becomes a more complex ally to Darrow.',
+        description: 'House Minerva\'s fortress falls to Darrow\'s army; Mustang escapes into the wild rather than be enslaved.',
         status: 'alive',
       },
       {
-        chapter: 41,
+        chapter: 43,
         description: 'Revealed to be Virginia au Augustus - daughter of the ArchGovernor and twin sister to the Jackal.',
         status: 'alive',
         additionalDetails: 'Her true identity creates complications for Darrow\'s mission.',
@@ -649,17 +685,17 @@ const characters: Character[] = [
   },
   {
     id: 'roque',
-    name: 'Roque au Fabii',
+    name: 'Roque',
     color: 'Gold',
     house: 'Mars',
-    firstAppearance: 17,
+    firstAppearance: 18,
     relationships: [
-      { targetId: 'darrow', type: 'friend', revealedAtChapter: 17 },
+      { targetId: 'darrow', type: 'friend', revealedAtChapter: 18 },
       { targetId: 'lea', type: 'ally', revealedAtChapter: 22 },
     ],
     progressiveInfo: [
       {
-        chapter: 17,
+        chapter: 18,
         description: 'A poet and philosopher among the Golds. Thoughtful and eloquent.',
         status: 'alive',
       },
@@ -675,20 +711,25 @@ const characters: Character[] = [
     name: 'Quinn',
     color: 'Gold',
     house: 'Mars',
-    firstAppearance: 22,
+    firstAppearance: 18,
     relationships: [
       { targetId: 'sevro', type: 'friend', revealedAtChapter: 22 },
       { targetId: 'cassius', type: 'ally', revealedAtChapter: 22 },
     ],
     progressiveInfo: [
       {
+        chapter: 18,
+        description: 'A Gold whom Darrow flirts with early in his time at the Institute.',
+        status: 'alive',
+      },
+      {
         chapter: 22,
-        description: 'The fastest runner in House Mars. Known for telling elaborate lies as jokes.',
+        description: 'The fastest runner in House Mars.',
         status: 'alive',
       },
       {
         chapter: 23,
-        description: 'Joins Darrow and Cassius\'s faction. The only one Sevro doesn\'t insult.',
+        description: 'Joins Darrow and Cassius\'s faction. Known for telling elaborate lies as jokes. The only one Sevro doesn\'t insult.',
         status: 'alive',
       },
     ],
@@ -698,11 +739,16 @@ const characters: Character[] = [
     name: 'Lea',
     color: 'Gold',
     house: 'Mars',
-    firstAppearance: 22,
+    firstAppearance: 20,
     relationships: [
       { targetId: 'roque', type: 'ally', revealedAtChapter: 22 },
     ],
     progressiveInfo: [
+      {
+        chapter: 20,
+        description: 'A limping Gold girl in House Mars.',
+        status: 'alive',
+      },
       {
         chapter: 22,
         description: 'A meek Gold who follows Roque everywhere. Part of Darrow\'s "Dregs" faction.',
@@ -720,22 +766,33 @@ const characters: Character[] = [
     id: 'pax',
     name: 'Pax au Telemanus',
     color: 'Gold',
-    house: 'Mars',
-    firstAppearance: 29,
+    house: 'Minerva',
+    firstAppearance: 26,
     relationships: [
-      { targetId: 'darrow', type: 'friend', revealedAtChapter: 29 },
+      { targetId: 'darrow', type: 'enemy', revealedAtChapter: 27 },
+      { targetId: 'darrow', type: 'friend', revealedAtChapter: 35 },
     ],
     progressiveInfo: [
       {
-        chapter: 29,
-        description: 'A massive Gold from House Mars. Incredibly strong and loyal. Becomes one of Darrow\'s closest allies.',
+        chapter: 26,
+        description: 'Someone named Pax seems a bloody nightmare, by reputation alone.',
+        status: 'alive',
+      },
+      {
+        chapter: 27,
+        description: 'A gigantic Gold of House Minerva, Mustang\'s fiercest fighter; he lays Titus low and nearly kills Darrow before Darrow beats him with the slingBlade.',
+        status: 'alive',
+      },
+      {
+        chapter: 35,
+        description: 'Captured when Minerva fell; after Mustang joins Darrow, Pax becomes his most loyal and devoted soldier.',
         status: 'alive',
       },
       {
         chapter: 41,
         description: 'Killed by the Jackal while shielding Darrow with his own body during the confrontation at the Institute.',
         status: 'dead',
-        additionalDetails: 'His sacrifice saves Darrow\'s life. Darrow and Virginia later name their son after him.',
+        additionalDetails: 'His sacrifice saves Darrow\'s life; Darrow swears to kill the Jackal for it.',
       },
     ],
   },
@@ -746,12 +803,17 @@ const characters: Character[] = [
     name: 'Titus au Ladros',
     color: 'Gold',
     house: 'Mars',
-    firstAppearance: 20,
+    firstAppearance: 18,
     relationships: [
       { targetId: 'darrow', type: 'enemy', revealedAtChapter: 22 },
       { targetId: 'vixus', type: 'ally', revealedAtChapter: 22 },
     ],
     progressiveInfo: [
+      {
+        chapter: 18,
+        description: 'A tall brute of a Gold with a neck as thick as a stump.',
+        status: 'alive',
+      },
       {
         chapter: 20,
         description: 'A brutal, massive Gold in House Mars. Quickly gathers followers through intimidation.',
@@ -759,14 +821,24 @@ const characters: Character[] = [
       },
       {
         chapter: 24,
-        description: 'Leads savage raids against House Ceres. Uses violence and terror as tools. Darrow suspects he is actually a Red like himself.',
+        description: 'Leads savage raids on House Ceres from the sixth day, using rape and terror as tools.',
         status: 'alive',
       },
       {
         chapter: 25,
-        description: 'His brutality leads to conflict with Darrow. Executed by the Proctors for excessive violence.',
+        description: 'Captures and mutilates Quinn, sending her ear to Darrow; open war with Darrow\'s tribe.',
+        status: 'alive',
+      },
+      {
+        chapter: 28,
+        description: 'Captured and beaten; Darrow realizes from his slip of "bloodydamn" that Titus is a carved Red like himself.',
+        status: 'alive',
+      },
+      {
+        chapter: 29,
+        description: 'Sentenced to death by Darrow before the united House; he demands a duel and is killed by Cassius with straight blades. Darrow buries him in a grove by the river.',
         status: 'dead',
-        additionalDetails: 'Confirmed to be a Red who was transformed like Darrow, but who embraced cruelty.',
+        additionalDetails: 'Darrow infers he was a Red carved like himself; the Sons of Ares never confirm it in this book.',
       },
     ],
   },
@@ -775,11 +847,16 @@ const characters: Character[] = [
     name: 'Antonia au Severus',
     color: 'Gold',
     house: 'Mars',
-    firstAppearance: 20,
+    firstAppearance: 15,
     relationships: [
       { targetId: 'darrow', type: 'enemy', revealedAtChapter: 22 },
     ],
     progressiveInfo: [
+      {
+        chapter: 15,
+        description: 'A Gold who sneers at Darrow during the Institute testing.',
+        status: 'alive',
+      },
       {
         chapter: 20,
         description: 'A tall, manipulative Gold. Uses politics and manipulation rather than direct violence.',
@@ -792,7 +869,7 @@ const characters: Character[] = [
       },
       {
         chapter: 32,
-        description: 'Betrays House Mars. Her treachery causes significant losses.',
+        description: 'Defects with Vixus and Cassandra, taking House Mars slaves and armed with Proctor-supplied nightOptics; murders Lea to bait Darrow, then never returns to the castle.',
         status: 'alive',
       },
     ],
@@ -800,20 +877,40 @@ const characters: Character[] = [
   {
     id: 'jackal',
     name: 'Adrius au Augustus',
+    progressiveNames: [
+      { chapter: 27, name: 'The Jackal' },
+      { chapter: 34, name: 'Adrius' },
+      { chapter: 43, name: 'Adrius au Augustus' },
+    ],
     aliases: ['The Jackal'],
     color: 'Gold',
-    house: 'Minerva',
-    firstAppearance: 41,
+    house: 'Pluto',
+    firstAppearance: 27,
     relationships: [
-      { targetId: 'mustang', type: 'sibling', revealedAtChapter: 41 },
-      { targetId: 'nero-augustus', type: 'parent', revealedAtChapter: 41 },
+      { targetId: 'mustang', type: 'sibling', revealedAtChapter: 43 },
+      { targetId: 'nero-augustus', type: 'parent', revealedAtChapter: 34 },
     ],
     progressiveInfo: [
       {
-        chapter: 41,
-        description: 'The cunning and ruthless leader of House Minerva\'s forces. Son of the ArchGovernor. Twin brother to Mustang.',
+        chapter: 27,
+        description: 'A feared, unseen Primus in the south whose own Proctor calls him the Jackal.',
         status: 'alive',
-        additionalDetails: 'Known for his intelligence and complete lack of morals. Builds power in the southern mountains.',
+      },
+      {
+        chapter: 34,
+        description: 'Adrius au Augustus, Primus of House Pluto and son of the ArchGovernor - the Proctors are rigging the game for him.',
+        status: 'alive',
+      },
+      {
+        chapter: 41,
+        description: 'Finally met in person: small, weak, brilliant, and utterly amoral; kills Pax to get at Darrow and saws off his own trapped hand to escape.',
+        status: 'alive',
+        additionalDetails: 'Known for his intelligence and complete lack of morals.',
+      },
+      {
+        chapter: 43,
+        description: 'Mustang\'s twin brother.',
+        status: 'alive',
       },
     ],
   },
@@ -875,7 +972,7 @@ const characters: Character[] = [
       },
       {
         chapter: 5,
-        description: 'Presides over Eo\'s trial and execution. Shows no mercy.',
+        description: 'Presides over Eo\'s trial with florid speeches meant to impress the ArchGovernor; awkwardly pleads that the girl acted alone.',
         status: 'alive',
       },
     ],
@@ -903,12 +1000,12 @@ export const familyGroups: FamilyGroup[] = [
   {
     id: 'sons-of-ares',
     name: 'Sons of Ares',
-    members: ['dancer', 'harmony', 'mickey', 'evey', 'matteo', 'narol'],
+    members: ['dancer', 'harmony', 'narol'],
   },
   {
     id: 'house-mars',
     name: 'House Mars (Institute)',
-    members: ['darrow', 'cassius', 'sevro', 'roque', 'quinn', 'lea', 'pax', 'titus', 'antonia', 'vixus', 'julian'],
+    members: ['darrow', 'cassius', 'sevro', 'roque', 'quinn', 'lea', 'titus', 'antonia', 'vixus', 'julian'],
   },
 ];
 

@@ -24,6 +24,7 @@ interface CharacterGridProps {
   currentChapter: number;
   selectedFamilyGroup: string | null;
   familyGroups: FamilyGroup[];
+  bookId: string;
 }
 
 export function CharacterGrid({
@@ -36,6 +37,7 @@ export function CharacterGrid({
   currentChapter,
   selectedFamilyGroup,
   familyGroups,
+  bookId,
 }: CharacterGridProps) {
   // Get the members of the selected family group
   const selectedGroup = selectedFamilyGroup
@@ -87,6 +89,7 @@ export function CharacterGrid({
           onClick={() => onCharacterClick(char.id)}
           isSelected={selectedCharacterId === char.id}
           currentChapter={currentChapter}
+          bookId={bookId}
         />
       ))}
     </div>
