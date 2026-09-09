@@ -153,8 +153,6 @@ const characters: Character[] = [
     ],
     progressiveNames: [
       { chapter: 2, name: 'Prisoner L17L6363' },
-      { chapter: 7, name: 'Darrow / The Reaper' },
-      { chapter: 35, name: 'Darrow / The Morning Star' },
     ],
   },
   {
@@ -212,9 +210,6 @@ const characters: Character[] = [
         status: 'alive',
       },
     ],
-    progressiveNames: [
-      { chapter: 0, name: 'Sevro / Ares' },
-    ],
   },
   {
     id: 'mustang',
@@ -261,9 +256,6 @@ const characters: Character[] = [
         status: 'alive',
         additionalDetails: 'Kept the pregnancy secret to protect her son during the war.',
       },
-    ],
-    progressiveNames: [
-      { chapter: 64, name: 'Virginia / Sovereign' },
     ],
   },
   {
@@ -517,7 +509,6 @@ const characters: Character[] = [
       },
     ],
     progressiveNames: [
-      { chapter: 2, name: 'Cassius / The Morning Knight' },
       { chapter: 61, name: 'Cassius' },
     ],
   },
@@ -628,7 +619,6 @@ const characters: Character[] = [
     ],
     progressiveNames: [
       { chapter: 30, name: 'Sefi the Quiet' },
-      { chapter: 34, name: 'Sefi / Queen of the Valkyrie' },
     ],
   },
   {
@@ -718,9 +708,6 @@ const characters: Character[] = [
         status: 'dead',
         additionalDetails: 'Darrow holds a funeral for him (ch 50) and later attends Roque\'s burial with Mustang.',
       },
-    ],
-    progressiveNames: [
-      { chapter: 0, name: 'Roque / Imperator' },
     ],
   },
   {

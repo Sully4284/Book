@@ -670,9 +670,6 @@ const characters: Character[] = [
         status: 'alive',
       },
     ],
-    progressiveNames: [
-      { chapter: 76, name: 'Volsung Fá / Vagnar Hefga ("Pale Horse")' },
-    ],
   },
   {
     id: 'volga',
