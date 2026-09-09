@@ -493,7 +493,7 @@ const characters: Character[] = [
     ],
   },
   {
-    id: 'octavia-lune',
+    id: 'octavia',
     name: 'Octavia au Lune',
     aliases: ['The Sovereign'],
     color: 'Gold',

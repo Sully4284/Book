@@ -226,7 +226,7 @@ const characters: Character[] = [
     relationships: [
       { targetId: 'darrow', type: 'lover', revealedAtChapter: 0 },
       { targetId: 'jackal', type: 'sibling', revealedAtChapter: 0 },
-      { targetId: 'pax-son', type: 'parent', revealedAtChapter: 65 },
+      { targetId: 'pax-augustus', type: 'parent', revealedAtChapter: 65 },
     ],
     progressiveInfo: [
       {
@@ -1060,7 +1060,7 @@ const characters: Character[] = [
     ],
   },
   {
-    id: 'deanna',
+    id: 'mother-darrow',
     name: 'Deanna of Lykos',
     aliases: ["Darrow's Mother"],
     color: 'Red',
@@ -1091,7 +1091,7 @@ const characters: Character[] = [
     firstAppearance: 1,
     relationships: [
       { targetId: 'darrow', type: 'sibling', revealedAtChapter: 8 },
-      { targetId: 'deanna', type: 'parent', revealedAtChapter: 8 },
+      { targetId: 'mother-darrow', type: 'parent', revealedAtChapter: 8 },
     ],
     progressiveInfo: [
       {
@@ -1156,7 +1156,7 @@ const characters: Character[] = [
     ],
   },
   {
-    id: 'pax-telemanus',
+    id: 'pax',
     name: 'Pax au Telemanus',
     aliases: [],
     color: 'Gold',
@@ -1176,7 +1176,7 @@ const characters: Character[] = [
     ],
   },
   {
-    id: 'pax-son',
+    id: 'pax-augustus',
     name: 'Pax',
     aliases: ["Darrow's Son"],
     color: 'Gold',
@@ -1207,7 +1207,7 @@ export const morningStarFamilyGroups: FamilyGroup[] = [
   {
     id: 'darrow-family',
     name: "Darrow's Family",
-    members: ['darrow', 'deanna', 'kieran', 'eo', 'mustang', 'pax-son'],
+    members: ['darrow', 'mother-darrow', 'kieran', 'eo', 'mustang', 'pax-augustus'],
   },
   {
     id: 'house-augustus',
@@ -1227,7 +1227,7 @@ export const morningStarFamilyGroups: FamilyGroup[] = [
   {
     id: 'house-telemanus',
     name: 'House Telemanus',
-    members: ['kavax', 'daxo', 'pax-telemanus'],
+    members: ['kavax', 'daxo', 'pax'],
   },
   {
     id: 'house-julii',

@@ -53,7 +53,6 @@ const characterImages: Record<string, CharacterImageConfig> = {
   kieran: { default: img('kieran') },
   leanna: { default: img('leanna') },
   'mother-darrow': { default: img('mother-darrow') },
-  deanna: { default: img('mother-darrow') }, // Morning Star uses her given name as the id
   'father-darrow': { default: img('father-darrow') },
   narol: { default: img('narol') },
   dio: { default: img('dio') },
@@ -68,8 +67,7 @@ const characterImages: Record<string, CharacterImageConfig> = {
 
   // Gold Society
   'nero-augustus': { default: img('nero-augustus') },
-  'octavia-lune': { default: img('octavia-lune') },
-  octavia: { default: img('octavia-lune') }, // Golden Son+ use 'octavia' as the id
+  octavia: { default: img('octavia-lune') },
   fitchner: { default: img('fitchner') },
 
   // House Bellona
@@ -92,7 +90,6 @@ const characterImages: Record<string, CharacterImageConfig> = {
   kavax: { default: img('kavax') },
   daxo: { default: img('daxo') },
   pax: { default: img('pax') },
-  'pax-telemanus': { default: img('pax') }, // Morning Star id for Pax au Telemanus
 
   // House Julii
   victra: { default: img('victra') },
@@ -147,7 +144,6 @@ const characterImages: Record<string, CharacterImageConfig> = {
   alexandar: { default: img('alexandar') },
   thraxa: { default: img('thraxa') },
   'pax-augustus': { default: img('pax-augustus') },
-  'pax-son': { default: img('pax-augustus') }, // Morning Star epilogue id for the same child
   electra: { default: img('electra') },
 
   // Gold antagonists

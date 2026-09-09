@@ -1,5 +1,5 @@
 import { getCharacterImage, isCharacterCarved } from '../utils/characterImages';
-import type { CharacterStatus, Relationship } from '../types';
+import type { BiographyEntry, CharacterStatus, Relationship } from '../types';
 
 interface CharacterModalProps {
   id: string;
@@ -9,8 +9,8 @@ interface CharacterModalProps {
   house?: string;
   description: string;
   status: CharacterStatus;
-  additionalDetails?: string;
   relationships: Relationship[];
+  biography: BiographyEntry[];
   allCharacters: { id: string; name: string }[];
   onClose: () => void;
   onCharacterClick: (characterId: string) => void;
@@ -36,8 +36,8 @@ export function CharacterModal({
   house,
   description,
   status,
-  additionalDetails,
   relationships,
+  biography,
   allCharacters,
   onClose,
   onCharacterClick,
@@ -47,6 +47,19 @@ export function CharacterModal({
   const characterImage = getCharacterImage(id, currentChapter, bookId);
   const isCarved = isCharacterCarved(id, currentChapter, bookId);
   const accentColor = isCarved ? '#C9A227' : (colorAccents[color] || '#6B7280');
+
+  // Group the biography by source book so the timeline reads as a story across
+  // the series. Only show book headers when more than one book is represented.
+  const bookGroups: { bookTitle?: string; entries: BiographyEntry[] }[] = [];
+  for (const entry of biography) {
+    const last = bookGroups[bookGroups.length - 1];
+    if (last && last.bookTitle === entry.bookTitle) {
+      last.entries.push(entry);
+    } else {
+      bookGroups.push({ bookTitle: entry.bookTitle, entries: [entry] });
+    }
+  }
+  const showBookHeaders = new Set(biography.map((b) => b.bookTitle)).size > 1;
 
   const getRelationshipLabel = (type: Relationship['type']): string => {
     const labels: Record<Relationship['type'], string> = {
@@ -202,20 +215,58 @@ export function CharacterModal({
           {/* Divider */}
           <div className="w-full h-px bg-zinc-800 mb-12" />
 
-          {/* Description section */}
+          {/* About - headline summary of who they are at this point in the story */}
           <div className="mb-12">
             <h3 className="text-sm font-bold text-zinc-400 uppercase tracking-widest mb-6">
               About
             </h3>
             <p className="text-zinc-200 text-lg leading-loose">{description}</p>
-            {additionalDetails && (
-              <div className="mt-8 p-6 rounded-xl bg-zinc-900/50 border-l-4 border-zinc-600">
-                <p className="text-base text-zinc-400 italic leading-relaxed">
-                  {additionalDetails}
-                </p>
-              </div>
-            )}
           </div>
+
+          {/* Story So Far - full cumulative biography, gated by book/chapter */}
+          {biography.length > 1 && (
+            <div className="mb-12">
+              <h3 className="text-sm font-bold text-zinc-400 uppercase tracking-widest mb-8">
+                Story So Far
+              </h3>
+              <div className="space-y-10">
+                {bookGroups.map((group, gi) => (
+                  <div key={gi}>
+                    {showBookHeaders && group.bookTitle && (
+                      <p
+                        className="text-xs font-bold uppercase tracking-[0.2em] mb-5"
+                        style={{ color: accentColor }}
+                      >
+                        {group.bookTitle}
+                      </p>
+                    )}
+                    {/* Vertical timeline of events */}
+                    <div className="border-l border-zinc-800 pl-6 space-y-7">
+                      {group.entries.map((entry, ei) => (
+                        <div key={ei} className="relative">
+                          <span
+                            className="absolute -left-[27px] top-1.5 w-2.5 h-2.5 rounded-full"
+                            style={{ backgroundColor: accentColor }}
+                          />
+                          <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 mb-2">
+                            {entry.chapterLabel}
+                          </p>
+                          <p className="text-zinc-200 text-base leading-relaxed">
+                            {entry.description}
+                          </p>
+                          {entry.additionalDetails && (
+                            <p className="mt-2 text-sm text-zinc-400 italic leading-relaxed">
+                              {entry.additionalDetails}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Relationships section */}
           {relationships.length > 0 && (
