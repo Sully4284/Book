@@ -15,6 +15,7 @@ interface CharacterModalProps {
   onClose: () => void;
   onCharacterClick: (characterId: string) => void;
   currentChapter: number;
+  bookId: string;
 }
 
 // Color to accent mapping
@@ -41,9 +42,10 @@ export function CharacterModal({
   onClose,
   onCharacterClick,
   currentChapter,
+  bookId,
 }: CharacterModalProps) {
-  const characterImage = getCharacterImage(id, currentChapter);
-  const isCarved = isCharacterCarved(id, currentChapter);
+  const characterImage = getCharacterImage(id, currentChapter, bookId);
+  const isCarved = isCharacterCarved(id, currentChapter, bookId);
   const accentColor = isCarved ? '#C9A227' : (colorAccents[color] || '#6B7280');
 
   const getRelationshipLabel = (type: Relationship['type']): string => {

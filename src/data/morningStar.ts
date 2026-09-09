@@ -54,7 +54,7 @@ const chapters = [
   { number: 45, title: 'The Battle of Ilium' },
   { number: 46, title: 'Helldiver' },
   { number: 47, title: 'Hell' },
-  { number: 48, title: 'Roque' },
+  { number: 48, title: 'Imperator' },
   { number: 49, title: 'Colossus' },
   { number: 50, title: 'Thunder and Lightning' },
   { number: 51, title: 'Pandora' },
@@ -73,6 +73,7 @@ const chapters = [
   { number: 63, title: 'Silence' },
   { number: 64, title: 'Hail' },
   { number: 65, title: 'The Vale' },
+  { number: 66, title: 'Epilogue' },
 ];
 
 const characters: Character[] = [
@@ -99,7 +100,7 @@ const characters: Character[] = [
       },
       {
         chapter: 7,
-        description: 'Rescued by Sevro and the Sons of Ares. Escapes from Attica with the help of Holiday and Trigg.',
+        description: 'Rescued when Ragnar, Sevro and the Howlers arrive at Attica. Escapes with Holiday and Victra; Trigg was killed on the bridge the chapter before.',
         status: 'alive',
       },
       {
@@ -113,8 +114,8 @@ const characters: Character[] = [
         status: 'alive',
       },
       {
-        chapter: 33,
-        description: 'Fights Aja alongside Ragnar. Ragnar is killed in the battle.',
+        chapter: 29,
+        description: 'Ambushed on the ice by Aja and Cassius. Fights Aja alongside Ragnar; Aja mortally wounds Ragnar with a razor-whip trick.',
         status: 'alive',
         additionalDetails: 'Ragnar\'s death deeply affects him.',
       },
@@ -124,12 +125,17 @@ const characters: Character[] = [
         status: 'alive',
       },
       {
-        chapter: 49,
-        description: 'Defeats Roque and captures the Colossus. Mourns Roque despite his betrayal.',
+        chapter: 48,
+        description: 'Boards the Colossus and confronts Roque on the bridge; Roque takes his own life rather than surrender. Darrow mourns him.',
         status: 'alive',
       },
       {
-        chapter: 60,
+        chapter: 61,
+        description: 'Cassius frees Darrow and Mustang during the broadcast execution; Darrow stabs Octavia in the gut seven times.',
+        status: 'alive',
+      },
+      {
+        chapter: 62,
         description: 'Kills Aja alongside Sevro, Cassius, and Mustang in the Sovereign\'s bunker.',
         status: 'alive',
       },
@@ -140,15 +146,15 @@ const characters: Character[] = [
       },
       {
         chapter: 65,
-        description: 'Meets his son Pax for the first time on Earth. Reunites with his family.',
+        description: 'Recovering on Luna (Mickey and Virany reattach the hand the Jackal cut off). Says farewell to Cassius. Weeks later, on a beach on Earth, Mustang reveals their son, Pax.',
         status: 'alive',
-        additionalDetails: 'Virginia reveals she was pregnant during the Triumph. Their son is named after Pax au Telemanus.',
+        additionalDetails: 'Pax was born nine months after the Lion\'s Rain (Epilogue). Named after Pax au Telemanus.',
       },
     ],
     progressiveNames: [
-      { chapter: 0, name: 'Prisoner L17L6363' },
+      { chapter: 2, name: 'Prisoner L17L6363' },
       { chapter: 7, name: 'Darrow / The Reaper' },
-      { chapter: 65, name: 'Darrow / The Morning Star' },
+      { chapter: 35, name: 'Darrow / The Morning Star' },
     ],
   },
   {
@@ -160,7 +166,7 @@ const characters: Character[] = [
     firstAppearance: 0,
     relationships: [
       { targetId: 'darrow', type: 'friend', revealedAtChapter: 0 },
-      { targetId: 'victra', type: 'lover', revealedAtChapter: 12 },
+      { targetId: 'victra', type: 'lover', revealedAtChapter: 36 },
       { targetId: 'fitchner', type: 'parent', revealedAtChapter: 0 },
     ],
     progressiveInfo: [
@@ -176,15 +182,14 @@ const characters: Character[] = [
         status: 'alive',
       },
       {
-        chapter: 12,
-        description: 'His relationship with Victra deepens. They become lovers.',
+        chapter: 36,
+        description: 'Now clearly a couple with Victra (she spends her nights with him after Ragnar\'s death).',
         status: 'alive',
       },
       {
         chapter: 54,
-        description: 'Fakes his own death as part of the plan to infiltrate Luna. His "execution" is broadcast across the system.',
+        description: 'Publicly reveals himself as Ares to the crowd on the Morning Star, then stages a hanging stunt with Cassius to shame the mob (\'I am Ares!\').',
         status: 'alive',
-        additionalDetails: 'His fake death deeply affects Cassius and begins to turn him against the Sovereign.',
       },
       {
         chapter: 55,
@@ -192,8 +197,13 @@ const characters: Character[] = [
         status: 'alive',
       },
       {
-        chapter: 60,
-        description: 'Helps kill Aja in the Sovereign\'s bunker. Nearly dies in the fight.',
+        chapter: 58,
+        description: 'Appears to be shot dead by Cassius aboard the shuttle; his \'corpse\' is delivered to the Jackal and Sovereign as part of the plan.',
+        status: 'alive',
+      },
+      {
+        chapter: 62,
+        description: 'Wakes from his drug-induced \'death\', savages the Jackal and delivers the killing blows to Aja (\'Omnis vir lupus\').',
         status: 'alive',
       },
       {
@@ -209,7 +219,7 @@ const characters: Character[] = [
   {
     id: 'mustang',
     name: 'Virginia au Augustus',
-    aliases: ['Mustang', 'The Lioness'],
+    aliases: ['Mustang'],
     color: 'Gold',
     house: 'Augustus',
     firstAppearance: 0,
@@ -221,28 +231,33 @@ const characters: Character[] = [
     progressiveInfo: [
       {
         chapter: 0,
-        description: 'Separated from Darrow since the Triumph betrayal. Leading her own faction against the Sovereign.',
+        description: 'Separated from Darrow since the Triumph. Fled to the Rim with her fleet after the Jackal seized Mars; the Jackal claims she does not care about Darrow.',
         status: 'alive',
       },
       {
-        chapter: 23,
-        description: 'Reunites with Darrow and the Rising. Brings her forces to join the rebellion.',
+        chapter: 17,
+        description: 'First seen in person: present at Quicksilver\'s tower with Kavax, Daxo and Cassius negotiating peace; flees when Darrow\'s Howlers attack.',
         status: 'alive',
       },
       {
-        chapter: 60,
-        description: 'Fights alongside Darrow against Aja and the Sovereign. Proves herself a fierce warrior.',
+        chapter: 24,
+        description: 'Finds Darrow in the Phobos hangar. Reveals she came to Phobos to make peace with the Sovereign, not to surrender; agrees to join his quest to the Valkyrie Spires.',
+        status: 'alive',
+      },
+      {
+        chapter: 61,
+        description: 'Freed by Cassius; shoots Aja across the room and fights her alongside Darrow and Cassius; in ch 62 takes Aja\'s arm off at the elbow.',
         status: 'alive',
       },
       {
         chapter: 64,
-        description: 'Executes her brother the Jackal by hanging. Shows him mercy by pulling his feet to break his neck quickly.',
+        description: 'Proclaimed Sovereign in the Sovereign\'s forum (\'Hail, Sovereign\'). A week later watches the Jackal hanged in a Luna square by a White hangwoman, and pulls his feet to break his neck.',
         status: 'alive',
         additionalDetails: 'Despite everything, she cannot watch him suffer.',
       },
       {
         chapter: 65,
-        description: 'Becomes the new Sovereign of the Republic. Reveals to Darrow that she was pregnant during the Triumph - they have a son named Pax.',
+        description: 'Ruling as Sovereign amid Luna\'s devastation. Takes Darrow to a beach on Earth and reveals their son Pax.',
         status: 'alive',
         additionalDetails: 'Kept the pregnancy secret to protect her son during the war.',
       },
@@ -254,7 +269,7 @@ const characters: Character[] = [
   {
     id: 'victra',
     name: 'Victra au Julii',
-    aliases: ['The Julii Fury'],
+    aliases: [],
     color: 'Gold',
     house: 'Julii',
     firstAppearance: 12,
@@ -282,12 +297,9 @@ const characters: Character[] = [
       },
       {
         chapter: 65,
-        description: 'Pregnant with Sevro\'s child. They will raise their family in the new world they helped create.',
+        description: 'Commands part of the Rising fleet in the aftermath; comes with Sevro to the beach on Earth for Darrow\'s reunion.',
         status: 'alive',
       },
-    ],
-    progressiveNames: [
-      { chapter: 55, name: 'Victra au Barca' },
     ],
   },
   {
@@ -298,8 +310,8 @@ const characters: Character[] = [
     firstAppearance: 0,
     relationships: [
       { targetId: 'darrow', type: 'ally', revealedAtChapter: 0 },
-      { targetId: 'sefi', type: 'sibling', revealedAtChapter: 26 },
-      { targetId: 'alia', type: 'parent', revealedAtChapter: 26 },
+      { targetId: 'sefi', type: 'sibling', revealedAtChapter: 11 },
+      { targetId: 'alia', type: 'parent', revealedAtChapter: 24 },
     ],
     progressiveInfo: [
       {
@@ -309,19 +321,19 @@ const characters: Character[] = [
       },
       {
         chapter: 26,
-        description: 'Returns to his homeland with Darrow to recruit the Obsidians. Reunites with his sister Sefi.',
+        description: 'Crash-lands in the polar sea with Darrow, Mustang, Holiday and Cassius; begins the trek across the ice to the Valkyrie Spires.',
         status: 'alive',
       },
       {
-        chapter: 31,
-        description: 'Confronts his mother Alia, the Pale Queen, who refuses to believe the gods are false.',
+        chapter: 29,
+        description: 'Ambushed on the ice by Aja and Cassius; mortally wounded by Aja after she tricks him with a razor-whip.',
         status: 'alive',
       },
       {
-        chapter: 33,
-        description: 'Killed by Aja in combat defending Darrow. He dies saving his people and proving the gods are mortal.',
+        chapter: 30,
+        description: 'Dies in Darrow\'s arms as Sefi\'s Valkyrie arrive; his sister reaches him just before the end.',
         status: 'dead',
-        additionalDetails: 'His death inspires Sefi to kill their mother and lead the Obsidians to freedom.',
+        additionalDetails: 'Sefi later beheads their mother (ch 34) after Darrow shows her the truth about the \'gods\'.',
       },
     ],
   },
@@ -352,36 +364,41 @@ const characters: Character[] = [
         additionalDetails: 'Displays sadistic tendencies - mutilates servants and enjoys psychological torture.',
       },
       {
-        chapter: 51,
-        description: 'Reveals he has hidden nuclear bombs throughout Luna. Uses them to blackmail the Sovereign.',
+        chapter: 38,
+        description: 'Sevro learns from Cassius that the Jackal has stolen the Sovereign\'s cache of five hundred nuclear warheads.',
         status: 'alive',
-        additionalDetails: 'Plans to become Sovereign himself by holding three billion lives hostage.',
+      },
+      {
+        chapter: 59,
+        description: 'Cuts off Darrow\'s right hand with Darrow\'s own heated slingBlade aboard the Lion of Mars.',
+        status: 'alive',
       },
       {
         chapter: 62,
-        description: 'Detonates several nuclear bombs on Luna, killing millions. Demands Darrow kill himself in exchange for stopping.',
+        description: 'The first nuclear blast lights up the Sovereign\'s bunker as Octavia dies.',
         status: 'alive',
       },
       {
         chapter: 63,
-        description: 'Darrow rips out his tongue to prevent him from ordering more detonations. Captured and rendered mute.',
+        description: 'Reveals he has planted the stolen warheads across Luna\'s cities. Begins detonating them via Lilath and demands Darrow kill himself on camera. Darrow rips out his tongue to stop him ordering more detonations.',
         status: 'alive',
+        additionalDetails: 'Plans to be crowned Sovereign once Darrow is dead and the Rising broken.',
       },
       {
         chapter: 64,
-        description: 'Executed by hanging in a public square on Luna. Mustang pulls his feet to break his neck, showing him mercy even at the end.',
+        description: 'Executed by hanging in a public square on Luna, a week after Mustang\'s ascension. Mustang pulls his feet to break his neck, showing him mercy even at the end.',
         status: 'dead',
-        additionalDetails: 'His nuclear attack killed over twelve million people before being stopped.',
+        additionalDetails: 'His bombs killed millions on Luna (six million in the first city alone).',
       },
     ],
   },
   {
     id: 'octavia',
     name: 'Octavia au Lune',
-    aliases: ['The Sovereign', 'Grandmother'],
+    aliases: ['The Sovereign'],
     color: 'Gold',
     house: 'Lune',
-    firstAppearance: 2,
+    firstAppearance: 1,
     relationships: [
       { targetId: 'lysander', type: 'grandparent', revealedAtChapter: 2 },
       { targetId: 'aja', type: 'ally', revealedAtChapter: 2 },
@@ -389,20 +406,30 @@ const characters: Character[] = [
     ],
     progressiveInfo: [
       {
+        chapter: 1,
+        description: 'The Sovereign of the Society, ruling from Luna. The architect of everything Darrow has suffered.',
+        status: 'alive',
+      },
+      {
         chapter: 2,
         description: 'The Sovereign of the Society. Has sent Aja to retrieve Darrow for dissection by her Carvers.',
         status: 'alive',
       },
       {
-        chapter: 51,
-        description: 'Under blackmail by the Jackal who has hidden nuclear weapons throughout Luna. Forced to cooperate with his demands.',
+        chapter: 60,
+        description: 'Receives Cassius and the \'dead\' Sevro in her bunker; has Aja strangle Antonia for cowardice.',
         status: 'alive',
       },
       {
-        chapter: 60,
-        description: 'Killed by Cassius in the Sovereign\'s bunker after Cassius turns against her. He stabs her through the heart.',
+        chapter: 61,
+        description: 'Stabbed repeatedly in the gut by Darrow after Cassius kills her guards and releases the prisoners mid-broadcast.',
+        status: 'alive',
+      },
+      {
+        chapter: 62,
+        description: 'Dies on the floor of her bunker as the first nuclear blast lights the room; her last words are to Darrow.',
         status: 'dead',
-        additionalDetails: 'Cassius kills her as revenge for ordering the massacre of House Bellona and for the injustice of her rule.',
+        additionalDetails: 'Cassius turned on her after Darrow showed him proof (holocubes) that she and the Jackal conspired in the Bellona massacre and the murder of Nero au Augustus.',
       },
     ],
   },
@@ -424,14 +451,19 @@ const characters: Character[] = [
         status: 'alive',
       },
       {
-        chapter: 33,
-        description: 'Kills Ragnar Volarus in combat in the Obsidian lands. Her blade proves too fast even for the mighty Obsidian.',
+        chapter: 6,
+        description: 'Spears Trigg through the chest on the bridge outside Attica and throws his body off the edge.',
+        status: 'alive',
+      },
+      {
+        chapter: 29,
+        description: 'Ambushes Darrow\'s party on the ice with Cassius; kills Trigg\'s avenger Ragnar by baiting him into a razor-whip trick.',
         status: 'alive',
         additionalDetails: 'One of the deadliest warriors in the Society.',
       },
       {
-        chapter: 60,
-        description: 'Killed in the Sovereign\'s bunker by Darrow, Sevro, Cassius, and Mustang working together. Even four-on-one, she nearly defeats them.',
+        chapter: 62,
+        description: 'Killed in the Sovereign\'s bunker: Cassius and Sevro cut her tendons, Mustang takes her arm at the elbow, and Sevro drives two razors into her chest.',
         status: 'dead',
         additionalDetails: 'One of the few warriors capable of fighting multiple Peerless Scarred simultaneously.',
       },
@@ -458,12 +490,17 @@ const characters: Character[] = [
       },
       {
         chapter: 54,
-        description: 'Deeply troubled by Sevro\'s apparent execution. Begins to question his loyalty to the Sovereign.',
+        description: 'Dragged before the mob on the Morning Star by Sevro; nearly hanged in Sevro\'s stunt.',
         status: 'alive',
       },
       {
-        chapter: 60,
-        description: 'Turns against the Sovereign and kills Octavia au Lune. Helps Darrow and the others fight Aja.',
+        chapter: 56,
+        description: 'In a private talk with Darrow (\'In Time\') begins to accept the truth about Octavia and agrees to help.',
+        status: 'alive',
+      },
+      {
+        chapter: 61,
+        description: 'Turns on the Sovereign during the live execution: kills her Praetorian guards and unlocks Darrow\'s and Mustang\'s restraints so Darrow can stab Octavia. Fights Aja beside Mustang.',
         status: 'alive',
         additionalDetails: 'Finally chooses honor over loyalty to a corrupt regime.',
       },
@@ -476,18 +513,18 @@ const characters: Character[] = [
         chapter: 65,
         description: 'Departs Luna with Lysander. Plans to raise the boy away from politics and power. Shakes hands with Darrow as a brother.',
         status: 'alive',
-        additionalDetails: 'Returns Julian\'s ring that Darrow gave him. They part as friends after six years of conflict.',
+        additionalDetails: 'Offers to return the ring he took from Darrow the night Lorn and Fitchner died; Darrow tells him to keep it (\'That belongs to Julian\'). They shake hands almost six years after first meeting.',
       },
     ],
     progressiveNames: [
       { chapter: 2, name: 'Cassius / The Morning Knight' },
-      { chapter: 60, name: 'Cassius' },
+      { chapter: 61, name: 'Cassius' },
     ],
   },
   {
     id: 'antonia',
     name: 'Antonia au Severus-Julii',
-    aliases: ['The Snake'],
+    aliases: [],
     color: 'Gold',
     house: 'Julii',
     firstAppearance: 2,
@@ -503,13 +540,13 @@ const characters: Character[] = [
         additionalDetails: 'Shot her own mother and sister during the Triumph betrayal.',
       },
       {
-        chapter: 50,
-        description: 'Captured by the Rising forces during the assault on Luna.',
+        chapter: 48,
+        description: 'Commands a flagship in Roque\'s fleet at Ilium; escapes the battle and flees to the Core.',
         status: 'alive',
       },
       {
-        chapter: 64,
-        description: 'Executed for her crimes against House Julii and the Rising.',
+        chapter: 60,
+        description: 'Strangled to death by Aja on the Sovereign\'s order for cowardice at Ilium, in front of Darrow and Mustang.',
         status: 'dead',
       },
     ],
@@ -520,26 +557,31 @@ const characters: Character[] = [
     aliases: ['The Heir'],
     color: 'Gold',
     house: 'Lune',
-    firstAppearance: 57,
+    firstAppearance: 60,
     relationships: [
-      { targetId: 'octavia', type: 'grandparent', revealedAtChapter: 57 },
+      { targetId: 'octavia', type: 'grandparent', revealedAtChapter: 60 },
       { targetId: 'cassius', type: 'ally', revealedAtChapter: 60 },
     ],
     progressiveInfo: [
       {
-        chapter: 57,
-        description: 'Present on Luna during the final assault. Young heir to House Lune.',
+        chapter: 60,
+        description: 'Ten years old, sits at his grandmother\'s side in the bunker as Cassius arrives with the \'dead\' Sevro.',
         status: 'alive',
       },
       {
-        chapter: 60,
-        description: 'Witnesses his grandmother\'s death at Cassius\'s hands. Suggests calling the Ash Lord to help stop the nuclear detonations.',
+        chapter: 61,
+        description: 'Rushes to hold his dying grandmother together after Darrow stabs her; Aja will not leave her.',
         status: 'alive',
         additionalDetails: 'Shows maturity beyond his years in the crisis.',
       },
       {
+        chapter: 63,
+        description: 'Suggests calling his godfather the Ash Lord to stop the Jackal, then hands Mustang the Dawn Scepter: \'She is our conqueror.\'',
+        status: 'alive',
+      },
+      {
         chapter: 64,
-        description: 'Hands the Dawn Scepter to Mustang, legitimizing her claim to be Sovereign. Kneels before her.',
+        description: 'Attends Mustang\'s proclamation in the forum.',
         status: 'alive',
       },
       {
@@ -556,36 +598,36 @@ const characters: Character[] = [
     name: 'Sefi the Quiet',
     aliases: ['Sefi Volarus', 'Queen of the Valkyrie'],
     color: 'Obsidian',
-    firstAppearance: 26,
+    firstAppearance: 30,
     relationships: [
-      { targetId: 'ragnar', type: 'sibling', revealedAtChapter: 26 },
-      { targetId: 'alia', type: 'parent', revealedAtChapter: 26 },
+      { targetId: 'ragnar', type: 'sibling', revealedAtChapter: 30 },
+      { targetId: 'alia', type: 'parent', revealedAtChapter: 30 },
     ],
     progressiveInfo: [
       {
-        chapter: 26,
-        description: 'Ragnar\'s sister and a warlord of the Valkyrie tribe. Known as "the Quiet" for her stoic demeanor.',
+        chapter: 30,
+        description: 'Arrives with her Valkyrie moments before Ragnar dies; gives him her axe so he can die a warrior.',
         status: 'alive',
       },
       {
-        chapter: 31,
-        description: 'Skeptical of Darrow and the Rising at first. Questions whether the Golds are truly false gods.',
+        chapter: 32,
+        description: 'Darrow shows her the truth about the \'gods\' after Alia has him and Mustang thrown out; she begins to believe.',
         status: 'alive',
       },
       {
         chapter: 34,
         description: 'After Ragnar\'s death, kills her mother Alia and takes leadership of the Valkyrie. Commits the Obsidians to the Rising.',
         status: 'alive',
-        additionalDetails: 'Her mother refused to accept the truth about the false gods.',
+        additionalDetails: 'Decapitates her mother with the razor Darrow gave her.',
       },
       {
         chapter: 65,
-        description: 'Leading the Obsidian migration to Mars. Working to free her people from their centuries of enslavement.',
+        description: 'Under Holiday\'s supervision, has gone to Mars to free the rest of her people at the poles with medicine instead of weapons.',
         status: 'alive',
       },
     ],
     progressiveNames: [
-      { chapter: 26, name: 'Sefi the Quiet' },
+      { chapter: 30, name: 'Sefi the Quiet' },
       { chapter: 34, name: 'Sefi / Queen of the Valkyrie' },
     ],
   },
@@ -594,21 +636,21 @@ const characters: Character[] = [
     name: 'Holiday ti Nakamura',
     aliases: ['Holi'],
     color: 'Gray',
-    firstAppearance: 2,
+    firstAppearance: 3,
     relationships: [
-      { targetId: 'trigg', type: 'sibling', revealedAtChapter: 2 },
-      { targetId: 'darrow', type: 'ally', revealedAtChapter: 2 },
+      { targetId: 'trigg', type: 'sibling', revealedAtChapter: 3 },
+      { targetId: 'darrow', type: 'ally', revealedAtChapter: 3 },
     ],
     progressiveInfo: [
       {
-        chapter: 2,
-        description: 'Gray operative posing as a member of the Thirteenth Legion (Aja\'s dragoons). Helps rescue Darrow from the Jackal\'s prison.',
+        chapter: 3,
+        description: 'Gray operative posing as a Gray in the Praetorian detail escorting Darrow for Aja. Helps rescue Darrow from the Jackal\'s prison.',
         status: 'alive',
-        additionalDetails: 'Nutcracker jaw, ashen Mohawk hair. Has a bionic eye. From South Pacifica on Earth.',
+        additionalDetails: 'Nutcracker jaw, Mohawk, freckled face, one bionic eye. From Earth.',
       },
       {
-        chapter: 7,
-        description: 'Her brother Trigg is killed during the escape from Attica. She survives and continues fighting despite her grief.',
+        chapter: 6,
+        description: 'Her brother Trigg is speared by Aja on the bridge outside Attica. She survives and continues fighting despite her grief.',
         status: 'alive',
       },
       {
@@ -628,21 +670,21 @@ const characters: Character[] = [
     name: 'Trigg ti Nakamura',
     aliases: [],
     color: 'Gray',
-    firstAppearance: 2,
+    firstAppearance: 3,
     relationships: [
-      { targetId: 'holiday', type: 'sibling', revealedAtChapter: 2 },
-      { targetId: 'darrow', type: 'ally', revealedAtChapter: 2 },
+      { targetId: 'holiday', type: 'sibling', revealedAtChapter: 3 },
+      { targetId: 'darrow', type: 'ally', revealedAtChapter: 3 },
     ],
     progressiveInfo: [
       {
-        chapter: 2,
+        chapter: 3,
         description: 'Holiday\'s younger brother. Gray operative who helps rescue Darrow. Loyal and earnest.',
         status: 'alive',
         additionalDetails: 'Two gold teardrop tattoos under his right eye. Boyish face. Carries Darrow\'s razor.',
       },
       {
-        chapter: 7,
-        description: 'Killed during the escape from Attica while rescuing Darrow. Dies heroically fighting Aja and her soldiers.',
+        chapter: 6,
+        description: 'Speared through by Aja on the ice-slicked bridge while covering the retreat; she throws his body over the side.',
         status: 'dead',
         additionalDetails: 'His death deeply affects Holiday. He sacrifices himself to help Darrow escape.',
       },
@@ -667,19 +709,18 @@ const characters: Character[] = [
       },
       {
         chapter: 42,
-        description: 'Commands the Society fleet against the Rising at Jupiter. A brilliant naval tactician.',
+        description: 'Meets Darrow and Mustang face to face in Romulus\'s orchard on Io, arguing for the Rim to stay loyal.',
         status: 'alive',
       },
       {
-        chapter: 49,
-        description: 'Defeated in battle when Darrow captures the Colossus. Commits suicide on the bridge rather than surrender.',
+        chapter: 48,
+        description: 'Out-maneuvered at Ilium; on the bridge of the Colossus he refuses Darrow\'s plea and takes his own life with his razor: \'I will not be a prisoner.\'',
         status: 'dead',
-        additionalDetails: 'Darrow mourns him despite his betrayal. Gives him a funeral fit for a Roman emperor.',
+        additionalDetails: 'Darrow holds a funeral for him (ch 50) and later attends Roque\'s burial with Mustang.',
       },
     ],
     progressiveNames: [
-      { chapter: 0, name: 'Roque / The Betrayer' },
-      { chapter: 42, name: 'Roque / Imperator' },
+      { chapter: 0, name: 'Roque / Imperator' },
     ],
   },
   {
@@ -687,17 +728,22 @@ const characters: Character[] = [
     name: 'Alia Snowsparrow',
     aliases: ['The Pale Queen', 'Queen of the Valkyrie'],
     color: 'Obsidian',
-    firstAppearance: 31,
+    firstAppearance: 28,
     relationships: [
-      { targetId: 'ragnar', type: 'parent', revealedAtChapter: 31 },
-      { targetId: 'sefi', type: 'parent', revealedAtChapter: 31 },
+      { targetId: 'ragnar', type: 'parent', revealedAtChapter: 28 },
+      { targetId: 'sefi', type: 'parent', revealedAtChapter: 28 },
     ],
     progressiveInfo: [
+      {
+        chapter: 28,
+        description: 'Named \'Alia Volarus, the Snowsparrow\'. Queen of the Valkyrie Obsidians and mother to Ragnar and Sefi, ruling the south pole of Mars.',
+        status: 'alive',
+      },
       {
         chapter: 31,
         description: 'Queen of the Valkyrie Obsidians. Ragnar and Sefi\'s mother. Rules the south pole of Mars.',
         status: 'alive',
-        additionalDetails: 'Devout believer in the false gods. Refuses to accept the truth about Gold deception.',
+        additionalDetails: 'Devout believer in the false gods. Refuses to accept the truth about Gold deception. Receives her son\'s corpse and, after hearing Darrow, has him and Mustang cast out into No Man\'s Land rather than defy the \'gods\'.',
       },
       {
         chapter: 34,
@@ -724,8 +770,13 @@ const characters: Character[] = [
         additionalDetails: 'The Rim Golds are more traditional and honorable than Core Golds.',
       },
       {
+        chapter: 43,
+        description: 'Swears the alliance with the Rising after Mustang\'s blood oath before two hundred Praetors; helps devise the battle plan.',
+        status: 'alive',
+      },
+      {
         chapter: 45,
-        description: 'Allies with Darrow against the Sovereign. The Moon Lords bring their considerable fleet to the fight.',
+        description: 'His ships fight alongside the Rising fleet at the Battle of Ilium against the Sword Armada.',
         status: 'alive',
       },
       {
@@ -740,11 +791,16 @@ const characters: Character[] = [
     name: 'Dancer',
     aliases: [],
     color: 'Red',
-    firstAppearance: 8,
+    firstAppearance: 0,
     relationships: [
       { targetId: 'darrow', type: 'ally', revealedAtChapter: 8 },
     ],
     progressiveInfo: [
+      {
+        chapter: 0,
+        description: 'A leader of the Sons of Ares and Darrow\'s first mentor in the rebellion.',
+        status: 'alive',
+      },
       {
         chapter: 8,
         description: 'Senior leader of the Sons of Ares on Tinos. Has been managing the rebellion during Darrow\'s imprisonment.',
@@ -765,29 +821,49 @@ const characters: Character[] = [
   {
     id: 'kavax',
     name: 'Kavax au Telemanus',
-    aliases: ['The Giant'],
+    aliases: [],
     color: 'Gold',
     house: 'Telemanus',
-    firstAppearance: 24,
+    firstAppearance: 16,
     relationships: [
-      { targetId: 'daxo', type: 'parent', revealedAtChapter: 24 },
-      { targetId: 'mustang', type: 'ally', revealedAtChapter: 24 },
+      { targetId: 'daxo', type: 'parent', revealedAtChapter: 16 },
+      { targetId: 'mustang', type: 'ally', revealedAtChapter: 16 },
     ],
     progressiveInfo: [
       {
-        chapter: 24,
-        description: 'Patriarch of House Telemanus. Captured by the Rising but released by Ragnar\'s decision to show good faith.',
+        chapter: 16,
+        description: 'Kavax au Telemanus, the bear-like Gold lord whose house is bound in loyalty to House Augustus and Mustang.',
         status: 'alive',
-        additionalDetails: 'His pet fox Sophocles accompanies him. Massive red-bearded Gold.',
       },
       {
-        chapter: 35,
-        description: 'Returns with House Telemanus\'s forces to support Mustang and the Rising.',
+        chapter: 17,
+        description: 'Captured by the Howlers at Quicksilver\'s tower after a duel of titans with Ragnar.',
+        status: 'alive',
+        additionalDetails: 'His pet fox Sophocles accompanies him.',
+      },
+      {
+        chapter: 20,
+        description: 'Interrogated by Darrow; reveals Mustang\'s peace plan with Quicksilver and that Orion and the Pax are alive.',
+        status: 'alive',
+      },
+      {
+        chapter: 25,
+        description: 'Ragnar secretly let him out of the cell and told him where to find Darrow; he brings Mustang.',
+        status: 'alive',
+      },
+      {
+        chapter: 36,
+        description: 'At Tinos with Daxo; declares Darrow \'family\' and stands with Mustang.',
         status: 'alive',
       },
       {
         chapter: 65,
-        description: 'Kavax\'s wife guarded baby Pax in the asteroid belt during the war. Present at Earth for the reunion.',
+        description: 'Present at Earth for the reunion with House Telemanus.',
+        status: 'alive',
+      },
+      {
+        chapter: 66,
+        description: 'His wife is revealed to have guarded baby Pax in the asteroid belt during the war.',
         status: 'alive',
       },
     ],
@@ -798,18 +874,23 @@ const characters: Character[] = [
     aliases: [],
     color: 'Gold',
     house: 'Telemanus',
-    firstAppearance: 24,
+    firstAppearance: 16,
     relationships: [
-      { targetId: 'kavax', type: 'parent', revealedAtChapter: 24 },
+      { targetId: 'kavax', type: 'parent', revealedAtChapter: 16 },
     ],
     progressiveInfo: [
       {
-        chapter: 24,
-        description: 'Heir of House Telemanus. Kavax\'s son and brother to the deceased Pax au Telemanus.',
+        chapter: 16,
+        description: 'Daxo au Telemanus, Kavax\'s eldest son. Tall, elegant, and an ally of Mustang.',
         status: 'alive',
       },
       {
-        chapter: 35,
+        chapter: 17,
+        description: 'Captured with his father at Quicksilver\'s tower after fighting Ragnar. Heir of House Telemanus, brother to the deceased Pax au Telemanus.',
+        status: 'alive',
+      },
+      {
+        chapter: 36,
         description: 'Fights alongside the Rising. Loyal to his family and to Mustang.',
         status: 'alive',
       },
@@ -818,7 +899,7 @@ const characters: Character[] = [
   {
     id: 'lilath',
     name: 'Lilath au Faran',
-    aliases: ['The Bonerider Captain'],
+    aliases: ['Leader of the Boneriders', 'Praetor'],
     color: 'Gold',
     house: 'Faran',
     firstAppearance: 2,
@@ -828,17 +909,22 @@ const characters: Character[] = [
     progressiveInfo: [
       {
         chapter: 2,
-        description: 'Leader of the Jackal\'s Boneriders. Bald-headed with eel-like eyes. Sits at his right hand.',
+        description: 'Leader of the Jackal\'s Boneriders. Bald-headed. Sits at his right hand.',
         status: 'alive',
         additionalDetails: 'Personal killer for the Jackal since the Institute. Utterly loyal to him.',
       },
       {
-        chapter: 62,
-        description: 'Controls the nuclear detonation triggers for the Jackal. On the Lion of Mars ship.',
+        chapter: 59,
+        description: 'Supervises the amputation of Darrow\'s hand aboard the Lion of Mars.',
         status: 'alive',
       },
       {
         chapter: 63,
+        description: 'Controls the nuclear detonation triggers for the Jackal. On the Lion of Mars ship.',
+        status: 'alive',
+      },
+      {
+        chapter: 64,
         description: 'Killed when the Lion of Mars is destroyed by the combined Gold fleets.',
         status: 'dead',
       },
@@ -850,15 +936,20 @@ const characters: Character[] = [
     aliases: ['The Ash Lord', 'Arch Imperator'],
     color: 'Gold',
     house: 'Grimmus',
-    firstAppearance: 2,
+    firstAppearance: 1,
     relationships: [
       { targetId: 'aja', type: 'child', revealedAtChapter: 2 },
       { targetId: 'octavia', type: 'ally', revealedAtChapter: 2 },
     ],
     progressiveInfo: [
       {
+        chapter: 1,
+        description: 'Magnus au Grimmus, the Ash Lord: the Sovereign\'s most feared commander, the man who burned the moon Rhea.',
+        status: 'alive',
+      },
+      {
         chapter: 2,
-        description: 'The Sovereign\'s Arch Imperator and father to Aja. Destroyed Rhea - responsible for billions of deaths.',
+        description: 'The Sovereign\'s Arch Imperator and father to Aja. Burned Rhea sixty years ago; the Sovereign keeps five hundred warheads \'in case the Ash Lord ever had to repeat Rhea\'.',
         status: 'alive',
       },
       {
@@ -879,14 +970,19 @@ const characters: Character[] = [
     name: 'Orion xe Aquarii',
     aliases: [],
     color: 'Blue',
-    firstAppearance: 13,
+    firstAppearance: 10,
     relationships: [
-      { targetId: 'darrow', type: 'ally', revealedAtChapter: 13 },
+      { targetId: 'darrow', type: 'ally', revealedAtChapter: 10 },
     ],
     progressiveInfo: [
       {
-        chapter: 13,
-        description: 'Blue ship captain serving the Rising. Brilliant navigator and tactician.',
+        chapter: 10,
+        description: 'Believed dead with the Pax after the Triumph.',
+        status: 'unknown',
+      },
+      {
+        chapter: 18,
+        description: 'Mustang reveals Orion and the Pax survived. Blue ship captain serving the Rising. Brilliant navigator and tactician.',
         status: 'alive',
       },
       {
@@ -901,14 +997,19 @@ const characters: Character[] = [
     name: 'Regulus ag Sun',
     aliases: ['Quicksilver'],
     color: 'Silver',
-    firstAppearance: 21,
+    firstAppearance: 13,
     relationships: [
-      { targetId: 'darrow', type: 'ally', revealedAtChapter: 21 },
+      { targetId: 'darrow', type: 'ally', revealedAtChapter: 13 },
     ],
     progressiveInfo: [
       {
+        chapter: 13,
+        description: 'Named as the Jackal\'s silent partner — a mysterious financier of unknown loyalties.',
+        status: 'alive',
+      },
+      {
         chapter: 21,
-        description: 'Richest man in the Society. A Silver who secretly supports the Rising with funds and resources.',
+        description: 'Revealed to be a Son of Ares - Fitchner\'s secret partner and financier - after the Howlers kidnap him from his Phobos tower.',
         status: 'alive',
         additionalDetails: 'His wealth has been crucial to keeping the rebellion supplied.',
       },
@@ -936,7 +1037,7 @@ const characters: Character[] = [
       },
       {
         chapter: 65,
-        description: 'Reattaches Darrow\'s hand (which was cut off during the fighting). Works with Virany.',
+        description: 'With Virany, reattaches the hand the Jackal cut off in ch 59, recovered from the Jackal\'s shuttle.',
         status: 'alive',
       },
     ],
@@ -953,7 +1054,7 @@ const characters: Character[] = [
     progressiveInfo: [
       {
         chapter: 8,
-        description: 'Darrow\'s former steward and social advisor. Now helps manage communications for the Rising.',
+        description: 'Darrow\'s former steward and social advisor. Now works for the Sons; she designed the operation that freed Darrow\'s family.',
         status: 'alive',
       },
     ],
@@ -971,9 +1072,9 @@ const characters: Character[] = [
     progressiveInfo: [
       {
         chapter: 8,
-        description: 'Darrow\'s mother. Rescued from Lykos by Sevro before the Jackal could capture her.',
+        description: 'Darrow\'s mother. Brought to Tinos with the Lykos clan by the Sons (Theodora\'s operation).',
         status: 'alive',
-        additionalDetails: 'Has gray hair now. Waited for her son for over a year.',
+        additionalDetails: 'Has gray hair now. Has had a stroke; grieved Darrow for nine months.',
       },
       {
         chapter: 65,
@@ -987,12 +1088,17 @@ const characters: Character[] = [
     name: 'Kieran of Lykos',
     aliases: ["Darrow's Brother"],
     color: 'Red',
-    firstAppearance: 8,
+    firstAppearance: 1,
     relationships: [
       { targetId: 'darrow', type: 'sibling', revealedAtChapter: 8 },
       { targetId: 'deanna', type: 'parent', revealedAtChapter: 8 },
     ],
     progressiveInfo: [
+      {
+        chapter: 1,
+        description: 'Darrow\'s older brother, still living in the mining colony of Lykos.',
+        status: 'alive',
+      },
       {
         chapter: 8,
         description: 'Darrow\'s brother. Rescued from Lykos with the rest of the family.',
@@ -1082,9 +1188,15 @@ const characters: Character[] = [
     progressiveInfo: [
       {
         chapter: 65,
-        description: 'Darrow and Mustang\'s son, born nine months after the Lion\'s Rain while Darrow was imprisoned. Named after Pax au Telemanus.',
+        description: 'Revealed as Darrow and Mustang\'s son when Mustang brings him to the beach on Earth: \'That is our son. His name is Pax.\' Named after Pax au Telemanus.',
         status: 'alive',
-        additionalDetails: 'Has golden hair like his mother. Kept hidden with Kavax\'s wife in the asteroid belt during the war.',
+        additionalDetails: 'Has golden hair like his mother.',
+      },
+      {
+        chapter: 66,
+        description: 'Born nine months after the Lion\'s Rain while Darrow was imprisoned.',
+        status: 'alive',
+        additionalDetails: 'Kept hidden with Kavax\'s wife in the asteroid belt during the war.',
       },
     ],
   },
@@ -1110,7 +1222,7 @@ export const morningStarFamilyGroups: FamilyGroup[] = [
   {
     id: 'sovereign-court',
     name: "The Sovereign's Court",
-    members: ['octavia', 'lysander', 'aja', 'ash-lord'],
+    members: ['octavia', 'lysander', 'aja', 'ash-lord', 'cassius'],
   },
   {
     id: 'house-telemanus',
@@ -1140,7 +1252,7 @@ export const morningStarFamilyGroups: FamilyGroup[] = [
   {
     id: 'boneriders',
     name: 'The Boneriders',
-    members: ['jackal', 'lilath', 'antonia'],
+    members: ['jackal', 'lilath'],
   },
   {
     id: 'moon-lords',

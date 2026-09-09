@@ -1,336 +1,222 @@
-// Character image mapping
-// Add character images here as: characterId: { default: 'path', carved?: 'path' }
-// For characters with transformations (like Darrow), use 'carved' for post-transformation image
+// Character portrait mapping.
+//
+// Each entry has a `default` portrait and may also have:
+//   - `carved` / `carvedAtChapter` / `carvedInBook`: a transformation that happens mid-book
+//     (Darrow's Carving in Red Rising). Before that chapter of that book the default shows;
+//     from that chapter on, and in every later book, the carved portrait shows.
+//   - `eras`: per-book overrides so a character can age across the series
+//     (e.g. Lysander is a child in Golden Son and an adult from Iron Gold onward).
+
+export type BookId =
+  | 'red-rising'
+  | 'golden-son'
+  | 'morning-star'
+  | 'iron-gold'
+  | 'dark-age'
+  | 'light-bringer';
+
+export const BOOK_ORDER: BookId[] = [
+  'red-rising',
+  'golden-son',
+  'morning-star',
+  'iron-gold',
+  'dark-age',
+  'light-bringer',
+];
+
+// Books 4-6 take place a decade after Morning Star — the cast has visibly aged.
+const LATER_ERA: BookId[] = ['iron-gold', 'dark-age', 'light-bringer'];
+const forLaterBooks = (path: string): Partial<Record<BookId, string>> =>
+  Object.fromEntries(LATER_ERA.map((b) => [b, path]));
 
 interface CharacterImageConfig {
   default: string;
-  carved?: string; // For characters who undergo transformation
-  carvedAtChapter?: number; // Chapter when transformation happens
+  carved?: string;
+  carvedAtChapter?: number;
+  carvedInBook?: BookId;
+  eras?: Partial<Record<BookId, string>>;
 }
 
+const img = (file: string) => `/images/characters/${file}.png`;
+
 const characterImages: Record<string, CharacterImageConfig> = {
-  // Main protagonist - has both Red and Gold versions
+  // Main protagonist - Red before the Carving, Gold after
   darrow: {
-    default: '/images/characters/darrow-red.png',
-    carved: '/images/characters/darrow-gold.png',
+    default: img('darrow-red'),
+    carved: img('darrow-gold'),
     carvedAtChapter: 12,
+    carvedInBook: 'red-rising',
   },
 
   // Darrow's family
-  eo: {
-    default: '/images/characters/eo.png',
-  },
-  kieran: {
-    default: '/images/characters/kieran.png',
-  },
-  leanna: {
-    default: '/images/characters/leanna.png',
-  },
-  'mother-darrow': {
-    default: '/images/characters/mother-darrow.png',
-  },
-  'father-darrow': {
-    default: '/images/characters/father-darrow.png',
-  },
-  narol: {
-    default: '/images/characters/narol.png',
-  },
-  dio: {
-    default: '/images/characters/dio.png',
-  },
-  loran: {
-    default: '/images/characters/loran.png',
-  },
+  eo: { default: img('eo') },
+  kieran: { default: img('kieran') },
+  leanna: { default: img('leanna') },
+  'mother-darrow': { default: img('mother-darrow') },
+  deanna: { default: img('mother-darrow') }, // Morning Star uses her given name as the id
+  'father-darrow': { default: img('father-darrow') },
+  narol: { default: img('narol') },
+  dio: { default: img('dio') },
+  loran: { default: img('loran') },
 
   // Sons of Ares
-  dancer: {
-    default: '/images/characters/dancer.png',
-  },
-  harmony: {
-    default: '/images/characters/harmony.png',
-  },
-  mickey: {
-    default: '/images/characters/mickey.png',
-  },
-  evey: {
-    default: '/images/characters/evey.png',
-  },
-  matteo: {
-    default: '/images/characters/matteo.png',
-  },
+  dancer: { default: img('dancer') },
+  harmony: { default: img('harmony') },
+  mickey: { default: img('mickey') },
+  evey: { default: img('evey') },
+  matteo: { default: img('matteo') },
 
   // Gold Society
-  'nero-augustus': {
-    default: '/images/characters/nero-augustus.png',
-  },
-  'octavia-lune': {
-    default: '/images/characters/octavia-lune.png',
-  },
-  // Alias for Golden Son (uses 'octavia' as ID)
-  octavia: {
-    default: '/images/characters/octavia-lune.png',
-  },
-  fitchner: {
-    default: '/images/characters/fitchner.png',
-  },
+  'nero-augustus': { default: img('nero-augustus') },
+  'octavia-lune': { default: img('octavia-lune') },
+  octavia: { default: img('octavia-lune') }, // Golden Son+ use 'octavia' as the id
+  fitchner: { default: img('fitchner') },
 
-  // ========== GOLDEN SON NEW CHARACTERS ==========
-
-  // House Bellona - new members
-  karnus: {
-    default: '/images/characters/karnus.png',
-  },
-  'tiberius-bellona': {
-    default: '/images/characters/tiberius-bellona.png',
-  },
-  'julia-bellona': {
-    default: '/images/characters/julia-bellona.png',
-  },
+  // House Bellona
+  karnus: { default: img('karnus') },
+  'tiberius-bellona': { default: img('tiberius-bellona') },
+  'julia-bellona': { default: img('julia-bellona') },
 
   // Sovereign's Court
   lysander: {
-    default: '/images/characters/lysander.png',
+    default: img('lysander'),
+    eras: forLaterBooks(img('lysander-adult')),
   },
-  aja: {
-    default: '/images/characters/aja.png',
-  },
-  moira: {
-    default: '/images/characters/moira.png',
-  },
+  aja: { default: img('aja') },
+  moira: { default: img('moira') },
 
   // House Arcos
-  lorn: {
-    default: '/images/characters/lorn.png',
-  },
+  lorn: { default: img('lorn') },
 
   // House Telemanus
-  kavax: {
-    default: '/images/characters/kavax.png',
-  },
-  daxo: {
-    default: '/images/characters/daxo.png',
-  },
+  kavax: { default: img('kavax') },
+  daxo: { default: img('daxo') },
+  pax: { default: img('pax') },
+  'pax-telemanus': { default: img('pax') }, // Morning Star id for Pax au Telemanus
 
   // House Julii
-  victra: {
-    default: '/images/characters/victra.png',
-  },
-  agrippina: {
-    default: '/images/characters/agrippina.png',
-  },
+  victra: { default: img('victra') },
+  agrippina: { default: img('agrippina') },
 
-  // House Augustus - new members
-  pliny: {
-    default: '/images/characters/pliny.png',
-  },
-  leto: {
-    default: '/images/characters/leto.png',
-  },
+  // House Augustus
+  pliny: { default: img('pliny') },
+  leto: { default: img('leto') },
 
   // Darrow's household
-  theodora: {
-    default: '/images/characters/theodora.png',
-  },
+  theodora: { default: img('theodora') },
 
   // Other Golden Son characters
-  tactus: {
-    default: '/images/characters/tactus.png',
-  },
+  tactus: { default: img('tactus') },
 
   // Institute - House Mars and others
-  mustang: {
-    default: '/images/characters/mustang.png',
-  },
-  cassius: {
-    default: '/images/characters/cassius.png',
-  },
-  julian: {
-    default: '/images/characters/julian.png',
-  },
-  sevro: {
-    default: '/images/characters/sevro.png',
-  },
-  roque: {
-    default: '/images/characters/roque.png',
-  },
-  quinn: {
-    default: '/images/characters/quinn.png',
-  },
-  lea: {
-    default: '/images/characters/lea.png',
-  },
-  pax: {
-    default: '/images/characters/pax.png',
-  },
-  antonia: {
-    default: '/images/characters/antonia.png',
-  },
-  jackal: {
-    default: '/images/characters/jackal.png',
-  },
-  titus: {
-    default: '/images/characters/titus.png',
-  },
-  vixus: {
-    default: '/images/characters/vixus.png',
-  },
+  mustang: { default: img('mustang') },
+  cassius: { default: img('cassius') },
+  julian: { default: img('julian') },
+  sevro: { default: img('sevro') },
+  roque: { default: img('roque') },
+  quinn: { default: img('quinn') },
+  lea: { default: img('lea') },
+  antonia: { default: img('antonia') },
+  jackal: { default: img('jackal') },
+  titus: { default: img('titus') },
+  vixus: { default: img('vixus') },
 
   // Grays and Coppers
-  'ugly-dan': {
-    default: '/images/characters/ugly-dan.png',
-  },
-  podginus: {
-    default: '/images/characters/podginus.png',
-  },
-
-  // ========== MORNING STAR & LATER BOOKS ==========
+  'ugly-dan': { default: img('ugly-dan') },
+  podginus: { default: img('podginus') },
 
   // Obsidians
-  ragnar: {
-    default: '/images/characters/ragnar.png',
-  },
-  sefi: {
-    default: '/images/characters/sefi.png',
-  },
-  alia: {
-    default: '/images/characters/alia.png',
-  },
-  volga: {
-    default: '/images/characters/volga.png',
-  },
-  'volsung-fa': {
-    default: '/images/characters/volsung-fa.png',
-  },
-  valdir: {
-    default: '/images/characters/valdir.png',
-  },
-  wulfgar: {
-    default: '/images/characters/wulfgar.png',
-  },
+  ragnar: { default: img('ragnar') },
+  sefi: { default: img('sefi') },
+  alia: { default: img('alia') },
+  volga: { default: img('volga') },
+  'volsung-fa': { default: img('volsung-fa') },
+  valdir: { default: img('valdir') },
+  wulfgar: { default: img('wulfgar') },
 
-  // Grays - new
-  holiday: {
-    default: '/images/characters/holiday.png',
-  },
-  trigg: {
-    default: '/images/characters/trigg.png',
-  },
-  ephraim: {
-    default: '/images/characters/ephraim.png',
-  },
+  // Grays
+  holiday: { default: img('holiday') },
+  trigg: { default: img('trigg') },
+  ephraim: { default: img('ephraim') },
 
-  // Reds - new
-  lyria: {
-    default: '/images/characters/lyria.png',
-  },
-  rhonna: {
-    default: '/images/characters/rhonna.png',
-  },
+  // Reds
+  lyria: { default: img('lyria') },
+  rhonna: { default: img('rhonna') },
 
-  // Gold protagonists/allies
-  alexandar: {
-    default: '/images/characters/alexandar.png',
-  },
-  thraxa: {
-    default: '/images/characters/thraxa.png',
-  },
-  'pax-augustus': {
-    default: '/images/characters/pax-augustus.png',
-  },
-  electra: {
-    default: '/images/characters/electra.png',
-  },
+  // Gold protagonists/allies (later books)
+  alexandar: { default: img('alexandar') },
+  thraxa: { default: img('thraxa') },
+  'pax-augustus': { default: img('pax-augustus') },
+  'pax-son': { default: img('pax-augustus') }, // Morning Star epilogue id for the same child
+  electra: { default: img('electra') },
 
   // Gold antagonists
-  apollonius: {
-    default: '/images/characters/apollonius.png',
-  },
-  atlas: {
-    default: '/images/characters/atlas.png',
-  },
-  atalantia: {
-    default: '/images/characters/atalantia.png',
-  },
-  ajax: {
-    default: '/images/characters/ajax.png',
-  },
-  'lysander-adult': {
-    default: '/images/characters/lysander-adult.png',
-  },
+  apollonius: { default: img('apollonius') },
+  atlas: { default: img('atlas') },
+  atalantia: { default: img('atalantia') },
+  ajax: { default: img('ajax') },
 
   // Rim Golds
-  romulus: {
-    default: '/images/characters/romulus.png',
-  },
-  dido: {
-    default: '/images/characters/dido.png',
-  },
-  diomedes: {
-    default: '/images/characters/diomedes.png',
-  },
-  seraphina: {
-    default: '/images/characters/seraphina.png',
-  },
-  kalindora: {
-    default: '/images/characters/kalindora.png',
-  },
+  romulus: { default: img('romulus') },
+  dido: { default: img('dido') },
+  diomedes: { default: img('diomedes') },
+  seraphina: { default: img('seraphina') },
+  kalindora: { default: img('kalindora') },
 
   // Blues
-  orion: {
-    default: '/images/characters/orion.png',
-  },
-  pytha: {
-    default: '/images/characters/pytha.png',
-  },
+  orion: { default: img('orion') },
+  pytha: { default: img('pytha') },
 
   // Silver
-  quicksilver: {
-    default: '/images/characters/quicksilver.png',
-  },
+  quicksilver: { default: img('quicksilver') },
 
   // Additional characters
-  liam: {
-    default: '/images/characters/liam.png',
-  },
-  niobe: {
-    default: '/images/characters/niobe.png',
-  },
-  marius: {
-    default: '/images/characters/marius.png',
-  },
-  'ash-lord': {
-    default: '/images/characters/ash-lord.png',
-  },
-  'duke-of-hands': {
-    default: '/images/characters/duke-of-hands.png',
-  },
-  'syndicate-queen': {
-    default: '/images/characters/syndicate-queen.png',
-  },
+  liam: { default: img('liam') },
+  niobe: { default: img('niobe') },
+  marius: { default: img('marius') },
+  'ash-lord': { default: img('ash-lord') },
+  'duke-of-hands': { default: img('duke-of-hands') },
+  'syndicate-queen': { default: img('syndicate-queen') },
 };
+
+function bookIndex(bookId: string): number {
+  const i = BOOK_ORDER.indexOf(bookId as BookId);
+  return i === -1 ? 0 : i;
+}
+
+/** True once the character's mid-book transformation has happened, given the book being read. */
+export function isCharacterCarved(
+  characterId: string,
+  currentChapter: number,
+  bookId: string = 'red-rising'
+): boolean {
+  const config = characterImages[characterId];
+  if (!config?.carved || config.carvedAtChapter === undefined) return false;
+  const carvedIn = config.carvedInBook ?? 'red-rising';
+  const delta = bookIndex(bookId) - bookIndex(carvedIn);
+  if (delta > 0) return true; // a later book: the transformation is history
+  if (delta < 0) return false; // an earlier book: hasn't happened yet
+  return currentChapter >= config.carvedAtChapter;
+}
 
 export function getCharacterImage(
   characterId: string,
-  currentChapter: number
+  currentChapter: number,
+  bookId: string = 'red-rising'
 ): string | null {
   const config = characterImages[characterId];
   if (!config) return null;
 
-  // Check if character has been carved/transformed
-  if (config.carved && config.carvedAtChapter && currentChapter >= config.carvedAtChapter) {
+  const eraImage = config.eras?.[bookId as BookId];
+  if (eraImage) return eraImage;
+
+  if (config.carved && isCharacterCarved(characterId, currentChapter, bookId)) {
     return config.carved;
   }
 
   return config.default;
 }
 
-export function isCharacterCarved(characterId: string, currentChapter: number): boolean {
-  const config = characterImages[characterId];
-  if (!config || !config.carvedAtChapter) return false;
-  return currentChapter >= config.carvedAtChapter;
-}
-
 export function getCarvedAtChapter(characterId: string): number | null {
-  const config = characterImages[characterId];
-  return config?.carvedAtChapter || null;
+  return characterImages[characterId]?.carvedAtChapter ?? null;
 }
